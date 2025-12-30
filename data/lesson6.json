@@ -1,0 +1,69 @@
+{
+  "sections": [
+    {
+      "title": "Từ mới",
+      "items": [
+        { "hanzi": "后面", "pinyin": "hòumiàn", "meaning": "phía sau" },
+        { "hanzi": "站", "pinyin": "zhàn", "meaning": "đứng" },
+        { "hanzi": "站着", "pinyin": "zhàn zhe", "meaning": "đang đứng" },
+        { "hanzi": "女孩", "pinyin": "nǚhái", "meaning": "cô gái" },
+        { "hanzi": "男孩", "pinyin": "nánhái", "meaning": "cậu bé" },
+        { "hanzi": "穿", "pinyin": "chuān", "meaning": "mặc" },
+        { "hanzi": "衣服", "pinyin": "yīfu", "meaning": "quần áo" },
+        { "hanzi": "颜色", "pinyin": "yánsè", "meaning": "màu sắc" },
+        { "hanzi": "笑", "pinyin": "xiào", "meaning": "cười" },
+        { "hanzi": "怎么", "pinyin": "zěnme", "meaning": "như thế nào / sao" }
+      ]
+    },
+    {
+      "title": "Ngữ pháp – 动词 + 着",
+      "items": [
+        {
+          "hanzi": "动词 + 着",
+          "pinyin": "",
+          "meaning": "biểu thị trạng thái đang tiếp diễn (站着、坐着、看着)"
+        },
+        {
+          "hanzi": "后面站着的两个女孩",
+          "pinyin": "",
+          "meaning": "cụm định ngữ có 着 bổ nghĩa cho danh từ phía sau"
+        }
+      ]
+    },
+    {
+      "title": "Ngữ pháp – 怎么",
+      "items": [
+        {
+          "hanzi": "怎么 + 形容词 / 动词",
+          "pinyin": "",
+          "meaning": "hỏi tình trạng, nguyên nhân (怎么这么忙？)"
+        }
+      ]
+    },
+    {
+      "title": "Hội thoại",
+      "items": [
+        {
+          "hanzi": "后面站着的两个女孩是谁？",
+          "pinyin": "Hòumiàn zhàn zhe de liǎng gè nǚhái shì shéi?",
+          "meaning": "Hai cô gái đang đứng phía sau là ai?"
+        },
+        {
+          "hanzi": "穿红衣服的是我的同学。",
+          "pinyin": "Chuān hóng yīfu de shì wǒ de tóngxué.",
+          "meaning": "Người mặc áo đỏ là bạn học của tôi."
+        },
+        {
+          "hanzi": "她们怎么这么高兴？",
+          "pinyin": "Tāmen zěnme zhème gāoxìng?",
+          "meaning": "Sao họ vui thế?"
+        },
+        {
+          "hanzi": "因为今天不用上课。",
+          "pinyin": "Yīnwèi jīntiān bú yòng shàng kè.",
+          "meaning": "Vì hôm nay không cần lên lớp."
+        }
+      ]
+    }
+  ]
+}
