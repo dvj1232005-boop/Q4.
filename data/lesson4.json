@@ -1,9 +1,28 @@
 {
+  "lesson": 4,
+  "title": "您是不是住到12号？",
   "sections": [
+
     {
-      "title": "Từ mới",
+      "title": "学习目标",
       "items": [
-        { "hanzi": "住", "pinyin": "zhù", "meaning": "ở, cư trú" },
+        { "hanzi": "学习订房和入住表达", "pinyin": "", "meaning": "Học cách đặt phòng và nhận phòng" },
+        { "hanzi": "掌握结果补语“到”", "pinyin": "", "meaning": "Nắm bổ ngữ kết quả 到" }
+      ]
+    },
+
+    {
+      "title": "热身问题",
+      "items": [
+        { "hanzi": "你住过酒店吗？", "pinyin": "", "meaning": "Bạn đã từng ở khách sạn chưa?" },
+        { "hanzi": "一般住几天？", "pinyin": "", "meaning": "Thường ở mấy ngày?" }
+      ]
+    },
+
+    {
+      "title": "词语（全部）",
+      "items": [
+        { "hanzi": "住", "pinyin": "zhù", "meaning": "ở" },
         { "hanzi": "预订", "pinyin": "yùdìng", "meaning": "đặt trước" },
         { "hanzi": "房间", "pinyin": "fángjiān", "meaning": "phòng" },
         { "hanzi": "单人间", "pinyin": "dānrénjiān", "meaning": "phòng đơn" },
@@ -11,58 +30,43 @@
         { "hanzi": "前台", "pinyin": "qiántái", "meaning": "quầy lễ tân" },
         { "hanzi": "身份证", "pinyin": "shēnfènzhèng", "meaning": "chứng minh thư" },
         { "hanzi": "护照", "pinyin": "hùzhào", "meaning": "hộ chiếu" },
-        { "hanzi": "到", "pinyin": "dào", "meaning": "đến, tới" },
+        { "hanzi": "住到", "pinyin": "zhù dào", "meaning": "ở đến" },
         { "hanzi": "退房", "pinyin": "tuì fáng", "meaning": "trả phòng" }
       ]
     },
+
     {
-      "title": "Ngữ pháp – Bổ ngữ kết quả (到)",
+      "title": "语法要点（结果补语 到）",
       "items": [
         {
           "hanzi": "动词 + 到",
           "pinyin": "",
-          "meaning": "biểu thị đạt được kết quả hoặc mức độ (找到、看到、住到)"
+          "meaning": "biểu thị đạt tới kết quả hoặc thời điểm"
         },
         {
-          "hanzi": "住到 + 时间",
+          "hanzi": "住到12号",
           "pinyin": "",
-          "meaning": "biểu thị ở đến một thời điểm nhất định"
+          "meaning": "ở đến ngày 12"
         }
       ]
     },
+
     {
-      "title": "Hội thoại",
+      "title": "课文（一）对话",
       "items": [
-        {
-          "hanzi": "您好，请问您预订房间了吗？",
-          "pinyin": "Nín hǎo, qǐngwèn nín yùdìng fángjiān le ma?",
-          "meaning": "Xin chào, xin hỏi quý khách đã đặt phòng chưa?"
-        },
-        {
-          "hanzi": "预订了，一个单人间。",
-          "pinyin": "Yùdìng le, yí gè dānrénjiān.",
-          "meaning": "Đã đặt rồi, một phòng đơn."
-        },
-        {
-          "hanzi": "您是不是住到12号？",
-          "pinyin": "Nín shì bú shì zhù dào shí'èr hào?",
-          "meaning": "Quý khách ở đến ngày 12 phải không?"
-        },
-        {
-          "hanzi": "对，我住到12号。",
-          "pinyin": "Duì, wǒ zhù dào shí'èr hào.",
-          "meaning": "Đúng vậy, tôi ở đến ngày 12."
-        },
-        {
-          "hanzi": "请出示您的护照。",
-          "pinyin": "Qǐng chūshì nín de hùzhào.",
-          "meaning": "Vui lòng xuất trình hộ chiếu của quý khách."
-        },
-        {
-          "hanzi": "这是我的护照。",
-          "pinyin": "Zhè shì wǒ de hùzhào.",
-          "meaning": "Đây là hộ chiếu của tôi."
-        }
+        { "hanzi": "您好，请问您预订房间了吗？", "pinyin": "", "meaning": "Xin chào, quý khách đã đặt phòng chưa?" },
+        { "hanzi": "预订了，一个单人间。", "pinyin": "", "meaning": "Đã đặt rồi, một phòng đơn." },
+        { "hanzi": "您是不是住到12号？", "pinyin": "", "meaning": "Quý khách ở đến ngày 12 phải không?" },
+        { "hanzi": "对，我住到12号。", "pinyin": "", "meaning": "Đúng vậy, tôi ở đến ngày 12." },
+        { "hanzi": "请出示您的护照。", "pinyin": "", "meaning": "Vui lòng xuất trình hộ chiếu." }
+      ]
+    },
+
+    {
+      "title": "情景练习",
+      "items": [
+        { "hanzi": "A：您住到几号？", "pinyin": "", "meaning": "A: Quý khách ở đến ngày mấy?" },
+        { "hanzi": "B：我住到……号。", "pinyin": "", "meaning": "B: Tôi ở đến ngày …" }
       ]
     }
   ]
