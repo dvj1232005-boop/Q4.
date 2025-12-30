@@ -2,6 +2,25 @@
   "lesson": 1,
   "title": "国庆节放几天假？",
   "sections": [
+
+    {
+      "title": "学习目标",
+      "items": [
+        { "hanzi": "询问和回答放假时间", "pinyin": "", "meaning": "Hỏi và trả lời thời gian nghỉ lễ" },
+        { "hanzi": "表达节日安排", "pinyin": "", "meaning": "Biểu đạt sắp xếp trong dịp lễ" },
+        { "hanzi": "掌握时间补语和“了”", "pinyin": "", "meaning": "Nắm bổ ngữ thời lượng và trợ từ 了" }
+      ]
+    },
+
+    {
+      "title": "热身问题",
+      "items": [
+        { "hanzi": "你每个星期休息几天？", "pinyin": "", "meaning": "Mỗi tuần bạn nghỉ mấy ngày?" },
+        { "hanzi": "你每天学习多长时间？", "pinyin": "", "meaning": "Mỗi ngày bạn học bao lâu?" },
+        { "hanzi": "星期天你一般做什么？", "pinyin": "", "meaning": "Chủ nhật bạn thường làm gì?" }
+      ]
+    },
+
     {
       "title": "词语（全部）",
       "items": [
@@ -16,7 +35,7 @@
         { "hanzi": "车辆", "pinyin": "chēliàng", "meaning": "phương tiện giao thông" },
         { "hanzi": "带", "pinyin": "dài", "meaning": "mang theo" },
         { "hanzi": "高速公路", "pinyin": "gāosù gōnglù", "meaning": "đường cao tốc" },
-        { "hanzi": "增", "pinyin": "zēng", "meaning": "tăng" },
+        { "hanzi": "增加", "pinyin": "zēngjiā", "meaning": "tăng lên" },
         { "hanzi": "一会儿", "pinyin": "yíhuìr", "meaning": "một lát" },
         { "hanzi": "免费", "pinyin": "miǎnfèi", "meaning": "miễn phí" },
         { "hanzi": "飞机", "pinyin": "fēijī", "meaning": "máy bay" },
@@ -31,51 +50,76 @@
         { "hanzi": "上课", "pinyin": "shàng kè", "meaning": "lên lớp" }
       ]
     },
+
     {
-      "title": "语法（全部）",
+      "title": "语法要点",
       "items": [
         {
           "hanzi": "时间补语",
           "pinyin": "",
-          "meaning": "Bổ ngữ thời lượng – biểu thị thời gian hành động kéo dài"
+          "meaning": "Bổ ngữ thời lượng: 动词 + 了 + 时间"
         },
         {
-          "hanzi": "动词 + 了 + 时间",
+          "hanzi": "我们学习了三个小时。",
           "pinyin": "",
-          "meaning": "Ví dụ: 学了三天 / 等了半天"
+          "meaning": "Chúng tôi đã học ba tiếng."
+        },
+        {
+          "hanzi": "他等了半天。",
+          "pinyin": "",
+          "meaning": "Anh ấy đợi nửa ngày."
         },
         {
           "hanzi": "状态助词“了”",
           "pinyin": "",
-          "meaning": "Biểu thị trạng thái đã xảy ra"
+          "meaning": "Biểu thị trạng thái đã xảy ra hoặc thay đổi"
         }
       ]
     },
+
     {
       "title": "课文（一）对话",
       "items": [
+        { "hanzi": "海伦：你知道国庆节放几天假吗？", "pinyin": "", "meaning": "Helen: Bạn biết Quốc khánh nghỉ mấy ngày không?" },
+        { "hanzi": "田中：国庆节放七天假，休息一个星期。", "pinyin": "", "meaning": "Tanaka: Nghỉ bảy ngày, trọn một tuần." },
+        { "hanzi": "海伦：中国的节日都放长假吗？", "pinyin": "", "meaning": "Helen: Các ngày lễ đều nghỉ dài sao?" },
+        { "hanzi": "田中：不，有的节日只放一天假，比如中秋节。", "pinyin": "", "meaning": "Tanaka: Không, có lễ chỉ nghỉ một ngày." }
+      ]
+    },
+
+    {
+      "title": "听力判断",
+      "items": [
+        { "hanzi": "国庆节放七天假。", "pinyin": "", "meaning": "Đúng" },
+        { "hanzi": "中秋节放七天假。", "pinyin": "", "meaning": "Sai" }
+      ]
+    },
+
+    {
+      "title": "阅读理解",
+      "items": [
         {
-          "hanzi": "海伦：你知道国庆节放几天假吗？",
-          "pinyin": "Hǎilún: Nǐ zhīdào Guóqìng jié fàng jǐ tiān jià ma?",
-          "meaning": "Helen: Bạn có biết Quốc khánh nghỉ mấy ngày không?"
+          "hanzi": "国庆节到了，很多人安排去旅游，也有人在家休息。",
+          "pinyin": "",
+          "meaning": "Quốc khánh đến, nhiều người sắp xếp đi du lịch, cũng có người ở nhà nghỉ."
+        }
+      ]
+    },
+
+    {
+      "title": "口语练习",
+      "items": [
+        {
+          "hanzi": "A：国庆节你打算做什么？",
+          "pinyin": "",
+          "meaning": "A: Quốc khánh bạn định làm gì?"
         },
         {
-          "hanzi": "田中：国庆节放七天假，休息一个星期。",
-          "pinyin": "Tiánzhōng: Guóqìng jié fàng qī tiān jià, xiūxi yí gè xīngqī.",
-          "meaning": "Tanaka: Quốc khánh nghỉ bảy ngày, nghỉ một tuần."
-        },
-        {
-          "hanzi": "海伦：中国的节日都放长假吗？",
-          "pinyin": "Hǎilún: Zhōngguó de jiérì dōu fàng cháng jià ma?",
-          "meaning": "Helen: Các lễ ở Trung Quốc đều nghỉ dài sao?"
-        },
-        {
-          "hanzi": "田中：不，有的节日只放一天假，比如中秋节。",
-          "pinyin": "Tiánzhōng: Bù, yǒu de jiérì zhǐ fàng yì tiān jià, bǐrú Zhōngqiū Jié.",
-          "meaning": "Tanaka: Không, có lễ chỉ nghỉ một ngày, ví dụ như Trung thu."
+          "hanzi": "B：我打算……",
+          "pinyin": "",
+          "meaning": "B: Tôi dự định…"
         }
       ]
     }
   ]
 }
-
