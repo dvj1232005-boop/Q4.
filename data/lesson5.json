@@ -1,11 +1,14 @@
 {
+  "lesson": 5,
+  "title": "每天都看得到美景",
   "sections": [
     {
-      "title": "Từ mới",
+      "title": "词语",
       "items": [
         { "hanzi": "每天", "pinyin": "měitiān", "meaning": "mỗi ngày" },
         { "hanzi": "看到", "pinyin": "kàndào", "meaning": "nhìn thấy" },
         { "hanzi": "看得到", "pinyin": "kàn de dào", "meaning": "có thể nhìn thấy" },
+        { "hanzi": "看不到", "pinyin": "kàn bu dào", "meaning": "không thể nhìn thấy" },
         { "hanzi": "美景", "pinyin": "měijǐng", "meaning": "cảnh đẹp" },
         { "hanzi": "风景", "pinyin": "fēngjǐng", "meaning": "phong cảnh" },
         { "hanzi": "窗户", "pinyin": "chuānghu", "meaning": "cửa sổ" },
@@ -14,57 +17,37 @@
         { "hanzi": "附近", "pinyin": "fùjìn", "meaning": "gần đây" },
         { "hanzi": "安静", "pinyin": "ānjìng", "meaning": "yên tĩnh" },
         { "hanzi": "方便", "pinyin": "fāngbiàn", "meaning": "thuận tiện" },
-        { "hanzi": "生活", "pinyin": "shēnghuó", "meaning": "sinh hoạt, cuộc sống" }
+        { "hanzi": "生活", "pinyin": "shēnghuó", "meaning": "cuộc sống, sinh hoạt" }
       ]
     },
     {
-      "title": "Ngữ pháp – Bổ ngữ khả năng",
+      "title": "语法重点（可能补语）",
       "items": [
         {
           "hanzi": "动词 + 得 / 不 + 补语",
           "pinyin": "",
-          "meaning": "biểu thị khả năng hoặc không có khả năng thực hiện hành động"
+          "meaning": "Biểu thị khả năng hoặc không có khả năng"
         },
         {
-          "hanzi": "看得到 / 看不到",
+          "hanzi": "从窗户看得到美景。",
           "pinyin": "",
-          "meaning": "có thể nhìn thấy / không thể nhìn thấy"
+          "meaning": "Từ cửa sổ có thể nhìn thấy cảnh đẹp."
         },
         {
-          "hanzi": "买得到 / 买不到",
+          "hanzi": "晚上看不到外面的风景。",
           "pinyin": "",
-          "meaning": "có thể mua được / không mua được"
+          "meaning": "Buổi tối không nhìn thấy phong cảnh bên ngoài."
         }
       ]
     },
     {
-      "title": "Hội thoại",
+      "title": "课文对话",
       "items": [
-        {
-          "hanzi": "你住的地方怎么样？",
-          "pinyin": "Nǐ zhù de dìfang zěnmeyàng?",
-          "meaning": "Nơi bạn ở thế nào?"
-        },
-        {
-          "hanzi": "从窗户可以看到美景。",
-          "pinyin": "Cóng chuānghu kěyǐ kàndào měijǐng.",
-          "meaning": "Từ cửa sổ có thể nhìn thấy cảnh đẹp."
-        },
-        {
-          "hanzi": "附近生活方便吗？",
-          "pinyin": "Fùjìn shēnghuó fāngbiàn ma?",
-          "meaning": "Gần đó sinh hoạt có thuận tiện không?"
-        },
-        {
-          "hanzi": "很方便，而且很安静。",
-          "pinyin": "Hěn fāngbiàn, érqiě hěn ānjìng.",
-          "meaning": "Rất thuận tiện, lại còn rất yên tĩnh."
-        },
-        {
-          "hanzi": "每天都看得到风景。",
-          "pinyin": "Měitiān dōu kàn de dào fēngjǐng.",
-          "meaning": "Mỗi ngày đều có thể nhìn thấy phong cảnh."
-        }
+        { "hanzi": "你住的地方怎么样？", "pinyin": "", "meaning": "Nơi bạn ở thế nào?" },
+        { "hanzi": "从窗户可以看到美景。", "pinyin": "", "meaning": "Từ cửa sổ có thể nhìn thấy cảnh đẹp." },
+        { "hanzi": "附近生活方便吗？", "pinyin": "", "meaning": "Gần đó sinh hoạt có thuận tiện không?" },
+        { "hanzi": "很方便，而且很安静。", "pinyin": "", "meaning": "Rất thuận tiện, lại còn yên tĩnh." },
+        { "hanzi": "每天都看得到风景。", "pinyin": "", "meaning": "Mỗi ngày đều nhìn thấy phong cảnh." }
       ]
     }
   ]
