@@ -1,32 +1,81 @@
 {
-  "sections":[
+  "lesson": 1,
+  "title": "国庆节放几天假？",
+  "sections": [
     {
-      "title":"Từ mới",
-      "items":[
-        {"hanzi":"有的","pinyin":"yǒu de","meaning":"có cái"},
-        {"hanzi":"比如","pinyin":"bǐrú","meaning":"ví dụ"},
-        {"hanzi":"开始","pinyin":"kāishǐ","meaning":"bắt đầu"},
-        {"hanzi":"请假","pinyin":"qǐng jià","meaning":"xin nghỉ"},
-        {"hanzi":"结婚","pinyin":"jiéhūn","meaning":"kết hôn"},
-        {"hanzi":"高速公路","pinyin":"gāosù gōnglù","meaning":"đường cao tốc"},
-        {"hanzi":"免费","pinyin":"miǎnfèi","meaning":"miễn phí"},
-        {"hanzi":"宿舍","pinyin":"sùshè","meaning":"ký túc xá"}
+      "title": "词语（全部）",
+      "items": [
+        { "hanzi": "有的", "pinyin": "yǒu de", "meaning": "có cái, có người" },
+        { "hanzi": "比如", "pinyin": "bǐrú", "meaning": "ví dụ" },
+        { "hanzi": "开始", "pinyin": "kāishǐ", "meaning": "bắt đầu" },
+        { "hanzi": "请假", "pinyin": "qǐng jià", "meaning": "xin nghỉ phép" },
+        { "hanzi": "结婚", "pinyin": "jiéhūn", "meaning": "kết hôn" },
+        { "hanzi": "热情", "pinyin": "rèqíng", "meaning": "nhiệt tình" },
+        { "hanzi": "开车", "pinyin": "kāi chē", "meaning": "lái xe" },
+        { "hanzi": "车", "pinyin": "chē", "meaning": "xe" },
+        { "hanzi": "车辆", "pinyin": "chēliàng", "meaning": "phương tiện giao thông" },
+        { "hanzi": "带", "pinyin": "dài", "meaning": "mang theo" },
+        { "hanzi": "高速公路", "pinyin": "gāosù gōnglù", "meaning": "đường cao tốc" },
+        { "hanzi": "增", "pinyin": "zēng", "meaning": "tăng" },
+        { "hanzi": "一会儿", "pinyin": "yíhuìr", "meaning": "một lát" },
+        { "hanzi": "免费", "pinyin": "miǎnfèi", "meaning": "miễn phí" },
+        { "hanzi": "飞机", "pinyin": "fēijī", "meaning": "máy bay" },
+        { "hanzi": "宿舍", "pinyin": "sùshè", "meaning": "ký túc xá" },
+        { "hanzi": "国庆节", "pinyin": "Guóqìng Jié", "meaning": "Quốc khánh" },
+        { "hanzi": "中秋节", "pinyin": "Zhōngqiū Jié", "meaning": "Tết Trung thu" },
+        { "hanzi": "放假", "pinyin": "fàng jià", "meaning": "nghỉ lễ" },
+        { "hanzi": "安排", "pinyin": "ānpái", "meaning": "sắp xếp" },
+        { "hanzi": "旅游", "pinyin": "lǚyóu", "meaning": "du lịch" },
+        { "hanzi": "时间", "pinyin": "shíjiān", "meaning": "thời gian" },
+        { "hanzi": "休息", "pinyin": "xiūxi", "meaning": "nghỉ ngơi" },
+        { "hanzi": "上课", "pinyin": "shàng kè", "meaning": "lên lớp" }
       ]
     },
     {
-      "title":"Hội thoại",
-      "items":[
+      "title": "语法（全部）",
+      "items": [
         {
-          "hanzi":"你知道国庆节放几天假吗？",
-          "pinyin":"Nǐ zhīdào Guóqìng jié fàng jǐ tiān jià ma?",
-          "meaning":"Bạn có biết Quốc khánh nghỉ mấy ngày không?"
+          "hanzi": "时间补语",
+          "pinyin": "",
+          "meaning": "Bổ ngữ thời lượng – biểu thị thời gian hành động kéo dài"
         },
         {
-          "hanzi":"国庆节放七天假，休息一个星期。",
-          "pinyin":"Guóqìng jié fàng qī tiān jià, xiūxi yí gè xīngqī.",
-          "meaning":"Quốc khánh nghỉ 7 ngày, nghỉ trọn một tuần."
+          "hanzi": "动词 + 了 + 时间",
+          "pinyin": "",
+          "meaning": "Ví dụ: 学了三天 / 等了半天"
+        },
+        {
+          "hanzi": "状态助词“了”",
+          "pinyin": "",
+          "meaning": "Biểu thị trạng thái đã xảy ra"
+        }
+      ]
+    },
+    {
+      "title": "课文（一）对话",
+      "items": [
+        {
+          "hanzi": "海伦：你知道国庆节放几天假吗？",
+          "pinyin": "Hǎilún: Nǐ zhīdào Guóqìng jié fàng jǐ tiān jià ma?",
+          "meaning": "Helen: Bạn có biết Quốc khánh nghỉ mấy ngày không?"
+        },
+        {
+          "hanzi": "田中：国庆节放七天假，休息一个星期。",
+          "pinyin": "Tiánzhōng: Guóqìng jié fàng qī tiān jià, xiūxi yí gè xīngqī.",
+          "meaning": "Tanaka: Quốc khánh nghỉ bảy ngày, nghỉ một tuần."
+        },
+        {
+          "hanzi": "海伦：中国的节日都放长假吗？",
+          "pinyin": "Hǎilún: Zhōngguó de jiérì dōu fàng cháng jià ma?",
+          "meaning": "Helen: Các lễ ở Trung Quốc đều nghỉ dài sao?"
+        },
+        {
+          "hanzi": "田中：不，有的节日只放一天假，比如中秋节。",
+          "pinyin": "Tiánzhōng: Bù, yǒu de jiérì zhǐ fàng yì tiān jià, bǐrú Zhōngqiū Jié.",
+          "meaning": "Tanaka: Không, có lễ chỉ nghỉ một ngày, ví dụ như Trung thu."
         }
       ]
     }
   ]
 }
+
