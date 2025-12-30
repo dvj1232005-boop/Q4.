@@ -1,0 +1,80 @@
+{
+  "sections": [
+    {
+      "title": "Từ mới",
+      "items": [
+        { "hanzi": "毕业", "pinyin": "bìyè", "meaning": "tốt nghiệp" },
+        { "hanzi": "实习", "pinyin": "shíxí", "meaning": "thực tập" },
+        { "hanzi": "简历", "pinyin": "jiǎnlì", "meaning": "sơ yếu lý lịch" },
+        { "hanzi": "面试", "pinyin": "miànshì", "meaning": "phỏng vấn" },
+        { "hanzi": "完成", "pinyin": "wánchéng", "meaning": "hoàn thành" },
+        { "hanzi": "同意", "pinyin": "tóngyì", "meaning": "đồng ý" },
+        { "hanzi": "如果", "pinyin": "rúguǒ", "meaning": "nếu" },
+        { "hanzi": "通过", "pinyin": "tōngguò", "meaning": "thông qua, vượt qua" },
+        { "hanzi": "满意", "pinyin": "mǎnyì", "meaning": "hài lòng" },
+        { "hanzi": "竞争", "pinyin": "jìngzhēng", "meaning": "cạnh tranh" },
+        { "hanzi": "厉害", "pinyin": "lìhai", "meaning": "gay gắt, nghiêm trọng" },
+        { "hanzi": "电子邮件", "pinyin": "diànzǐ yóujiàn", "meaning": "email" },
+        { "hanzi": "通知", "pinyin": "tōngzhī", "meaning": "thông báo" },
+        { "hanzi": "希望", "pinyin": "xīwàng", "meaning": "hy vọng" },
+        { "hanzi": "早就……了", "pinyin": "zǎo jiù … le", "meaning": "đã … từ lâu" },
+        { "hanzi": "祝", "pinyin": "zhù", "meaning": "chúc" }
+      ]
+    },
+    {
+      "title": "Ngữ pháp – Bổ ngữ kết quả",
+      "items": [
+        {
+          "hanzi": "动词 + 完",
+          "pinyin": "",
+          "meaning": "biểu thị hành động đã làm xong (写完，看完，做完)"
+        },
+        {
+          "hanzi": "动词 + 好",
+          "pinyin": "",
+          "meaning": "biểu thị kết quả tốt (做好，准备好)"
+        },
+        {
+          "hanzi": "动词 + 到",
+          "pinyin": "",
+          "meaning": "biểu thị đạt được (找到，看到)"
+        }
+      ]
+    },
+    {
+      "title": "Hội thoại",
+      "items": [
+        {
+          "hanzi": "你快毕业了，工作找到了吗？",
+          "pinyin": "Nǐ kuài bìyè le, gōngzuò zhǎodào le ma?",
+          "meaning": "Bạn sắp tốt nghiệp rồi, đã tìm được việc chưa?"
+        },
+        {
+          "hanzi": "还没有，最近忙着找工作。",
+          "pinyin": "Hái méiyǒu, zuìjìn máng zhe zhǎo gōngzuò.",
+          "meaning": "Chưa, gần đây đang bận tìm việc."
+        },
+        {
+          "hanzi": "找到满意的工作不容易啊。",
+          "pinyin": "Zhǎodào mǎnyì de gōngzuò bù róngyì a.",
+          "meaning": "Tìm được công việc hài lòng không dễ đâu."
+        },
+        {
+          "hanzi": "是啊，现在竞争很厉害。",
+          "pinyin": "Shì a, xiànzài jìngzhēng hěn lìhai.",
+          "meaning": "Đúng vậy, bây giờ cạnh tranh rất gay gắt."
+        },
+        {
+          "hanzi": "有公司给你发电子邮件了吗？",
+          "pinyin": "Yǒu gōngsī gěi nǐ fā diànzǐ yóujiàn le ma?",
+          "meaning": "Có công ty nào gửi email cho bạn chưa?"
+        },
+        {
+          "hanzi": "有，通知我明天去面试。",
+          "pinyin": "Yǒu, tōngzhī wǒ míngtiān qù miànshì.",
+          "meaning": "Có, họ thông báo mình ngày mai đi phỏng vấn."
+        }
+      ]
+    }
+  ]
+}
