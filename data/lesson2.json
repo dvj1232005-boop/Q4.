@@ -1,78 +1,154 @@
 {
+  "lesson": 2,
+  "title": "找到满意的工作不容易",
   "sections": [
+
     {
-      "title": "Từ mới",
+      "title": "学习目标",
+      "items": [
+        { "hanzi": "谈论毕业和找工作", "pinyin": "", "meaning": "Nói về tốt nghiệp và tìm việc" },
+        { "hanzi": "表达结果和完成情况", "pinyin": "", "meaning": "Biểu đạt kết quả và mức độ hoàn thành" },
+        { "hanzi": "掌握结果补语", "pinyin": "", "meaning": "Nắm vững bổ ngữ kết quả" }
+      ]
+    },
+
+    {
+      "title": "热身问题",
+      "items": [
+        { "hanzi": "你毕业以后想做什么工作？", "pinyin": "", "meaning": "Sau khi tốt nghiệp bạn muốn làm công việc gì?" },
+        { "hanzi": "找工作容易吗？", "pinyin": "", "meaning": "Tìm việc có dễ không?" },
+        { "hanzi": "你准备好简历了吗？", "pinyin": "", "meaning": "Bạn đã chuẩn bị CV chưa?" }
+      ]
+    },
+
+    {
+      "title": "词语（全部）",
       "items": [
         { "hanzi": "毕业", "pinyin": "bìyè", "meaning": "tốt nghiệp" },
         { "hanzi": "实习", "pinyin": "shíxí", "meaning": "thực tập" },
         { "hanzi": "简历", "pinyin": "jiǎnlì", "meaning": "sơ yếu lý lịch" },
-        { "hanzi": "面试", "pinyin": "miànshì", "meaning": "phỏng vấn" },
+        { "hanzi": "找工作", "pinyin": "zhǎo gōngzuò", "meaning": "tìm việc làm" },
         { "hanzi": "完成", "pinyin": "wánchéng", "meaning": "hoàn thành" },
-        { "hanzi": "同意", "pinyin": "tóngyì", "meaning": "đồng ý" },
-        { "hanzi": "如果", "pinyin": "rúguǒ", "meaning": "nếu" },
+        { "hanzi": "准备", "pinyin": "zhǔnbèi", "meaning": "chuẩn bị" },
+        { "hanzi": "面试", "pinyin": "miànshì", "meaning": "phỏng vấn" },
+        { "hanzi": "公司", "pinyin": "gōngsī", "meaning": "công ty" },
         { "hanzi": "通过", "pinyin": "tōngguò", "meaning": "thông qua, vượt qua" },
-        { "hanzi": "满意", "pinyin": "mǎnyì", "meaning": "hài lòng" },
-        { "hanzi": "竞争", "pinyin": "jìngzhēng", "meaning": "cạnh tranh" },
-        { "hanzi": "厉害", "pinyin": "lìhai", "meaning": "gay gắt, nghiêm trọng" },
-        { "hanzi": "电子邮件", "pinyin": "diànzǐ yóujiàn", "meaning": "email" },
         { "hanzi": "通知", "pinyin": "tōngzhī", "meaning": "thông báo" },
+        { "hanzi": "电子邮件", "pinyin": "diànzǐ yóujiàn", "meaning": "email" },
+        { "hanzi": "竞争", "pinyin": "jìngzhēng", "meaning": "cạnh tranh" },
+        { "hanzi": "厉害", "pinyin": "lìhai", "meaning": "gay gắt, dữ dội" },
+        { "hanzi": "满意", "pinyin": "mǎnyì", "meaning": "hài lòng" },
+        { "hanzi": "容易", "pinyin": "róngyì", "meaning": "dễ dàng" },
         { "hanzi": "希望", "pinyin": "xīwàng", "meaning": "hy vọng" },
-        { "hanzi": "早就……了", "pinyin": "zǎo jiù … le", "meaning": "đã … từ lâu" },
-        { "hanzi": "祝", "pinyin": "zhù", "meaning": "chúc" }
+        { "hanzi": "祝", "pinyin": "zhù", "meaning": "chúc" },
+        { "hanzi": "成功", "pinyin": "chénggōng", "meaning": "thành công" },
+        { "hanzi": "早就……了", "pinyin": "zǎo jiù … le", "meaning": "đã … từ lâu" }
       ]
     },
+
     {
-      "title": "Ngữ pháp – Bổ ngữ kết quả",
+      "title": "语法要点（结果补语）",
       "items": [
         {
           "hanzi": "动词 + 完",
           "pinyin": "",
-          "meaning": "biểu thị hành động đã làm xong (写完，看完，做完)"
+          "meaning": "Biểu thị hành động đã hoàn thành (写完、做完)"
         },
         {
-          "hanzi": "动词 + 好",
+          "hanzi": "我已经写完简历了。",
           "pinyin": "",
-          "meaning": "biểu thị kết quả tốt (做好，准备好)"
+          "meaning": "Tôi đã viết xong CV rồi."
         },
         {
           "hanzi": "动词 + 到",
           "pinyin": "",
-          "meaning": "biểu thị đạt được (找到，看到)"
+          "meaning": "Biểu thị đạt được kết quả (找到、看到)"
+        },
+        {
+          "hanzi": "他找到工作了。",
+          "pinyin": "",
+          "meaning": "Anh ấy đã tìm được việc."
+        },
+        {
+          "hanzi": "动词 + 好",
+          "pinyin": "",
+          "meaning": "Biểu thị kết quả tốt (准备好)"
+        },
+        {
+          "hanzi": "我准备好面试了。",
+          "pinyin": "",
+          "meaning": "Tôi đã chuẩn bị xong cho buổi phỏng vấn."
         }
       ]
     },
+
     {
-      "title": "Hội thoại",
+      "title": "课文（一）对话",
       "items": [
         {
           "hanzi": "你快毕业了，工作找到了吗？",
-          "pinyin": "Nǐ kuài bìyè le, gōngzuò zhǎodào le ma?",
+          "pinyin": "",
           "meaning": "Bạn sắp tốt nghiệp rồi, đã tìm được việc chưa?"
         },
         {
           "hanzi": "还没有，最近忙着找工作。",
-          "pinyin": "Hái méiyǒu, zuìjìn máng zhe zhǎo gōngzuò.",
+          "pinyin": "",
           "meaning": "Chưa, gần đây đang bận tìm việc."
         },
         {
           "hanzi": "找到满意的工作不容易啊。",
-          "pinyin": "Zhǎodào mǎnyì de gōngzuò bù róngyì a.",
-          "meaning": "Tìm được công việc hài lòng không dễ đâu."
+          "pinyin": "",
+          "meaning": "Tìm được công việc như ý không dễ."
         },
         {
           "hanzi": "是啊，现在竞争很厉害。",
-          "pinyin": "Shì a, xiànzài jìngzhēng hěn lìhai.",
+          "pinyin": "",
           "meaning": "Đúng vậy, bây giờ cạnh tranh rất gay gắt."
         },
         {
           "hanzi": "有公司给你发电子邮件了吗？",
-          "pinyin": "Yǒu gōngsī gěi nǐ fā diànzǐ yóujiàn le ma?",
+          "pinyin": "",
           "meaning": "Có công ty nào gửi email cho bạn chưa?"
         },
         {
           "hanzi": "有，通知我明天去面试。",
-          "pinyin": "Yǒu, tōngzhī wǒ míngtiān qù miànshì.",
+          "pinyin": "",
           "meaning": "Có, họ thông báo mình ngày mai đi phỏng vấn."
+        }
+      ]
+    },
+
+    {
+      "title": "理解判断",
+      "items": [
+        { "hanzi": "他已经找到工作了。", "pinyin": "", "meaning": "Sai" },
+        { "hanzi": "现在找工作竞争很厉害。", "pinyin": "", "meaning": "Đúng" }
+      ]
+    },
+
+    {
+      "title": "口语练习",
+      "items": [
+        {
+          "hanzi": "A：你找工作找得怎么样？",
+          "pinyin": "",
+          "meaning": "A: Việc tìm việc của bạn thế nào rồi?"
+        },
+        {
+          "hanzi": "B：我已经……了。",
+          "pinyin": "",
+          "meaning": "B: Tôi đã … rồi."
+        }
+      ]
+    },
+
+    {
+      "title": "扩展表达",
+      "items": [
+        {
+          "hanzi": "毕业以后，我希望找到一份满意的工作。",
+          "pinyin": "",
+          "meaning": "Sau khi tốt nghiệp, tôi hy vọng tìm được một công việc như ý."
         }
       ]
     }
