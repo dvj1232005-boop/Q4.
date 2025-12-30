@@ -1,0 +1,88 @@
+{
+  "sections": [
+    {
+      "title": "Từ mới",
+      "items": [
+        { "hanzi": "寄", "pinyin": "jì", "meaning": "gửi (thư, bưu kiện)" },
+        { "hanzi": "包裹", "pinyin": "bāoguǒ", "meaning": "bưu kiện" },
+        { "hanzi": "快递", "pinyin": "kuàidì", "meaning": "chuyển phát nhanh" },
+        { "hanzi": "地址", "pinyin": "dìzhǐ", "meaning": "địa chỉ" },
+        { "hanzi": "填", "pinyin": "tián", "meaning": "điền" },
+        { "hanzi": "清楚", "pinyin": "qīngchu", "meaning": "rõ ràng" },
+        { "hanzi": "重量", "pinyin": "zhòngliàng", "meaning": "trọng lượng" },
+        { "hanzi": "公斤", "pinyin": "gōngjīn", "meaning": "kilôgam" },
+        { "hanzi": "邮局", "pinyin": "yóujú", "meaning": "bưu điện" },
+        { "hanzi": "收", "pinyin": "shōu", "meaning": "nhận" },
+        { "hanzi": "寄出", "pinyin": "jìchū", "meaning": "gửi đi" },
+        { "hanzi": "寄到", "pinyin": "jìdào", "meaning": "gửi tới" },
+        { "hanzi": "寄过来", "pinyin": "jì guòlái", "meaning": "gửi sang đây" },
+        { "hanzi": "寄过去", "pinyin": "jì guòqù", "meaning": "gửi sang đó" }
+      ]
+    },
+    {
+      "title": "Ngữ pháp – Bổ ngữ xu hướng",
+      "items": [
+        {
+          "hanzi": "来 / 去",
+          "pinyin": "",
+          "meaning": "chỉ hướng chuyển động về phía người nói (来) hoặc ra xa người nói (去)"
+        },
+        {
+          "hanzi": "动词 + 过来 / 过去",
+          "pinyin": "",
+          "meaning": "biểu thị hành động di chuyển qua lại giữa hai phía"
+        },
+        {
+          "hanzi": "寄过来 / 拿过去 / 送过来",
+          "pinyin": "",
+          "meaning": "ví dụ các động từ kết hợp với bổ ngữ xu hướng"
+        }
+      ]
+    },
+    {
+      "title": "Hội thoại",
+      "items": [
+        {
+          "hanzi": "我要给他寄一个包裹。",
+          "pinyin": "Wǒ yào gěi tā jì yí gè bāoguǒ.",
+          "meaning": "Tôi muốn gửi cho anh ấy một bưu kiện."
+        },
+        {
+          "hanzi": "你要寄到哪里？",
+          "pinyin": "Nǐ yào jì dào nǎlǐ?",
+          "meaning": "Bạn muốn gửi đến đâu?"
+        },
+        {
+          "hanzi": "寄到北京。",
+          "pinyin": "Jì dào Běijīng.",
+          "meaning": "Gửi đến Bắc Kinh."
+        },
+        {
+          "hanzi": "请把地址填清楚。",
+          "pinyin": "Qǐng bǎ dìzhǐ tián qīngchu.",
+          "meaning": "Vui lòng điền địa chỉ cho rõ ràng."
+        },
+        {
+          "hanzi": "这个包裹多重？",
+          "pinyin": "Zhège bāoguǒ duō zhòng?",
+          "meaning": "Bưu kiện này nặng bao nhiêu?"
+        },
+        {
+          "hanzi": "两公斤。",
+          "pinyin": "Liǎng gōngjīn.",
+          "meaning": "Hai kilô."
+        },
+        {
+          "hanzi": "什么时候可以寄过去？",
+          "pinyin": "Shénme shíhou kěyǐ jì guòqù?",
+          "meaning": "Khi nào có thể gửi sang đó?"
+        },
+        {
+          "hanzi": "今天就可以寄出。",
+          "pinyin": "Jīntiān jiù kěyǐ jìchū.",
+          "meaning": "Hôm nay có thể gửi đi ngay."
+        }
+      ]
+    }
+  ]
+}
