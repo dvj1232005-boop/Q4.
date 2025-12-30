@@ -1,0 +1,32 @@
+{
+  "sections":[
+    {
+      "title":"Từ mới",
+      "items":[
+        {"hanzi":"有的","pinyin":"yǒu de","meaning":"có cái"},
+        {"hanzi":"比如","pinyin":"bǐrú","meaning":"ví dụ"},
+        {"hanzi":"开始","pinyin":"kāishǐ","meaning":"bắt đầu"},
+        {"hanzi":"请假","pinyin":"qǐng jià","meaning":"xin nghỉ"},
+        {"hanzi":"结婚","pinyin":"jiéhūn","meaning":"kết hôn"},
+        {"hanzi":"高速公路","pinyin":"gāosù gōnglù","meaning":"đường cao tốc"},
+        {"hanzi":"免费","pinyin":"miǎnfèi","meaning":"miễn phí"},
+        {"hanzi":"宿舍","pinyin":"sùshè","meaning":"ký túc xá"}
+      ]
+    },
+    {
+      "title":"Hội thoại",
+      "items":[
+        {
+          "hanzi":"你知道国庆节放几天假吗？",
+          "pinyin":"Nǐ zhīdào Guóqìng jié fàng jǐ tiān jià ma?",
+          "meaning":"Bạn có biết Quốc khánh nghỉ mấy ngày không?"
+        },
+        {
+          "hanzi":"国庆节放七天假，休息一个星期。",
+          "pinyin":"Guóqìng jié fàng qī tiān jià, xiūxi yí gè xīngqī.",
+          "meaning":"Quốc khánh nghỉ 7 ngày, nghỉ trọn một tuần."
+        }
+      ]
+    }
+  ]
+}
