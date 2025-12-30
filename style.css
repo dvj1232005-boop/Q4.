@@ -1,0 +1,83 @@
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f5f6f7;
+  color:#1f2937;
+}
+
+header{
+  background:#0f172a;
+  color:#fff;
+  padding:14px;
+  text-align:center;
+}
+
+.toolbar{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.toolbar button, select{
+  padding:8px 12px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  background:#fff;
+  cursor:pointer;
+}
+
+main{padding:16px}
+
+.section{
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:18px;
+}
+
+.section h2{
+  margin-top:0;
+  font-size:18px;
+  border-left:4px solid #2563eb;
+  padding-left:10px;
+}
+
+.word{
+  padding:12px 0;
+  border-bottom:1px dashed #e5e7eb;
+}
+
+.hanzi{
+  font-size:22px;
+  font-weight:600;
+}
+
+.pinyin{
+  color:#6b7280;
+  display:none;
+}
+
+.meaning{
+  color:#047857;
+  display:none;
+  margin-top:4px;
+  cursor:pointer;
+}
+
+.show{display:block}
+
+.hidden{display:none!important}
+
+.dark{
+  background:#020617;
+  color:#e5e7eb;
+}
+
+.dark header{background:#020617}
+.dark .section{background:#020617;border:1px solid #1e293b}
+.dark .toolbar{background:#020617;border-color:#1e293b}
