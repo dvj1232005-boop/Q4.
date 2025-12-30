@@ -1,0 +1,69 @@
+{
+  "sections": [
+    {
+      "title": "Từ mới",
+      "items": [
+        { "hanzi": "住", "pinyin": "zhù", "meaning": "ở, cư trú" },
+        { "hanzi": "预订", "pinyin": "yùdìng", "meaning": "đặt trước" },
+        { "hanzi": "房间", "pinyin": "fángjiān", "meaning": "phòng" },
+        { "hanzi": "单人间", "pinyin": "dānrénjiān", "meaning": "phòng đơn" },
+        { "hanzi": "双人间", "pinyin": "shuāngrénjiān", "meaning": "phòng đôi" },
+        { "hanzi": "前台", "pinyin": "qiántái", "meaning": "quầy lễ tân" },
+        { "hanzi": "身份证", "pinyin": "shēnfènzhèng", "meaning": "chứng minh thư" },
+        { "hanzi": "护照", "pinyin": "hùzhào", "meaning": "hộ chiếu" },
+        { "hanzi": "到", "pinyin": "dào", "meaning": "đến, tới" },
+        { "hanzi": "退房", "pinyin": "tuì fáng", "meaning": "trả phòng" }
+      ]
+    },
+    {
+      "title": "Ngữ pháp – Bổ ngữ kết quả (到)",
+      "items": [
+        {
+          "hanzi": "动词 + 到",
+          "pinyin": "",
+          "meaning": "biểu thị đạt được kết quả hoặc mức độ (找到、看到、住到)"
+        },
+        {
+          "hanzi": "住到 + 时间",
+          "pinyin": "",
+          "meaning": "biểu thị ở đến một thời điểm nhất định"
+        }
+      ]
+    },
+    {
+      "title": "Hội thoại",
+      "items": [
+        {
+          "hanzi": "您好，请问您预订房间了吗？",
+          "pinyin": "Nín hǎo, qǐngwèn nín yùdìng fángjiān le ma?",
+          "meaning": "Xin chào, xin hỏi quý khách đã đặt phòng chưa?"
+        },
+        {
+          "hanzi": "预订了，一个单人间。",
+          "pinyin": "Yùdìng le, yí gè dānrénjiān.",
+          "meaning": "Đã đặt rồi, một phòng đơn."
+        },
+        {
+          "hanzi": "您是不是住到12号？",
+          "pinyin": "Nín shì bú shì zhù dào shí'èr hào?",
+          "meaning": "Quý khách ở đến ngày 12 phải không?"
+        },
+        {
+          "hanzi": "对，我住到12号。",
+          "pinyin": "Duì, wǒ zhù dào shí'èr hào.",
+          "meaning": "Đúng vậy, tôi ở đến ngày 12."
+        },
+        {
+          "hanzi": "请出示您的护照。",
+          "pinyin": "Qǐng chūshì nín de hùzhào.",
+          "meaning": "Vui lòng xuất trình hộ chiếu của quý khách."
+        },
+        {
+          "hanzi": "这是我的护照。",
+          "pinyin": "Zhè shì wǒ de hùzhào.",
+          "meaning": "Đây là hộ chiếu của tôi."
+        }
+      ]
+    }
+  ]
+}
