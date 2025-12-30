@@ -1,58 +1,43 @@
 {
+  "lesson": 7,
+  "title": "我想把钱换成人民币",
   "sections": [
     {
-      "title": "Từ mới",
+      "title": "词语",
       "items": [
-        { "hanzi": "把", "pinyin": "bǎ", "meaning": "đem, lấy (giới từ trong câu chữ 把)" },
+        { "hanzi": "把", "pinyin": "bǎ", "meaning": "giới từ trong câu chữ 把" },
         { "hanzi": "钱", "pinyin": "qián", "meaning": "tiền" },
         { "hanzi": "换", "pinyin": "huàn", "meaning": "đổi" },
         { "hanzi": "人民币", "pinyin": "rénmínbì", "meaning": "Nhân dân tệ" },
         { "hanzi": "银行", "pinyin": "yínháng", "meaning": "ngân hàng" },
         { "hanzi": "现金", "pinyin": "xiànjīn", "meaning": "tiền mặt" },
-        { "hanzi": "服务员", "pinyin": "fúwùyuán", "meaning": "nhân viên phục vụ" },
         { "hanzi": "手续", "pinyin": "shǒuxù", "meaning": "thủ tục" },
         { "hanzi": "表格", "pinyin": "biǎogé", "meaning": "biểu mẫu" },
         { "hanzi": "填", "pinyin": "tián", "meaning": "điền" }
       ]
     },
     {
-      "title": "Ngữ pháp – Câu chữ 把",
+      "title": "语法重点（把字句）",
       "items": [
         {
           "hanzi": "把 + 宾语 + 动词 + 结果",
           "pinyin": "",
-          "meaning": "đưa tân ngữ lên trước để nhấn mạnh cách xử lý"
+          "meaning": "Đưa tân ngữ lên trước để nhấn mạnh cách xử lý"
         },
         {
           "hanzi": "把钱换成人民币",
           "pinyin": "",
-          "meaning": "đem tiền đổi thành Nhân dân tệ"
+          "meaning": "Đổi tiền sang Nhân dân tệ"
         }
       ]
     },
     {
-      "title": "Hội thoại",
+      "title": "课文对话",
       "items": [
-        {
-          "hanzi": "我想把钱换成人民币。",
-          "pinyin": "Wǒ xiǎng bǎ qián huàn chéng rénmínbì.",
-          "meaning": "Tôi muốn đổi tiền sang Nhân dân tệ."
-        },
-        {
-          "hanzi": "请到银行去换。",
-          "pinyin": "Qǐng dào yínháng qù huàn.",
-          "meaning": "Vui lòng đến ngân hàng để đổi."
-        },
-        {
-          "hanzi": "需要办什么手续？",
-          "pinyin": "Xūyào bàn shénme shǒuxù?",
-          "meaning": "Cần làm những thủ tục gì?"
-        },
-        {
-          "hanzi": "请把这张表格填好。",
-          "pinyin": "Qǐng bǎ zhè zhāng biǎogé tián hǎo.",
-          "meaning": "Vui lòng điền xong biểu mẫu này."
-        }
+        { "hanzi": "我想把钱换成人民币。", "pinyin": "", "meaning": "Tôi muốn đổi tiền sang Nhân dân tệ." },
+        { "hanzi": "请到银行去换。", "pinyin": "", "meaning": "Vui lòng đến ngân hàng đổi." },
+        { "hanzi": "需要办什么手续？", "pinyin": "", "meaning": "Cần làm thủ tục gì?" },
+        { "hanzi": "请把这张表格填好。", "pinyin": "", "meaning": "Vui lòng điền xong biểu mẫu này." }
       ]
     }
   ]
