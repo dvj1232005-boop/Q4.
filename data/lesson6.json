@@ -1,68 +1,51 @@
 {
+  "lesson": 6,
+  "title": "后面站着的两个女孩是谁？",
   "sections": [
     {
-      "title": "Từ mới",
+      "title": "词语",
       "items": [
         { "hanzi": "后面", "pinyin": "hòumiàn", "meaning": "phía sau" },
+        { "hanzi": "前面", "pinyin": "qiánmiàn", "meaning": "phía trước" },
         { "hanzi": "站", "pinyin": "zhàn", "meaning": "đứng" },
         { "hanzi": "站着", "pinyin": "zhàn zhe", "meaning": "đang đứng" },
+        { "hanzi": "坐着", "pinyin": "zuò zhe", "meaning": "đang ngồi" },
         { "hanzi": "女孩", "pinyin": "nǚhái", "meaning": "cô gái" },
         { "hanzi": "男孩", "pinyin": "nánhái", "meaning": "cậu bé" },
         { "hanzi": "穿", "pinyin": "chuān", "meaning": "mặc" },
         { "hanzi": "衣服", "pinyin": "yīfu", "meaning": "quần áo" },
         { "hanzi": "颜色", "pinyin": "yánsè", "meaning": "màu sắc" },
         { "hanzi": "笑", "pinyin": "xiào", "meaning": "cười" },
-        { "hanzi": "怎么", "pinyin": "zěnme", "meaning": "như thế nào / sao" }
+        { "hanzi": "怎么", "pinyin": "zěnme", "meaning": "sao, như thế nào" }
       ]
     },
     {
-      "title": "Ngữ pháp – 动词 + 着",
+      "title": "语法重点（着 / 怎么）",
       "items": [
         {
           "hanzi": "动词 + 着",
           "pinyin": "",
-          "meaning": "biểu thị trạng thái đang tiếp diễn (站着、坐着、看着)"
+          "meaning": "Biểu thị trạng thái đang tiếp diễn"
         },
         {
           "hanzi": "后面站着的两个女孩",
           "pinyin": "",
-          "meaning": "cụm định ngữ có 着 bổ nghĩa cho danh từ phía sau"
-        }
-      ]
-    },
-    {
-      "title": "Ngữ pháp – 怎么",
-      "items": [
+          "meaning": "Cụm định ngữ có 着"
+        },
         {
-          "hanzi": "怎么 + 形容词 / 动词",
+          "hanzi": "你怎么这么高兴？",
           "pinyin": "",
-          "meaning": "hỏi tình trạng, nguyên nhân (怎么这么忙？)"
+          "meaning": "Sao bạn vui thế?"
         }
       ]
     },
     {
-      "title": "Hội thoại",
+      "title": "课文对话",
       "items": [
-        {
-          "hanzi": "后面站着的两个女孩是谁？",
-          "pinyin": "Hòumiàn zhàn zhe de liǎng gè nǚhái shì shéi?",
-          "meaning": "Hai cô gái đang đứng phía sau là ai?"
-        },
-        {
-          "hanzi": "穿红衣服的是我的同学。",
-          "pinyin": "Chuān hóng yīfu de shì wǒ de tóngxué.",
-          "meaning": "Người mặc áo đỏ là bạn học của tôi."
-        },
-        {
-          "hanzi": "她们怎么这么高兴？",
-          "pinyin": "Tāmen zěnme zhème gāoxìng?",
-          "meaning": "Sao họ vui thế?"
-        },
-        {
-          "hanzi": "因为今天不用上课。",
-          "pinyin": "Yīnwèi jīntiān bú yòng shàng kè.",
-          "meaning": "Vì hôm nay không cần lên lớp."
-        }
+        { "hanzi": "后面站着的两个女孩是谁？", "pinyin": "", "meaning": "Hai cô gái đang đứng phía sau là ai?" },
+        { "hanzi": "穿红衣服的是我的同学。", "pinyin": "", "meaning": "Người mặc áo đỏ là bạn học của tôi." },
+        { "hanzi": "她们怎么这么高兴？", "pinyin": "", "meaning": "Sao họ vui thế?" },
+        { "hanzi": "因为今天不用上课。", "pinyin": "", "meaning": "Vì hôm nay không cần lên lớp." }
       ]
     }
   ]
