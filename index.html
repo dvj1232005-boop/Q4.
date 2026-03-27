@@ -2,31 +2,360 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MSUTONG 4 – Học Bài 1–7</title>
-<link rel="stylesheet" href="style.css">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Quy Chế & Đền Đô</title>
+
+<meta name="theme-color" content="#0b3d2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AnQuyChe">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:linear-gradient(180deg,#7f1d1d,#064e3b);
+  min-height:100vh;
+}
+.hidden{display:none}
+
+.container{max-width:420px;margin:auto;padding:20px}
+.card{
+  background:white;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 25px 50px rgba(0,0,0,.25);
+}
+h2{margin:0 0 6px}
+.sub{font-size:13px;color:#555}
+
+input,select{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:14px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  background:#b91c1c;
+  color:white;
+  font-weight:600;
+  margin-top:14px;
+}
+button.secondary{background:#334155}
+.day{font-weight:700;margin-top:14px}
+
+.section{margin-top:18px}
+.shiftBox{
+  background:#f1f5f9;
+  border-radius:14px;
+  padding:10px;
+  margin:8px 0;
+}
+.badge{
+  display:inline-block;
+  background:#14532d;
+  color:white;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:13px;
+  margin:4px 4px 0 0;
+}
+
+.countdown{
+  margin-top:12px;
+  padding:14px;
+  border-radius:16px;
+  background:#ecfdf5;
+  text-align:center;
+  border:2px solid #10b981;
+}
+.countdown.warn{background:#fff7ed;border-color:#f97316}
+.countdown.danger{background:#fef2f2;border-color:#dc2626}
+
+footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
+
+.popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.popupContent{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  width:85%;
+  max-width:320px;
+  text-align:center;
+  animation:fadeIn 0.3s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.9)}
+  to{opacity:1; transform:scale(1)}
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <h1>📘 MSUTONG 4</h1>
-  <p>Bài 1–7 • Học chữ Hán hiệu quả</p>
-</header>
+<div class="container" id="app">
+  <div class="card">
+    <h2>Đăng ký ca làm</h2>
+    <div class="sub">Tuần hiện tại • An Quy Chế</div>
+    <div id="lockStatus" class="sub"></div>
 
-<nav class="toolbar">
-  <select id="lessonSelect"></select>
-  <button id="togglePinyin">Pinyin</button>
-  <button id="toggleMeaning">Nghĩa</button>
-  <button id="testMode">Test</button>
-  <button id="darkMode">🌙</button>
-</nav>
+    <div id="countdownCard" class="countdown">
+      <div class="cd-label">⏳ Thời gian còn lại để đăng ký</div>
+      <div id="countdownTime">-- : -- : -- : --</div>
+    </div>
 
-<main id="content"></main>
+    <input id="name" placeholder="Nhập tên nhân viên">
 
-<footer>
-  <p>MSUTONG 4 • Self study</p>
-</footer>
+    <!-- CHỌN CƠ SỞ -->
+    <select id="store">
+      <option value="">Chọn cơ sở làm việc</option>
+      <option value="QuyChe">Quy Chế</option>
+      <option value="DenDo">Đền Đô</option>
+    </select>
 
-<script src="app.js"></script>
+    <div id="form"></div>
+
+    <button id="submitBtn">Xác nhận đăng ký</button>
+    <button id="managerBtn" class="secondary">🔐 Quản lý</button>
+  </div>
+
+  <div class="card section hidden" id="managerBox">
+    <h2>Tổng hợp đăng ký ca làm</h2>
+
+    <input id="pin" type="password" placeholder="Nhập mã PIN quản lý">
+    <button id="loginManager">Đăng nhập quản lý</button>
+
+    <div id="summary"></div>
+
+    <button id="clearBtn" class="secondary">
+      Xóa toàn bộ lịch tuần này
+    </button>
+  </div>
+
+  <footer>© 2026 An Quy Chế • Developed by Đào Đăng Tùng</footer>
+</div>
+
+<!-- POPUP -->
+<div id="thankPopup" class="popup">
+  <div class="popupContent">
+    <h3>💖 Cảm ơn các bạn</h3>
+    <p>
+Mỗi ngày bạn nỗ lực một chút, cả tập thể sẽ tiến xa hơn rất nhiều cảm ơn bạn vì luôn cố gắng! 💪
+    </p>
+    <button id="closeBtn">Thank youu</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getDatabase, ref, set, get, remove }
+from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM",
+  databaseURL:"https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app"
+});
+const db = getDatabase(app);
+
+const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
+const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
+
+/* LOCK */
+function isRegistrationLocked(){
+  const n=new Date();
+  const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
+  if(d===5 && (h>20 || (h===20 && m>=0))) return true;
+  if(d===6 || d===0) return true;
+  return false;
+}
+
+/* STATUS */
+const lockStatus=document.getElementById("lockStatus");
+lockStatus.style.fontWeight="600";
+if(isRegistrationLocked()){
+  lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
+  lockStatus.style.color="#b91c1c";
+}else{
+  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
+  lockStatus.style.color="#14532d";
+}
+
+/* COUNTDOWN */
+const cdCard=document.getElementById("countdownCard");
+const cdTime=document.getElementById("countdownTime");
+const submitBtn=document.getElementById("submitBtn");
+
+function getLockTime(){
+  const now=new Date();
+  const lock=new Date(now);
+  const diff=5-now.getDay();
+  lock.setDate(now.getDate()+diff);
+  lock.setHours(20,0,0,0);
+  return lock;
+}
+const lockTime=getLockTime();
+
+function updateCountdown(){
+  const now=new Date();
+  const diff=lockTime-now;
+
+  if(diff<=0){
+    cdTime.innerText="ĐÃ KHÓA";
+    cdCard.className="countdown danger";
+    submitBtn.disabled=true;
+    return;
+  }
+
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor(diff/(1000*60*60))%24;
+  const m=Math.floor(diff/(1000*60))%60;
+  const s=Math.floor(diff/1000)%60;
+
+  cdTime.innerText=
+    `${d} : ${h.toString().padStart(2,"0")} : ${m.toString().padStart(2,"0")} : ${s.toString().padStart(2,"0")}`;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* FORM */
+const form=document.getElementById("form");
+DAYS.forEach(d=>{
+  form.innerHTML+=`
+    <div class="day">${d}</div>
+    <select id="${d}">
+      <option value="">Không đăng ký</option>
+      ${SHIFTS.map(s=>`<option>${s}</option>`).join("")}
+    </select>
+  `;
+});
+
+/* SUBMIT */
+document.getElementById("submitBtn").onclick=async()=>{
+  const ten=document.getElementById("name").value.trim();
+  const store=document.getElementById("store").value;
+
+  if(!ten) return alert("Vui lòng nhập tên");
+  if(!store) return alert("Vui lòng chọn cơ sở");
+
+  if(isRegistrationLocked())
+    return alert("⛔ Đã khóa đăng ký");
+
+  const lich={};
+  DAYS.forEach(d=>{
+    const v=document.getElementById(d).value;
+    if(v) lich[d]=v;
+  });
+
+  if(!Object.keys(lich).length)
+    return alert("Bạn chưa đăng ký ca nào");
+
+  await set(ref(db,"dangKy/"+store+"/"+ten),{lich,store});
+  alert("Đã gửi đăng ký ca làm");
+};
+
+/* MANAGER FIX RÕ RÀNG */
+document.getElementById("managerBtn").onclick=()=>{
+  document.getElementById("managerBox").classList.remove("hidden");
+};
+
+document.getElementById("loginManager").onclick=async()=>{
+  if(document.getElementById("pin").value!=="2005")
+    return alert("Mã PIN không đúng");
+
+  const summary=document.getElementById("summary");
+  summary.innerHTML="";
+
+  const snap=await get(ref(db,"dangKy"));
+  if(!snap.exists()){
+    summary.innerHTML="<p>Chưa có dữ liệu đăng ký</p>";
+    return;
+  }
+
+  const data = snap.val();
+
+  ["QuyChe","DenDo"].forEach(store => {
+
+    if(!data[store]) return;
+
+    summary.innerHTML += `
+      <div style="
+        margin-top:20px;
+        padding:12px;
+        border-radius:16px;
+        background:#f8fafc;
+        border:2px solid ${store==="QuyChe"?"#16a34a":"#2563eb"};
+      ">
+        <h3>🏪 ${store==="QuyChe"?"Quy Chế":"Đền Đô"}</h3>
+        <div id="box-${store}"></div>
+      </div>
+    `;
+
+    const box = document.getElementById(`box-${store}`);
+    const sum={};
+
+    Object.entries(data[store]).forEach(([ten,obj])=>{
+      const lich=obj.lich||{};
+      Object.entries(lich).forEach(([d,c])=>{
+        sum[d]??={};
+        sum[d][c]??=[];
+        sum[d][c].push(ten);
+      });
+    });
+
+    DAYS.forEach(day=>{
+      if(!sum[day]) return;
+      box.innerHTML += `<div class="day">${day}</div>`;
+
+      SHIFTS.forEach(shift=>{
+        if(!sum[day][shift]) return;
+        box.innerHTML += `
+          <div class="shiftBox">
+            <b>${shift}</b><br>
+            ${sum[day][shift].map(n=>`<span class="badge">${n}</span>`).join("")}
+          </div>
+        `;
+      });
+    });
+
+  });
+};
+
+/* CLEAR */
+document.getElementById("clearBtn").onclick=async()=>{
+  if(confirm("Xóa toàn bộ đăng ký tuần này?")){
+    await remove(ref(db,"dangKy"));
+    location.reload();
+  }
+};
+
+/* POPUP */
+const popup = document.getElementById("thankPopup");
+const closeBtn = document.getElementById("closeBtn");
+
+closeBtn.onclick=()=>popup.style.display="none";
+window.onload=()=>popup.style.display="flex";
+</script>
+
 </body>
 </html>
