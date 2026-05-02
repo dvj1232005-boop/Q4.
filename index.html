@@ -127,7 +127,6 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
 
     <input id="name" placeholder="Nhập tên nhân viên">
 
-    <!-- CHỌN CƠ SỞ -->
     <select id="store">
       <option value="">Chọn cơ sở làm việc</option>
       <option value="QuyChe">Quy Chế</option>
@@ -147,6 +146,10 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
     <button id="loginManager">Đăng nhập quản lý</button>
 
     <div id="summary"></div>
+    <div id="excelTable"></div>
+
+    <button id="unlockBtn" class="secondary">🔓 Mở đăng ký</button>
+    <button id="lockBtn" class="secondary">🔒 Khóa đăng ký</button>
 
     <button id="clearBtn" class="secondary">
       Xóa toàn bộ lịch tuần này
@@ -156,14 +159,11 @@ footer{text-align:center;margin-top:16px;font-size:12px;color:#eee}
   <footer>© 2026 An Quy Chế • Developed by Đào Đăng Tùng</footer>
 </div>
 
-<!-- POPUP -->
 <div id="thankPopup" class="popup">
   <div class="popupContent">
-    <h3>💖 Cảm ơn các bạn</h3>
-    <p>
-Mỗi ngày bạn nỗ lực một chút, cả tập thể sẽ tiến xa hơn rất nhiều cảm ơn bạn vì luôn cố gắng! 💪
-    </p>
-    <button id="closeBtn">Thank youu</button>
+    <h3>💖 Cảm ơn bạn </h3>
+    <p>Cảm ơn bạn vì một tuần làm việc đầy năng lượng và trách nhiệm, rất đáng khen!</p>
+    <button id="closeBtn">Thank you baeeeee</button>
   </div>
 </div>
 
@@ -181,25 +181,57 @@ const db = getDatabase(app);
 const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
 const SHIFTS=["C1","C2","C3","F1","F2","2C(C1+C2)","2C(C2+C3)"];
 
-/* LOCK */
+/* 🔥 FIX */
+let manualLock = null;
+
+async function loadLock(){
+  const snap = await get(ref(db,"settings/lock"));
+  manualLock = snap.exists() ? snap.val() : null;
+}
+
 function isRegistrationLocked(){
+
+  if(manualLock === true) return true;
+  if(manualLock === false) return false;
+
   const n=new Date();
   const d=n.getDay(), h=n.getHours(), m=n.getMinutes();
+
   if(d===5 && (h>20 || (h===20 && m>=0))) return true;
   if(d===6 || d===0) return true;
+
   return false;
 }
 
 /* STATUS */
 const lockStatus=document.getElementById("lockStatus");
-lockStatus.style.fontWeight="600";
-if(isRegistrationLocked()){
-  lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
-  lockStatus.style.color="#b91c1c";
-}else{
-  lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
-  lockStatus.style.color="#14532d";
+
+async function updateStatus(){
+  await loadLock();
+
+  lockStatus.style.fontWeight="600";
+
+  if(manualLock === true){
+    lockStatus.textContent="⛔ Bị quản lý khóa";
+    lockStatus.style.color="#dc2626";
+    return;
+  }
+
+  if(manualLock === false){
+    lockStatus.textContent="🟢 Đang mở (quản lý)";
+    lockStatus.style.color="#16a34a";
+    return;
+  }
+
+  if(isRegistrationLocked()){
+    lockStatus.textContent="⛔ Đang khóa đăng ký • Mở lại Thứ 2";
+    lockStatus.style.color="#b91c1c";
+  }else{
+    lockStatus.textContent="✅ Đang mở đăng ký • Khóa lúc 20:00 Thứ 6";
+    lockStatus.style.color="#14532d";
+  }
 }
+updateStatus();
 
 /* COUNTDOWN */
 const cdCard=document.getElementById("countdownCard");
@@ -216,11 +248,21 @@ function getLockTime(){
 }
 const lockTime=getLockTime();
 
-function updateCountdown(){
+async function updateCountdown(){
+  await loadLock();
+
   const now=new Date();
   const diff=lockTime-now;
 
   if(diff<=0){
+
+    if(manualLock === false){
+      cdTime.innerText="ĐANG MỞ (quản lý)";
+      cdCard.className="countdown";
+      submitBtn.disabled=false;
+      return;
+    }
+
     cdTime.innerText="ĐÃ KHÓA";
     cdCard.className="countdown danger";
     submitBtn.disabled=true;
@@ -250,8 +292,10 @@ DAYS.forEach(d=>{
   `;
 });
 
-/* SUBMIT */
+/* SUBMIT giữ nguyên */
 document.getElementById("submitBtn").onclick=async()=>{
+  await loadLock();
+
   const ten=document.getElementById("name").value.trim();
   const store=document.getElementById("store").value;
 
@@ -274,7 +318,7 @@ document.getElementById("submitBtn").onclick=async()=>{
   alert("Đã gửi đăng ký ca làm");
 };
 
-/* MANAGER FIX RÕ RÀNG */
+/* MANAGER giữ nguyên */
 document.getElementById("managerBtn").onclick=()=>{
   document.getElementById("managerBox").classList.remove("hidden");
 };
@@ -284,7 +328,10 @@ document.getElementById("loginManager").onclick=async()=>{
     return alert("Mã PIN không đúng");
 
   const summary=document.getElementById("summary");
+  const excel=document.getElementById("excelTable");
+
   summary.innerHTML="";
+  excel.innerHTML="";
 
   const snap=await get(ref(db,"dangKy"));
   if(!snap.exists()){
@@ -339,9 +386,130 @@ document.getElementById("loginManager").onclick=async()=>{
     });
 
   });
+
+  renderExcelTable(data);
 };
 
-/* CLEAR */
+/* 🔓 🔒 giữ nguyên */
+document.getElementById("unlockBtn").onclick=async()=>{
+  await set(ref(db,"settings/lock"),false);
+  alert("Đã mở đăng ký");
+  location.reload();
+};
+
+document.getElementById("lockBtn").onclick=async()=>{
+  await set(ref(db,"settings/lock"),true);
+  alert("Đã khóa đăng ký");
+  location.reload();
+};
+
+/* EXCEL FIX TÊN */
+function renderExcelTable(data){
+  const container=document.getElementById("excelTable");
+  const DAYS=["T2","T3","T4","T5","T6","T7","CN"];
+
+  ["QuyChe","DenDo"].forEach(store=>{
+
+    if(!data[store]) return;
+
+    let html=`
+    <div style="margin-top:30px">
+      <h2 style="color:${store==="QuyChe"?"#16a34a":"#2563eb"}">
+        📊 ${store==="QuyChe"?"Quy Chế":"Đền Đô"} - Bảng phân ca
+      </h2>
+
+      <div style="overflow:auto">
+      <table style="border-collapse:collapse;min-width:1400px;width:100%">
+        <tr>
+    `;
+
+    DAYS.forEach(day=>{
+      html+=`<th colspan="4" style="background:#fde047;border:1px solid #999">${day}</th>`;
+    });
+
+    html+="</tr><tr>";
+
+    DAYS.forEach(()=>{
+      html+=`
+        <th style="border:1px solid #999">Buổi</th>
+        <th style="border:1px solid #999">Tên</th>
+        <th style="border:1px solid #999">Ca</th>
+        <th style="border:1px solid #999">Công việc</th>
+      `;
+    });
+
+    html+="</tr>";
+
+    const structured={};
+
+    Object.entries(data[store]).forEach(([ten,obj])=>{
+      const lich=obj.lich||{};
+      Object.entries(lich).forEach(([day,shift])=>{
+        structured[day]??={Sáng:[],Chiều:[],Tối:[]};
+
+        if(shift==="C1") structured[day].Sáng.push(ten);
+        else if(shift==="C2") structured[day].Chiều.push(ten);
+        else if(shift==="C3") structured[day].Tối.push(ten);
+        else if(shift==="2C(C1+C2)"){
+          structured[day].Sáng.push(ten);
+          structured[day].Chiều.push(ten);
+        }
+        else if(shift==="2C(C2+C3)"){
+          structured[day].Chiều.push(ten);
+          structured[day].Tối.push(ten);
+        }
+        else if(shift==="F1"){
+          structured[day].Sáng.push(ten);
+          structured[day].Chiều.push(ten);
+        }
+        else if(shift==="F2"){
+          structured[day].Chiều.push(ten);
+          structured[day].Tối.push(ten);
+        }
+      });
+    });
+
+    ["Sáng","Chiều","Tối"].forEach(session=>{
+      html+="<tr>";
+
+      DAYS.forEach(day=>{
+        const list=structured[day]?.[session]||[];
+
+        html+=`
+        <td style="border:1px solid #ccc;background:#f1f5f9">${session}</td>
+        <td style="border:1px solid #ccc">
+          ${list.map(n=>{
+            const arr=n.split(" ");
+            const mid=Math.ceil(arr.length/2);
+            return `
+              <div style="padding:4px 0;border-bottom:1px dashed #ccc;line-height:1.3">
+                ${arr.slice(0,mid).join(" ")}<br>
+                ${arr.slice(mid).join(" ")}
+              </div>
+            `;
+          }).join("")}
+        </td>
+        <td style="border:1px solid #ccc">
+          ${session==="Sáng"?"C1":session==="Chiều"?"C2":"C3"}
+        </td>
+        <td style="border:1px solid #ccc">
+          ${session==="Sáng"?"Thu ngân / Pha chế":
+            session==="Chiều"?"Pha chế / Phục vụ":
+            "Phục vụ"}
+        </td>
+        `;
+      });
+
+      html+="</tr>";
+    });
+
+    html+="</table></div></div>";
+
+    container.innerHTML+=html;
+  });
+}
+
+/* CLEAR giữ nguyên */
 document.getElementById("clearBtn").onclick=async()=>{
   if(confirm("Xóa toàn bộ đăng ký tuần này?")){
     await remove(ref(db,"dangKy"));
@@ -349,10 +517,9 @@ document.getElementById("clearBtn").onclick=async()=>{
   }
 };
 
-/* POPUP */
-const popup = document.getElementById("thankPopup");
-const closeBtn = document.getElementById("closeBtn");
-
+/* POPUP giữ nguyên */
+const popup=document.getElementById("thankPopup");
+const closeBtn=document.getElementById("closeBtn");
 closeBtn.onclick=()=>popup.style.display="none";
 window.onload=()=>popup.style.display="flex";
 </script>
