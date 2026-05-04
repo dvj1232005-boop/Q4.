@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- TỐI ƯU HÓA VIEWPORT & KHÓA ZOOM TRIỆT ĐỂ CHO iOS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     
     <!-- PWA & BẢN ĐỊA HÓA iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1044,7 +1044,6 @@
                 <div class="update-pulse"></div> 
                 Đồng bộ realtime: <span class="mono" id="realTime">--:--:--</span>
             </div>
-            <div style="font-size: 10px; color: var(--text-muted); padding-left: 4px; font-weight: 600;">update 23:26 4/5/2026</div>
         </div>
         
         <!-- Theme Toggle Switch -->
@@ -1083,7 +1082,7 @@
             <div class="skeleton" style="width: 100%; height: 38px; border-radius: 12px;"></div>
         </div>
 
-        <!-- Khung nhập tên -->
+        <!-- Khung nhập tên (Đã fix lỗi lệch icon) -->
         <div style="margin-bottom: 24px;">
             <label class="input-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1131,16 +1130,15 @@
     =========================================== -->
     <main class="card hidden" id="managerBox" style="position: relative; min-height: 250px; display: flex; flex-direction: column; justify-content: center;">
         
-        <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn Kèm Vệt Kéo) -->
+        <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn Tuyệt Đối) -->
         <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
                 <h2 class="card-title" style="color: var(--primary);">Secure Access</h2>
                 <div class="card-subtitle">Hệ thống phân quyền cấp cao</div>
             </div>
             
-            <!-- Canvas vẽ vệt kéo -->
+            <!-- Vùng vuốt tàng hình phủ toàn bộ khu vực màn hình này -->
             <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: 32px;"></canvas>
-            <!-- Vùng vuốt tàng hình -->
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
@@ -1389,7 +1387,7 @@
         html.setAttribute('data-theme', newTheme); 
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme); 
-        initCanvas();
+        initCanvas(); // Vẽ lại màu của Canvas Grid
     };
 
     function updateThemeIcon(theme) {
@@ -1552,7 +1550,6 @@
         btn.disabled = true;
 
         try {
-            // Lọc dữ liệu an toàn
             const snapshot = await get(ref(db, "dangKy/" + employeeName));
             if(snapshot.exists() && !confirm(`Định danh "${employeeName}" đã có dữ liệu. Bạn có muốn ghi đè lịch mới?`)) { 
                 btn.innerHTML = originalText; 
@@ -1560,7 +1557,6 @@
                 return; 
             }
             
-            // Lưu dữ liệu
             await set(ref(db, "dangKy/" + employeeName), { 
                 lich: schedule, 
                 timestamp: Date.now() 
