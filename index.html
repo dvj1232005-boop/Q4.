@@ -1559,7 +1559,6 @@
         btn.disabled = true;
 
         try {
-            let rawExcelDataExport = ""; // ĐÃ FIX: Khai báo biến
             // Lọc dữ liệu an toàn
             const snapshot = await get(ref(db, "dangKy/" + employeeName));
             if(snapshot.exists() && !confirm(`Định danh "${employeeName}" đã có dữ liệu. Bạn có muốn ghi đè lịch mới?`)) { 
@@ -1950,3 +1949,4 @@
 
 </body>
 </html>
+vẫn bị dính khoảng trắng, cần căn đều lấp khoảng trắng ở ngày cn ở mọi bản hiển thị pc hay mobie. giữ nguyên tất cả mọi thứ khác 100% không lược bỏ bất cứ cái gì.
