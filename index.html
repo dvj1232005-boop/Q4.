@@ -224,8 +224,6 @@
             background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            cursor: pointer; /* Added for Easter Egg */
-            user-select: none;
         }
 
         .brand-logo svg {
@@ -747,69 +745,27 @@
         .badge-none { background: transparent; color: var(--border-glass); }
 
         /* =========================================================
-           12. SLIDE TO UNLOCK (HI-TECH AUTH)
+           12. SECRET SWIPE ZONE (MẢNG KÍNH ĐỤC ẨN)
         ========================================================= */
-        .slider-auth-container {
+        .swipe-auth-zone {
             width: 100%;
             max-width: 320px;
-            margin: 20px auto 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .slider-track {
-            width: 100%;
             height: 64px;
-            background: var(--input-bg);
+            margin: 20px auto 40px;
+            background: var(--bg-glass-heavy); /* Trông như một mảng kính đục vô hại */
             border-radius: 32px;
             border: 2px solid var(--border-glass);
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
             position: relative;
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.1);
-            touch-action: none; /* Rất quan trọng: Ngăn chặn cuộn màn hình khi đang kéo trên iOS */
-        }
-
-        .slider-fill {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 64px; /* Default matches thumb + padding */
-            background: var(--info);
-            border-radius: 32px;
-            transition: background 0.3s;
-        }
-
-        .slider-thumb {
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 52px;
-            height: 52px;
-            background: var(--bg-glass-heavy);
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            touch-action: none; /* Ngăn chặn cuộn trang khi đang vuốt */
             cursor: grab;
-            color: var(--text-main);
-            z-index: 2;
-            border: 1px solid var(--border-glass);
-            touch-action: none;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: box-shadow 0.3s ease;
         }
-
-        .slider-thumb:active {
+        
+        .swipe-auth-zone:active {
             cursor: grabbing;
-            transform: scale(0.95);
-        }
-
-        .slider-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-muted);
         }
 
         /* =========================================================
@@ -1009,7 +965,7 @@
             <div class="skeleton" style="width: 100%; height: 38px; border-radius: 12px;"></div>
         </div>
 
-        <!-- Khung nhập tên (Đã fix lỗi lệch icon) -->
+        <!-- Khung nhập tên -->
         <div style="margin-bottom: 24px;">
             <label class="input-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1057,25 +1013,15 @@
     =========================================== -->
     <main class="card hidden" id="managerBox">
         
-        <!-- 2.1 Slider Auth (HI-TECH CYBERPUNK UNLOCK) -->
+        <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn) -->
         <div id="loginSection">
             <div class="card-header" id="managerHeader">
                 <h2 class="card-title" style="color: var(--primary);">Secure Access</h2>
                 <div class="card-subtitle">Hệ thống nhận diện quản trị viên</div>
             </div>
             
-            <div class="slider-auth-container" id="sliderAuth">
-                <div class="slider-track" id="sliderTrack">
-                    <div class="slider-fill" id="sliderFill"></div>
-                    <div class="slider-thumb" id="sliderThumb">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="13 17 18 12 13 7"></polyline>
-                            <polyline points="6 17 11 12 6 7"></polyline>
-                        </svg>
-                    </div>
-                </div>
-                <div class="slider-text" id="sliderText">Kéo để mở khóa (0%)</div>
-            </div>
+            <!-- Mảng đục vô hại, chỉ người biết vuốt ngang mới đăng nhập được -->
+            <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
         <!-- 2.2 Bảng Điều Khiển Quản Trị (Bento Dashboard) -->
@@ -1528,7 +1474,7 @@
     document.getElementById("managerBtn").onclick = () => {
         document.getElementById("userCard").classList.add("hidden"); 
         document.getElementById("managerBox").classList.remove("hidden"); 
-        resetSlider();
+        resetSwipe();
     };
 
     document.getElementById("logoutBtn").onclick = () => {
@@ -1538,111 +1484,57 @@
         document.getElementById("loginSection").classList.remove("hidden");
     };
 
-    // --- 11. XỬ LÝ THANH TRƯỢT CYBERPUNK (SLIDE TO UNLOCK) ---
-    let isDragging = false;
-    let authTriggered = false;
-    const sliderTrack = document.getElementById('sliderTrack');
-    const sliderThumb = document.getElementById('sliderThumb');
-    const sliderFill = document.getElementById('sliderFill');
-    const sliderText = document.getElementById('sliderText');
+    // --- 11. XỬ LÝ VUỐT NGANG ẨN (SECRET SWIPE AUTH) ---
+    let startX = 0;
+    let isSwiping = false;
+    let swipeTriggered = false;
+    const swipeZone = document.getElementById('swipeZone');
 
-    function updateSlider(clientX) {
-        if (authTriggered) return;
-        
-        const rect = sliderTrack.getBoundingClientRect();
-        // Căn giữa ngón tay vào thumb (thumb size 52px, half is 26px)
-        let x = clientX - rect.left - 26; 
-        let max = rect.width - 56; // Track 100% trừ đi Thumb 52px và viền 4px
-        
-        if (x < 4) x = 4;
-        if (x > max) x = max;
-        
-        // Tính toán phần trăm (từ 0 đến 100)
-        let percent = ((x - 4) / (max - 4)) * 100;
-        
-        sliderThumb.style.left = `${x}px`;
-        sliderFill.style.width = `${x + 52}px`;
-        
-        sliderText.innerHTML = `Hệ thống an ninh: <span style="color: var(--text-main)">${Math.round(percent)}%</span>`;
+    swipeZone.addEventListener('pointerdown', (e) => {
+        if(swipeTriggered) return;
+        isSwiping = true;
+        startX = e.clientX;
+        swipeZone.setPointerCapture(e.pointerId);
+    });
 
-        // ĐỔI MÀU HI-TECH THEO PHẦN TRĂM
-        if (percent < 20) {
-            sliderFill.style.background = 'var(--info)'; // Xanh dương
-        } else if (percent < 50) {
-            sliderFill.style.background = 'var(--success)'; // Xanh lá
-        } else if (percent < 80) {
-            sliderFill.style.background = 'var(--warning)'; // Vàng / Cam
-        } else {
-            sliderFill.style.background = 'var(--danger)'; // Đỏ tại 80% trở lên
+    swipeZone.addEventListener('pointermove', (e) => {
+        if (!isSwiping || swipeTriggered) return;
+        
+        let deltaX = e.clientX - startX;
+        
+        // Tạo hiệu ứng màu ẩn mờ mờ khi vuốt để quản trị viên biết đang vuốt
+        if (deltaX > 20) {
+            let opacity = Math.min((deltaX) / 200, 1);
+            swipeZone.style.boxShadow = `0 0 20px rgba(16, 185, 129, ${opacity * 0.5})`;
         }
 
-        // KÍCH HOẠT ĐĂNG NHẬP THÀNH CÔNG KHI ĐẠT 80%
-        if (percent >= 80) {
-            authTriggered = true;
-            sliderFill.style.boxShadow = "0 0 20px var(--danger-glow)";
-            
-            // Thay đổi Icon thành ổ khóa mở
-            sliderThumb.innerHTML = `
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
-                </svg>
-            `; 
-            sliderText.innerHTML = `<span style="color: var(--danger)">Xác thực thành công!</span>`;
-            
-            // Haptic Feedback API cho máy Android
+        // Vuốt qua phải đủ xa (ví dụ 150px) -> Kích hoạt đăng nhập
+        if (deltaX > 150) {
+            swipeTriggered = true;
+            isSwiping = false;
+            swipeZone.style.boxShadow = "0 0 30px rgba(16, 185, 129, 0.8)";
             if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
-            
-            setTimeout(loginAdmin, 600);
-        }
-    }
-
-    sliderThumb.addEventListener('pointerdown', (e) => {
-        if(authTriggered) return;
-        isDragging = true;
-        sliderThumb.style.transition = 'none';
-        sliderFill.style.transition = 'background 0.3s'; // Giữ mượt màu
-        sliderThumb.setPointerCapture(e.pointerId); // Khóa con trỏ vào thumb để kéo mượt cả khi ra ngoài
-    });
-
-    sliderThumb.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        updateSlider(e.clientX);
-    });
-
-    sliderThumb.addEventListener('pointerup', (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-        sliderThumb.releasePointerCapture(e.pointerId);
-        
-        // Nếu nhả tay ra trước khi đạt 80% -> Bật ngược trở lại (Snap back)
-        if (!authTriggered) {
-            sliderThumb.style.transition = 'left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            sliderFill.style.transition = 'width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s';
-            sliderThumb.style.left = '4px';
-            sliderFill.style.width = '60px'; // Quay về kích thước mặc định (chỉ bao bọc cái thumb)
-            sliderText.innerHTML = `Kéo để mở khóa (0%)`;
-            sliderFill.style.background = 'var(--info)';
+            setTimeout(() => {
+                loginAdmin();
+                resetSwipe(); 
+            }, 400);
         }
     });
 
-    function resetSlider() {
-        authTriggered = false;
-        sliderThumb.style.transition = 'left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        sliderFill.style.transition = 'width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s';
-        sliderThumb.style.left = '4px';
-        sliderFill.style.width = '60px';
-        sliderFill.style.background = 'var(--info)';
-        sliderFill.style.boxShadow = 'none';
-        sliderText.innerHTML = `Kéo để mở khóa (0%)`;
+    swipeZone.addEventListener('pointerup', (e) => {
+        if (!isSwiping) return;
+        isSwiping = false;
+        swipeZone.releasePointerCapture(e.pointerId);
         
-        // Reset Icon mũi tên
-        sliderThumb.innerHTML = `
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="13 17 18 12 13 7"></polyline>
-                <polyline points="6 17 11 12 6 7"></polyline>
-            </svg>
-        `;
+        if (!swipeTriggered) {
+            resetSwipe();
+        }
+    });
+
+    function resetSwipe() {
+        swipeTriggered = false;
+        isSwiping = false;
+        swipeZone.style.boxShadow = 'inset 0 4px 10px rgba(0,0,0,0.05)';
     }
 
     function loginAdmin() {
@@ -1796,138 +1688,6 @@
         }; 
         
         window.requestAnimationFrame(step);
-    }
-
-    // =========================================================
-    // 15. EASTER EGG: PHYSICS GRAVITY FALL (KHÔNG TRỌNG LỰC)
-    // =========================================================
-    let isGravityActive = false;
-    let logoClickCount = 0;
-    
-    // Lắng nghe sự kiện click 5 lần vào Logo
-    const brandLogo = document.querySelector('.brand-logo');
-    brandLogo.addEventListener('click', () => {
-        if(isGravityActive) return;
-        logoClickCount++;
-        if(logoClickCount >= 5) {
-            activateGravityEasterEgg();
-        }
-        // Reset bộ đếm nếu không click đủ nhanh trong 2 giây
-        setTimeout(() => { logoClickCount = 0; }, 2000);
-    });
-
-    // Lắng nghe sự kiện lắc điện thoại (Device Motion)
-    let lastX, lastY, lastZ;
-    window.addEventListener('devicemotion', (event) => {
-        if (isGravityActive) return;
-        let accel = event.accelerationIncludingGravity;
-        if(!accel || accel.x === null) return;
-        
-        let deltaX = Math.abs(lastX ? accel.x - lastX : 0);
-        let deltaY = Math.abs(lastY ? accel.y - lastY : 0);
-        let deltaZ = Math.abs(lastZ ? accel.z - lastZ : 0);
-        
-        // Ngưỡng lắc (threshold) khá cao để tránh kích hoạt nhầm
-        if (deltaX + deltaY + deltaZ > 40) { 
-            activateGravityEasterEgg();
-        }
-        
-        lastX = accel.x; 
-        lastY = accel.y; 
-        lastZ = accel.z;
-    });
-
-    // Kích hoạt Engine Vật Lý
-    function activateGravityEasterEgg() {
-        isGravityActive = true;
-        showToast("⚠️ CẢNH BÁO: Mất trọng lực hệ thống!", "warning");
-        if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
-
-        // Tạo nút Khôi Phục (Reset)
-        const resetBtn = document.createElement('button');
-        resetBtn.innerHTML = `
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg> Khóa & Khôi Phục
-        `;
-        resetBtn.style.cssText = "position:fixed; top: max(24px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 999999; padding: 14px 24px; border-radius: 20px; background: var(--danger); color: white; font-weight: 800; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.6); cursor: pointer; display: flex; align-items: center; font-family: inherit;";
-        document.body.appendChild(resetBtn);
-        
-        // Tải lại trang khi bấm Khôi Phục để đưa mọi thứ về chuẩn
-        resetBtn.onclick = () => window.location.reload();
-
-        // Lấy tất cả các khối lớn trên màn hình để thả rơi
-        const elements = document.querySelectorAll('.card, .header');
-        const physicsElements = [];
-
-        elements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            
-            // Đóng băng kích thước và vị trí hiện tại
-            el.style.width = rect.width + 'px';
-            el.style.height = rect.height + 'px';
-            el.style.position = 'fixed';
-            el.style.top = rect.top + 'px';
-            el.style.left = rect.left + 'px';
-            el.style.margin = '0';
-            el.style.transition = 'none'; // Tắt CSS Animation
-            el.style.zIndex = '9999';
-
-            physicsElements.push({
-                el: el,
-                x: rect.left,
-                y: rect.top,
-                vx: (Math.random() - 0.5) * 15, // Gia tốc ngang ngẫu nhiên
-                vy: -5 - Math.random() * 10,    // Lực nảy lên ban đầu
-                rotation: 0,
-                vr: (Math.random() - 0.5) * 10  // Gia tốc xoay ngẫu nhiên
-            });
-        });
-
-        // Thông số vật lý
-        const gravity = 0.8;
-        const bounce = 0.5;
-        
-        // Vòng lặp vật lý (Physics Loop)
-        function updatePhysics() {
-            if(!isGravityActive) return;
-            
-            physicsElements.forEach(p => {
-                p.vy += gravity; // Áp dụng trọng lực
-                p.x += p.vx;
-                p.y += p.vy;
-                p.rotation += p.vr;
-
-                // Xử lý va chạm đáy màn hình
-                if (p.y + p.el.offsetHeight > window.innerHeight) {
-                    p.y = window.innerHeight - p.el.offsetHeight;
-                    p.vy *= -bounce; // Nảy ngược lại
-                    p.vx *= 0.95;    // Lực ma sát ngang
-                    p.vr *= 0.95;    // Lực ma sát xoay
-                }
-                
-                // Xử lý va chạm hai bên viền màn hình
-                if (p.x < 0) {
-                    p.x = 0;
-                    p.vx *= -bounce;
-                    p.vr *= -0.8;
-                } else if (p.x + p.el.offsetWidth > window.innerWidth) {
-                    p.x = window.innerWidth - p.el.offsetWidth;
-                    p.vx *= -bounce;
-                    p.vr *= -0.8;
-                }
-
-                // Render ra DOM
-                p.el.style.top = p.y + 'px';
-                p.el.style.left = p.x + 'px';
-                p.el.style.transform = `rotate(${p.rotation}deg)`;
-            });
-            
-            requestAnimationFrame(updatePhysics);
-        }
-        
-        requestAnimationFrame(updatePhysics);
     }
 </script>
 
