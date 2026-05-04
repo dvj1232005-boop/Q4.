@@ -745,23 +745,20 @@
         .badge-none { background: transparent; color: var(--border-glass); }
 
         /* =========================================================
-           12. SECRET SWIPE ZONE (MẢNG KÍNH ĐỤC ẨN)
+           12. SECRET SWIPE ZONE (MẢNG KÍNH ĐỤC ẨN TOÀN MÀN HÌNH)
         ========================================================= */
         .swipe-auth-zone {
+            position: absolute;
+            top: 0; 
+            left: 0;
             width: 100%;
-            max-width: 320px;
-            height: 64px;
-            margin: 20px auto 40px;
-            background: var(--bg-glass-heavy); /* Trông như một mảng kính đục vô hại */
-            border-radius: 32px;
-            border: 2px solid var(--border-glass);
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
-            position: relative;
-            touch-action: none; /* Ngăn chặn cuộn trang khi đang vuốt */
+            height: 100%;
+            z-index: 10;
+            touch-action: none; /* Ngăn chặn cuộn trang khi đang vuốt ngang */
             cursor: grab;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: box-shadow 0.3s ease;
+            background: transparent; /* Tàng hình hoàn toàn */
+            border-radius: 32px;
+            transition: background 0.3s ease;
         }
         
         .swipe-auth-zone:active {
@@ -1011,16 +1008,16 @@
     <!-- ==========================================
          PHẦN 2: KHU VỰC DÀNH CHO QUẢN TRỊ VIÊN
     =========================================== -->
-    <main class="card hidden" id="managerBox">
+    <main class="card hidden" id="managerBox" style="position: relative; min-height: 250px; display: flex; flex-direction: column; justify-content: center;">
         
-        <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn) -->
-        <div id="loginSection">
-            <div class="card-header" id="managerHeader">
+        <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn Tuyệt Đối) -->
+        <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
                 <h2 class="card-title" style="color: var(--primary);">Secure Access</h2>
-                <div class="card-subtitle">Hệ thống nhận diện quản trị viên</div>
+                <div class="card-subtitle">Hệ thống phân quyền cấp cao</div>
             </div>
             
-            <!-- Mảng đục vô hại, chỉ người biết vuốt ngang mới đăng nhập được -->
+            <!-- Vùng vuốt tàng hình phủ toàn bộ khu vực màn hình này -->
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
@@ -1505,14 +1502,14 @@
         // Tạo hiệu ứng màu ẩn mờ mờ khi vuốt để quản trị viên biết đang vuốt
         if (deltaX > 20) {
             let opacity = Math.min((deltaX) / 200, 1);
-            swipeZone.style.boxShadow = `0 0 20px rgba(16, 185, 129, ${opacity * 0.5})`;
+            swipeZone.style.background = `linear-gradient(90deg, rgba(16, 185, 129, ${opacity * 0.15}) 0%, transparent 100%)`;
         }
 
         // Vuốt qua phải đủ xa (ví dụ 150px) -> Kích hoạt đăng nhập
         if (deltaX > 150) {
             swipeTriggered = true;
             isSwiping = false;
-            swipeZone.style.boxShadow = "0 0 30px rgba(16, 185, 129, 0.8)";
+            swipeZone.style.background = "rgba(16, 185, 129, 0.15)";
             if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
             setTimeout(() => {
                 loginAdmin();
@@ -1534,7 +1531,7 @@
     function resetSwipe() {
         swipeTriggered = false;
         isSwiping = false;
-        swipeZone.style.boxShadow = 'inset 0 4px 10px rgba(0,0,0,0.05)';
+        swipeZone.style.background = 'transparent';
     }
 
     function loginAdmin() {
