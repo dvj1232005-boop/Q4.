@@ -16,7 +16,7 @@
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* =========================================================
@@ -224,6 +224,8 @@
             background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            user-select: none;
         }
 
         .brand-logo svg {
@@ -980,6 +982,7 @@
                 font-size: 24px;
             }
             .bento-grid {
+                grid-template-columns: 1fr 1fr;
                 gap: 12px;
             }
             .bento-card {
@@ -990,11 +993,10 @@
                 font-size: 32px;
             }
             .action-dock {
-                gap: 8px;
-                padding: 10px;
+                gap: 10px;
             }
             .dock-btn {
-                padding: 12px 4px;
+                padding: 12px 6px;
                 border-radius: 16px;
                 font-size: 10px;
             }
@@ -1557,6 +1559,7 @@
         btn.disabled = true;
 
         try {
+            let rawExcelDataExport = ""; // ĐÃ FIX: Khai báo biến
             // Lọc dữ liệu an toàn
             const snapshot = await get(ref(db, "dangKy/" + employeeName));
             if(snapshot.exists() && !confirm(`Định danh "${employeeName}" đã có dữ liệu. Bạn có muốn ghi đè lịch mới?`)) { 
@@ -1661,6 +1664,8 @@
     }
 
     // --- 12. LOGIC DASHBOARD QUẢN TRỊ VIÊN ---
+    let rawExcelDataExport = ""; // ĐÃ FIX: Khai báo biến để tránh lỗi ReferenceError trong Strict Mode
+    
     async function fetchAndRenderAdminData() {
         const tableContainer = document.getElementById("excelTable");
         
