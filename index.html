@@ -97,10 +97,13 @@
         ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html, body { touch-action: manipulation; }
+        html, body { 
+            touch-action: manipulation; 
+            -webkit-text-size-adjust: 100%;
+        }
 
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-base);
             background-image: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
             color: var(--text-main);
@@ -112,12 +115,22 @@
             position: relative;
             -webkit-tap-highlight-color: transparent;
             -webkit-font-smoothing: antialiased;
+            overscroll-behavior-y: none; /* Cải thiện cảm giác App Native trên iOS */
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
+        /* KIỂM SOÁT NGHIÊM NGẶT ZOOM TRÊN iOS */
         input[type="text"], input[type="number"], select, textarea, .form-control {
             font-size: 16px !important; 
+        }
+
+        /* NGĂN CHẶN CHỌN TEXT Ở NHỮNG VÙNG KHÔNG CẦN THIẾT */
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* =========================================================
@@ -152,7 +165,7 @@
             position: relative; z-index: 10; display: flex; flex-direction: column;
             min-height: 100vh; width: 100%; max-width: 720px; margin: 0 auto; padding: 0 20px;
             padding-top: max(20px, env(safe-area-inset-top));
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            padding-bottom: max(30px, env(safe-area-inset-bottom)); /* Tăng nhẹ bottom cho thanh Home bar */
         }
 
         .header {
@@ -163,7 +176,7 @@
 
         .brand-logo {
             font-weight: 800; font-size: 26px; display: flex; align-items: center; gap: 10px;
-            letter-spacing: -0.5px; cursor: pointer; user-select: none;
+            letter-spacing: -0.5px; cursor: pointer;
             background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -199,9 +212,10 @@
         }
 
         .lang-toggle {
-            padding: 0 36px 0 18px; font-size: 13px; outline: none; -webkit-appearance: none; appearance: none;
+            padding: 0 36px 0 18px; font-size: 16px !important; outline: none; -webkit-appearance: none; appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat; background-position: right 14px center;
+            line-height: normal; /* Cân đối dọc cho iOS */
         }
 
         .lang-toggle:hover, .theme-toggle:hover {
@@ -217,8 +231,8 @@
            05. PREMIUM GLASS CARD
         ========================================================= */
         .card {
-            background: var(--bg-glass-heavy); backdrop-filter: blur(35px); -webkit-backdrop-filter: blur(35px);
-            border-radius: 36px; padding: 44px 36px; margin-bottom: 24px; position: relative;
+            background: var(--bg-glass-heavy); backdrop-filter: blur(35px) saturate(150%); -webkit-backdrop-filter: blur(35px) saturate(150%);
+            border-radius: 36px; padding: 40px 32px; margin-bottom: 24px; position: relative;
             box-shadow: var(--shadow-card), inset 0 1px 2px var(--border-highlight);
             border: 1px solid var(--border-glass); opacity: 0; transform: translateY(40px);
             animation: scaleIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -232,13 +246,14 @@
 
         @keyframes scaleIn { to { opacity: 1; transform: translateY(0); } }
 
-        .card-header { text-align: center; margin-bottom: 40px; position: relative; z-index: 2;}
+        .card-header { text-align: center; margin-bottom: 36px; position: relative; z-index: 2;}
 
         .card-title {
-            font-size: 36px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 12px;
+            font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;
             background: linear-gradient(135deg, var(--primary) 0%, #d946ef 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             text-shadow: 0 10px 30px var(--primary-glow);
+            line-height: 1.2;
         }
 
         .card-subtitle { color: var(--text-muted); font-size: 15px; font-weight: 600; letter-spacing: 0.5px; }
@@ -248,7 +263,7 @@
         ========================================================= */
         .status-banner {
             display: flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 16px 20px; border-radius: 20px; margin-bottom: 36px;
+            padding: 16px 20px; border-radius: 20px; margin-bottom: 32px;
             font-weight: 700; font-size: 14px; transition: all 0.5s ease;
             box-shadow: var(--shadow-inner), 0 10px 30px -10px rgba(0,0,0,0.1); 
             position: relative; overflow: hidden;
@@ -258,11 +273,11 @@
         /* =========================================================
            07. FORMS & INPUTS
         ========================================================= */
-        .input-wrapper { position: relative; margin-bottom: 32px; z-index: 2;}
+        .input-wrapper { position: relative; margin-bottom: 28px; z-index: 2;}
 
         .input-label {
             display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800;
-            color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px;
+            color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1.5px;
         }
 
         .input-icon {
@@ -271,12 +286,12 @@
         }
 
         .form-control {
-            width: 100%; padding: 22px 24px 22px 60px; border-radius: 24px;
+            width: 100%; height: 58px; padding: 0 24px 0 60px; border-radius: 20px;
             border: 2px solid var(--border-glass); background: var(--input-bg);
-            color: var(--text-main); font-family: inherit; font-weight: 700; font-size: 16px;
+            color: var(--text-main); font-family: inherit; font-weight: 700; font-size: 16px !important;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: var(--shadow-inner), 0 4px 15px rgba(0,0,0,0.03);
-            -webkit-appearance: none; appearance: none;
+            -webkit-appearance: none; appearance: none; line-height: normal;
         }
 
         .form-control:hover { 
@@ -287,26 +302,26 @@
         .form-control:focus {
             background: var(--bg-glass-heavy); border-color: var(--primary);
             box-shadow: 0 0 0 4px var(--bg-base), 0 0 0 6px var(--primary-light), 0 15px 35px var(--primary-glow);
-            outline: none; transform: translateY(-3px);
+            outline: none; transform: translateY(-2px);
         }
 
         .form-control:focus + .input-icon { color: var(--primary); transform: translateY(-50%) scale(1.15); filter: drop-shadow(0 0 8px var(--primary-glow));}
 
         /* =========================================================
-           08. CALENDAR GRID & CUSTOM DROPDOWN (UPGRADED UX)
+           08. CALENDAR GRID & CUSTOM DROPDOWN (UPGRADED UX iOS)
         ========================================================= */
-        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-bottom: 40px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-bottom: 36px; }
 
         .day-card {
             background: linear-gradient(145deg, var(--input-bg) 0%, rgba(0,0,0,0.05) 100%);
             border: 1px solid var(--border-glass); border-radius: 20px;
-            padding: 18px; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 16px; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 8px 20px rgba(0,0,0,0.04), inset 0 1px 1px var(--border-highlight);
             position: relative;
         }
 
         .day-card:hover { 
-            transform: translateY(-4px); 
+            transform: translateY(-2px); 
             box-shadow: 0 15px 30px rgba(0,0,0,0.08), inset 0 1px 1px var(--border-highlight); 
             border-color: rgba(148, 163, 184, 0.3); 
         }
@@ -314,7 +329,7 @@
         .day-card.is-active {
             border-color: var(--primary); background: var(--bg-glass-heavy);
             box-shadow: 0 15px 35px var(--primary-light), inset 0 1px 1px var(--border-highlight); 
-            transform: translateY(-6px); z-index: 50;
+            transform: translateY(-4px); z-index: 50;
         }
         
         .day-card.has-value {
@@ -322,8 +337,8 @@
             box-shadow: 0 5px 20px var(--primary-light);
         }
 
-        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-weight: 800; font-size: 14px; color: var(--text-main); }
-        .day-badge { font-size: 11px; padding: 5px 10px; border-radius: 8px; background: var(--border-glass); color: var(--text-muted); font-weight: 800; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);}
+        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 800; font-size: 14px; color: var(--text-main); }
+        .day-badge { font-size: 11px; padding: 4px 8px; border-radius: 8px; background: var(--border-glass); color: var(--text-muted); font-weight: 800; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);}
 
         /* Tàng hình thẻ select gốc */
         .hidden-select { display: none !important; }
@@ -335,11 +350,12 @@
 
         .dropdown-trigger {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 16px; border-radius: 14px; background: var(--bg-base);
+            height: 48px; padding: 0 14px; border-radius: 14px; background: var(--bg-base);
             border: 1px solid var(--border-glass); cursor: pointer;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             color: var(--text-main); font-weight: 700; font-size: 14px;
             box-shadow: var(--shadow-inner);
+            touch-action: manipulation;
         }
 
         .dropdown-trigger:hover {
@@ -358,7 +374,7 @@
 
         .chevron {
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            color: var(--text-muted);
+            color: var(--text-muted); flex-shrink: 0;
         }
 
         .dropdown-trigger.active .chevron {
@@ -370,32 +386,28 @@
         }
 
         .dropdown-menu {
-            position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+            position: absolute; top: calc(100% + 6px); left: 0; right: 0;
             background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
-            border-radius: 16px; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3); z-index: 100;
-            max-height: 220px; overflow-y: auto; opacity: 0; pointer-events: none;
-            transform: translateY(-10px); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 16px; backdrop-filter: blur(35px) saturate(150%); -webkit-backdrop-filter: blur(35px) saturate(150%);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3); z-index: 1000;
+            max-height: 240px; overflow-y: auto; opacity: 0; pointer-events: none;
+            transform-origin: top center; transform: scaleY(0.9) translateY(-10px); 
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             padding: 8px; display: flex; flex-direction: column; gap: 4px;
-            
-            /* Custom Scrollbar */
-            scrollbar-width: thin; scrollbar-color: var(--primary) transparent;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .dropdown-menu::-webkit-scrollbar { width: 6px; }
-        .dropdown-menu::-webkit-scrollbar-track { background: transparent; }
-        .dropdown-menu::-webkit-scrollbar-thumb { background: var(--border-glass); border-radius: 10px; }
-        .dropdown-menu::-webkit-scrollbar-thumb:hover { background: var(--primary-glow); }
-
         .dropdown-menu.show {
-            opacity: 1; pointer-events: auto; transform: translateY(0);
+            opacity: 1; pointer-events: auto; transform: scaleY(1) translateY(0);
         }
 
         .dropdown-item {
-            padding: 12px 14px; border-radius: 10px; cursor: pointer;
-            font-size: 13px; font-weight: 700; color: var(--text-main);
+            padding: 0 16px; min-height: 44px; /* Chuẩn Apple Touch Target */
+            border-radius: 12px; cursor: pointer;
+            font-size: 14px; font-weight: 700; color: var(--text-main);
             transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex; align-items: center; border-left: 3px solid transparent;
+            touch-action: manipulation;
         }
 
         .dropdown-item:hover {
@@ -408,12 +420,13 @@
         }
 
         /* =========================================================
-           09. BUTTONS (NEON & SWEEP EFFECT)
+           09. BUTTONS
         ========================================================= */
         .btn {
-            width: 100%; padding: 22px; border-radius: 22px; font-family: inherit; font-size: 16px; font-weight: 800;
+            width: 100%; height: 60px; border-radius: 20px; font-family: inherit; font-size: 16px; font-weight: 800;
             text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; display: flex; align-items: center; justify-content: center;
             gap: 12px; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; position: relative; overflow: hidden;
+            touch-action: manipulation;
         }
 
         .btn-primary {
@@ -429,7 +442,7 @@
         }
 
         .btn-primary:hover:not(:disabled) {
-            transform: translateY(-4px); box-shadow: 0 20px 40px -5px var(--primary-glow), inset 0 1px 1px rgba(255,255,255,0.5);
+            transform: translateY(-3px); box-shadow: 0 20px 40px -5px var(--primary-glow), inset 0 1px 1px rgba(255,255,255,0.5);
         }
 
         .btn-primary:hover::after { left: 150%; }
@@ -450,7 +463,7 @@
         .btn-outline:active { transform: scale(0.96); background: var(--border-glass); }
 
         /* =========================================================
-           10. ADMIN PANEL & BENTO (CYBERPUNK STYLE)
+           10. ADMIN PANEL & BENTO
         ========================================================= */
         .dashboard-container { position: relative; }
         .dashboard-container::before {
@@ -460,11 +473,11 @@
 
         .dashboard-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-glass); }
 
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 28px; }
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 28px; }
 
         .bento-card {
             background: linear-gradient(145deg, var(--bg-glass-heavy) 0%, rgba(15, 23, 42, 0.5) 100%);
-            border: 1px solid var(--border-glass); border-radius: 28px; padding: 28px;
+            border: 1px solid var(--border-glass); border-radius: 28px; padding: 24px;
             box-shadow: var(--shadow-soft), inset 0 1px 1px var(--border-highlight); position: relative; overflow: hidden;
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
             background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -477,22 +490,22 @@
             box-shadow: inset 5px 5px 15px var(--primary-glow);
         }
 
-        .bento-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 0 1px var(--primary-glow); }
+        .bento-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 0 1px var(--primary-glow); }
 
-        .stat-val { font-size: 48px; font-weight: 800; color: var(--text-main); font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 10px; text-shadow: 0 0 20px var(--primary-glow); position: relative; z-index: 2; }
-        .stat-label { font-size: 13px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 2; }
-        .bento-icon { position: absolute; top: 50%; right: -15px; transform: translateY(-50%) scale(4); color: var(--primary); opacity: 0.04; pointer-events: none; z-index: 1; transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); filter: drop-shadow(0 0 10px var(--primary));}
-        .bento-card:hover .bento-icon { opacity: 0.15; transform: translateY(-50%) scale(4.5) rotate(15deg); }
+        .stat-val { font-size: 40px; font-weight: 800; color: var(--text-main); font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 10px; text-shadow: 0 0 20px var(--primary-glow); position: relative; z-index: 2; }
+        .stat-label { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; position: relative; z-index: 2; }
+        .bento-icon { position: absolute; top: 50%; right: -10px; transform: translateY(-50%) scale(3.5); color: var(--primary); opacity: 0.04; pointer-events: none; z-index: 1; transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); filter: drop-shadow(0 0 10px var(--primary));}
+        .bento-card:hover .bento-icon { opacity: 0.15; transform: translateY(-50%) scale(4) rotate(15deg); }
 
         .action-dock {
-            background: rgba(0, 0, 0, 0.2); padding: 14px; border-radius: 32px; border: 1px solid var(--border-glass);
-            box-shadow: inset 0 4px 25px rgba(0,0,0,0.3); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px;
+            background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 32px; border: 1px solid var(--border-glass);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.3); display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 32px;
         }
 
         .dock-btn {
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-            padding: 18px 8px; border-radius: 24px; background: var(--bg-glass); color: var(--text-main);
-            font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px 6px; border-radius: 20px; background: var(--bg-glass); color: var(--text-main);
+            font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; border: 1px solid transparent; position: relative; overflow: hidden; text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
@@ -502,18 +515,18 @@
             width: 20px; height: 4px; border-radius: 4px; background: currentColor; opacity: 0; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .dock-btn:hover { background: var(--bg-glass-heavy); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.25); border-color: rgba(255,255,255,0.05);}
+        .dock-btn:hover { background: var(--bg-glass-heavy); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.25); border-color: rgba(255,255,255,0.05);}
         .dock-btn:active { transform: scale(0.92); box-shadow: 0 5px 10px rgba(0,0,0,0.2);}
 
         .dock-btn.success { color: var(--success); } .dock-btn.warning { color: var(--warning); }
         .dock-btn.info { color: var(--info); } .dock-btn.danger { color: var(--danger); }
 
-        .dock-btn:hover::before { opacity: 1; box-shadow: 0 0 15px currentColor; width: 50px; bottom: 4px;}
-        .dock-btn svg { width: 26px; height: 26px; filter: drop-shadow(0 0 5px currentColor); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);}
-        .dock-btn:hover svg { transform: scale(1.2) translateY(-2px); }
+        .dock-btn:hover::before { opacity: 1; box-shadow: 0 0 15px currentColor; width: 40px; bottom: 4px;}
+        .dock-btn svg { width: 24px; height: 24px; filter: drop-shadow(0 0 5px currentColor); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);}
+        .dock-btn:hover svg { transform: scale(1.15) translateY(-2px); }
 
         /* =========================================================
-           11. DATA TABLE (CUSTOM SCROLLBAR)
+           11. DATA TABLE
         ========================================================= */
         .table-container {
             border-radius: 28px; border: 1px solid var(--border-glass); background: var(--bg-glass);
@@ -523,7 +536,6 @@
 
         .table-wrapper { 
             overflow-x: auto; max-height: 480px; -webkit-overflow-scrolling: touch; 
-            /* Custom Scrollbar for Webkit */
             scrollbar-width: thin; scrollbar-color: var(--primary) transparent;
         }
         
@@ -534,27 +546,27 @@
         table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; }
 
         th {
-            background: rgba(0,0,0,0.6); color: var(--text-muted); font-weight: 800; text-transform: uppercase; font-size: 12px; letter-spacing: 1.5px; padding: 22px 16px; text-align: center; border-bottom: 2px solid var(--primary); white-space: nowrap; position: sticky; top: 0; z-index: 10; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            background: rgba(0,0,0,0.6); color: var(--text-muted); font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; padding: 20px 14px; text-align: center; border-bottom: 2px solid var(--primary); white-space: nowrap; position: sticky; top: 0; z-index: 10; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         }
 
         th:first-child { text-align: left; left: 0; z-index: 20; background: rgba(0,0,0,0.8); box-shadow: 2px 0 15px rgba(0,0,0,0.4); border-top-left-radius: 28px;}
 
-        td { padding: 20px 16px; text-align: center; border-bottom: 1px solid var(--border-glass); font-weight: 700; white-space: nowrap; transition: background 0.3s; }
+        td { padding: 18px 14px; text-align: center; border-bottom: 1px solid var(--border-glass); font-weight: 700; white-space: nowrap; transition: background 0.3s; }
         
         tr { position: relative; transition: all 0.3s ease;}
         tr:hover td { background: rgba(255,255,255,0.06); }
 
         td:first-child {
-            text-align: left; position: sticky; left: 0; background: var(--bg-glass-heavy); z-index: 5; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 16px; box-shadow: 2px 0 15px rgba(0,0,0,0.2); border-left: 4px solid transparent; transition: 0.3s;
+            text-align: left; position: sticky; left: 0; background: var(--bg-glass-heavy); z-index: 5; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 14px; box-shadow: 2px 0 15px rgba(0,0,0,0.2); border-left: 4px solid transparent; transition: 0.3s;
         }
 
-        tr:hover td:first-child { border-left: 4px solid var(--primary); background: var(--bg-glass-heavy); padding-left: 24px;}
+        tr:hover td:first-child { border-left: 4px solid var(--primary); background: var(--bg-glass-heavy); padding-left: 20px;}
 
         .avatar {
-            width: 36px; height: 36px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), var(--info)); color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-transform: uppercase;
+            width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg, var(--primary), var(--info)); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-transform: uppercase;
         }
 
-        .shift-badge { display: inline-flex; padding: 8px 14px; border-radius: 10px; font-weight: 800; font-size: 12px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 2px 8px rgba(0,0,0,0.15); letter-spacing: 0.5px;}
+        .shift-badge { display: inline-flex; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 11px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 2px 8px rgba(0,0,0,0.15); letter-spacing: 0.5px;}
         .badge-c1 { background: var(--info-bg); color: var(--info); border: 1px solid rgba(59, 130, 246, 0.4); }
         .badge-c2 { background: var(--warning-bg); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.4); }
         .badge-c3 { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
@@ -568,15 +580,15 @@
         .swipe-auth-zone { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; touch-action: none; cursor: grab; background: transparent; border-radius: 36px; transition: background 0.3s ease; }
         .swipe-auth-zone:active { cursor: grabbing; }
 
-        .btn-exit { background: transparent; border: 1px solid rgba(239, 68, 68, 0.4); color: var(--danger); padding: 10px 20px; border-radius: 14px; font-weight: 800; font-size: 12px; text-transform: uppercase; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .btn-exit:hover { background: var(--danger-bg); box-shadow: 0 5px 20px var(--danger-bg); transform: translateY(-3px); }
+        .btn-exit { background: transparent; border: 1px solid rgba(239, 68, 68, 0.4); color: var(--danger); padding: 10px 18px; border-radius: 14px; font-weight: 800; font-size: 12px; text-transform: uppercase; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .btn-exit:hover { background: var(--danger-bg); box-shadow: 0 5px 20px var(--danger-bg); transform: translateY(-2px); }
         .btn-exit:active { transform: scale(0.95); }
 
         .toast-container { position: fixed; top: max(24px, env(safe-area-inset-top)); right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 14px; pointer-events: none; }
-        .toast { background: var(--bg-glass-heavy); color: var(--text-main); padding: 18px 28px; border-radius: 20px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-card), inset 0 1px 1px var(--border-highlight); border: 1px solid var(--border-glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); transform: translateX(120%); opacity: 0; transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .toast { background: var(--bg-glass-heavy); color: var(--text-main); padding: 16px 24px; border-radius: 20px; font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-card), inset 0 1px 1px var(--border-highlight); border: 1px solid var(--border-glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); transform: translateX(120%); opacity: 0; transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .toast.show { transform: translateX(0); opacity: 1; }
 
-        .toast-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; }
+        .toast-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; }
         .toast-success .toast-icon { background: var(--success-bg); color: var(--success); box-shadow: 0 0 15px var(--success-bg);}
         .toast-error .toast-icon { background: var(--danger-bg); color: var(--danger); box-shadow: 0 0 15px var(--danger-bg);}
         .toast-warning .toast-icon { background: var(--warning-bg); color: var(--warning); box-shadow: 0 0 15px var(--warning-bg);}
@@ -586,23 +598,29 @@
         .skeleton { background: linear-gradient(90deg, var(--input-bg) 25%, var(--border-glass) 50%, var(--input-bg) 75%); background-size: 200% 100%; animation: skeletonLoad 1.5s infinite; border-radius: 8px; }
         @keyframes skeletonLoad { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-        footer { text-align: center; padding: 40px 0 50px; font-size: 14px; color: var(--text-muted); font-weight: 600; z-index: 10; position: relative; line-height: 1.8; letter-spacing: 0.5px; }
+        footer { text-align: center; padding: 20px 0 30px; font-size: 13px; color: var(--text-muted); font-weight: 600; z-index: 10; position: relative; line-height: 1.8; letter-spacing: 0.5px; }
         footer strong { color: var(--primary); font-weight: 800; }
         footer span.pro-text { font-weight: 800; background: linear-gradient(90deg, var(--primary), #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
 
+        /* MOBILE FIXES CHO iOS */
         @media (max-width: 600px) {
-            .card { padding: 32px 24px; border-radius: 32px; }
+            .app-wrapper { padding: 0 16px; padding-top: max(16px, env(safe-area-inset-top)); }
+            .card { padding: 30px 20px; border-radius: 30px; }
             .card-title { font-size: 28px; }
-            .bento-grid { gap: 14px; }
+            .calendar-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; } /* Cân đối 2 cột hoàn hảo */
+            .day-card { padding: 14px; border-radius: 18px; }
+            .dropdown-trigger { height: 44px; padding: 0 12px; font-size: 13px;}
+            .dropdown-item { min-height: 40px; padding: 0 12px; font-size: 13px;}
+            .bento-grid { gap: 12px; }
             .bento-card { padding: 20px; border-radius: 22px; }
-            .stat-val { font-size: 36px; }
-            .action-dock { gap: 8px; padding: 12px; }
-            .dock-btn { padding: 14px 4px; border-radius: 18px; font-size: 10px; }
+            .stat-val { font-size: 34px; }
+            .action-dock { gap: 8px; padding: 10px; }
+            .dock-btn { padding: 12px 4px; border-radius: 16px; font-size: 9px; }
             .toast-container { left: 16px; right: 16px; align-items: center; }
             .toast { width: 100%; transform: translateY(-100px); }
             .toast.show { transform: translateY(0); }
-            .header { padding: 16px 0 28px 0;}
-            .lang-toggle { padding: 0 32px 0 16px;}
+            .header { padding: 16px 0 24px 0;}
+            .lang-toggle { padding: 0 28px 0 12px; font-size: 14px !important;}
         }
     </style>
 </head>
@@ -618,7 +636,7 @@
     <!-- TOP NAVIGATION -->
     <header class="header">
         <div class="brand-group">
-            <div class="brand-logo">
+            <div class="brand-logo no-select">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -629,7 +647,7 @@
             </div>
             <div class="update-ticker" id="timeTicker">
                 <div class="update-pulse"></div> 
-                <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
+                <span data-i18n="realtime" class="no-select">Đồng bộ realtime:</span> <span class="mono no-select" id="realTime">--:--:--</span>
             </div>
         </div>
         
@@ -669,20 +687,20 @@
          PHẦN 1: KHU VỰC ĐĂNG KÝ CHO NHÂN VIÊN
     =========================================== -->
     <main class="card" id="userCard">
-        <div class="card-header">
+        <div class="card-header no-select">
             <!-- Tiêu đề tiêu chuẩn không hiệu ứng -->
             <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
             <div class="card-subtitle" data-i18n="subtitle">Hệ thống xếp lịch nội bộ | An Cafe & QuyChe Network</div>
         </div>
         
         <!-- Trạng thái hệ thống (Khóa/Mở) -->
-        <div id="lockStatus" class="status-banner" style="padding: 16px;">
+        <div id="lockStatus" class="status-banner no-select" style="padding: 16px;">
             <div class="skeleton" style="width: 100%; height: 42px; border-radius: 14px;"></div>
         </div>
 
         <!-- Khung nhập tên -->
         <div style="margin-bottom: 28px;">
-            <label class="input-label">
+            <label class="input-label no-select">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
@@ -694,13 +712,13 @@
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <input type="text" id="name" class="form-control" placeholder="Ví dụ: Đăng Tùng..." data-i18n-placeholder="placeholder" autocomplete="off">
+                <input type="text" id="name" class="form-control" placeholder="Ví dụ: Đăng Tùng..." data-i18n-placeholder="placeholder" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             </div>
         </div>
 
         <!-- Lưới chọn ca làm việc theo ngày (Custom Dropdown V2) -->
         <div style="margin-bottom: 40px;">
-            <label class="input-label" style="margin-bottom: 16px;">
+            <label class="input-label no-select" style="margin-bottom: 16px;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -709,16 +727,16 @@
                 </svg>
                 <span data-i18n="schedule">Đăng ký lịch làm việc (Tuần này)</span>
             </label>
-            <div id="form" class="calendar-grid" style="margin-bottom: 0;">
+            <div id="form" class="calendar-grid no-select" style="margin-bottom: 0;">
                 <!-- Javascript sẽ tự động render Dropdown vào đây -->
             </div>
         </div>
 
         <!-- Các nút hành động chính -->
-        <button id="submitBtn" class="btn btn-primary" data-i18n="confirmBtn">
+        <button id="submitBtn" class="btn btn-primary no-select" data-i18n="confirmBtn">
             Xác Nhận Đăng Ký
         </button>
-        <button id="managerBtn" class="btn btn-outline" data-i18n="managerBtn">
+        <button id="managerBtn" class="btn btn-outline no-select" data-i18n="managerBtn">
             Truy Cập Khu Vực Quản Lý
         </button>
     </main>
@@ -730,7 +748,7 @@
         
         <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn Tuyệt Đối) -->
         <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
+            <div class="card-header no-select" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
                 <h2 class="card-title" style="color: var(--primary);" data-i18n="secureAccess">Secure Access</h2>
                 <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
             </div>
@@ -742,7 +760,7 @@
 
         <!-- 2.2 Bảng Điều Khiển Quản Trị (Hi-Tech Dashboard) -->
         <div id="adminPanel" class="hidden dashboard-container">
-            <div class="dashboard-header-flex">
+            <div class="dashboard-header-flex no-select">
                 <div>
                     <h2 class="card-title" style="font-size: 22px; margin:0; text-align: left; display: flex; align-items: center; gap: 10px;">
                         <span style="color: var(--primary); font-family: 'JetBrains Mono', monospace;">>_</span> <span data-i18n="dashboard">DASHBOARD</span>
@@ -754,7 +772,7 @@
             </div>
 
             <!-- Bento Stats -->
-            <div class="bento-grid">
+            <div class="bento-grid no-select">
                 <div class="bento-card">
                     <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -775,7 +793,7 @@
             </div>
 
             <!-- Thanh Hành Động Nhanh (Action Dock V2) -->
-            <div class="action-dock">
+            <div class="action-dock no-select">
                 <div class="dock-btn success" id="unlockBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -819,7 +837,7 @@
     </main>
 </div>
 
-<footer>
+<footer class="no-select">
     © 2026 WorkShift <span class="pro-text">Pro</span> Enterprise.<br>
     <span data-i18n="designed">Designed & Engineered by</span> <strong>Dang Tung</strong>. <span data-i18n="rights">All rights reserved.</span>
 </footer>
@@ -1121,7 +1139,7 @@
         
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
-                <div class="day-header">
+                <div class="day-header no-select">
                     <span id="fullDayText_${dayName}">${fullDayName}</span>
                     <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
                 </div>
@@ -1133,7 +1151,7 @@
                 </select>
                 
                 <!-- Giao diện Dropdown Tùy chỉnh Cao Cấp -->
-                <div class="custom-dropdown" data-day="${dayName}">
+                <div class="custom-dropdown no-select" data-day="${dayName}">
                     <div class="dropdown-trigger" id="trigger_${dayName}">
                         <span class="selected-text" id="display_${dayName}">${offText}</span>
                         <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
