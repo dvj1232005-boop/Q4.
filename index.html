@@ -266,6 +266,38 @@
             50% { opacity: 0.3; }
         }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-toggle {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            height: 44px;
+            padding: 0 30px 0 14px;
+            border-radius: 22px;
+            font-weight: 700;
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            transition: 0.3s;
+        }
+
+        .lang-toggle:focus {
+            border-color: var(--primary);
+        }
+
         .theme-toggle {
             background: var(--bg-glass);
             border: 1px solid var(--border-glass);
@@ -681,6 +713,7 @@
             border: 1px solid transparent;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .dock-btn::before {
@@ -969,7 +1002,7 @@
             font-weight: 800;
         }
 
-        footer span {
+        footer span.pro-text {
             color: var(--primary);
             font-weight: 700;
         }
@@ -1042,27 +1075,37 @@
             </div>
             <div class="update-ticker" id="timeTicker">
                 <div class="update-pulse"></div> 
-                Đồng bộ realtime: <span class="mono" id="realTime">--:--:--</span>
+                <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
             </div>
         </div>
         
-        <!-- Theme Toggle Switch -->
-        <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
-            <svg id="moonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <svg id="sunIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-        </button>
+        <!-- Controls: Language & Theme -->
+        <div class="header-controls">
+            <select id="langSelect" class="lang-toggle">
+                <option value="vi">🇻🇳 VI</option>
+                <option value="en">🇬🇧 EN</option>
+                <option value="zh">🇨🇳 ZH</option>
+                <option value="ko">🇰🇷 KO</option>
+                <option value="ja">🇯🇵 JA</option>
+            </select>
+
+            <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
+                <svg id="moonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg id="sunIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
     </header>
 
     <!-- Hệ thống thông báo nổi (Toast) -->
@@ -1073,8 +1116,8 @@
     =========================================== -->
     <main class="card" id="userCard">
         <div class="card-header">
-            <h2 class="card-title">Đăng Ký Ca Làm</h2>
-            <div class="card-subtitle">Hệ thống xếp lịch nội bộ | An Cafe & QuyChe Network</div>
+            <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
+            <div class="card-subtitle" data-i18n="subtitle">Hệ thống xếp lịch nội bộ | An Cafe & QuyChe Network</div>
         </div>
         
         <!-- Trạng thái hệ thống (Khóa/Mở) -->
@@ -1082,21 +1125,21 @@
             <div class="skeleton" style="width: 100%; height: 38px; border-radius: 12px;"></div>
         </div>
 
-        <!-- Khung nhập tên (Đã fix lỗi lệch icon) -->
+        <!-- Khung nhập tên -->
         <div style="margin-bottom: 24px;">
             <label class="input-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-                Định danh nhân sự
+                <span data-i18n="employeeId">Định danh nhân sự</span>
             </label>
             <div class="input-wrapper" style="margin-bottom: 0;">
                 <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <input type="text" id="name" class="form-control" placeholder="Ví dụ: Đăng Tùng..." autocomplete="off">
+                <input type="text" id="name" class="form-control" placeholder="Ví dụ: Đăng Tùng..." data-i18n-placeholder="placeholder" autocomplete="off">
             </div>
         </div>
 
@@ -1109,7 +1152,7 @@
                     <line x1="8" y1="2" x2="8" y2="6"></line>
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                Đăng ký lịch làm việc (Tuần này)
+                <span data-i18n="schedule">Đăng ký lịch làm việc (Tuần này)</span>
             </label>
             <div id="form" class="calendar-grid" style="margin-bottom: 0;">
                 <!-- Javascript sẽ tự động render các ngày vào đây -->
@@ -1117,10 +1160,10 @@
         </div>
 
         <!-- Các nút hành động chính -->
-        <button id="submitBtn" class="btn btn-primary">
+        <button id="submitBtn" class="btn btn-primary" data-i18n="confirmBtn">
             Xác Nhận Đăng Ký
         </button>
-        <button id="managerBtn" class="btn btn-outline">
+        <button id="managerBtn" class="btn btn-outline" data-i18n="managerBtn">
             Truy Cập Khu Vực Quản Lý
         </button>
     </main>
@@ -1133,8 +1176,8 @@
         <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn Tuyệt Đối) -->
         <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
-                <h2 class="card-title" style="color: var(--primary);">Secure Access</h2>
-                <div class="card-subtitle">Hệ thống phân quyền cấp cao</div>
+                <h2 class="card-title" style="color: var(--primary);" data-i18n="secureAccess">Secure Access</h2>
+                <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
             </div>
             
             <!-- Vùng vuốt tàng hình phủ toàn bộ khu vực màn hình này -->
@@ -1147,10 +1190,10 @@
             <div class="dashboard-header-flex">
                 <div>
                     <h2 class="card-title" style="font-size: 20px; margin:0; text-align: left; display: flex; align-items: center; gap: 8px;">
-                        <span style="color: var(--primary); font-family: 'JetBrains Mono', monospace;">>_</span> DASHBOARD
+                        <span style="color: var(--primary); font-family: 'JetBrains Mono', monospace;">>_</span> <span data-i18n="dashboard">DASHBOARD</span>
                     </h2>
                 </div>
-                <button id="logoutBtn" class="btn-exit">
+                <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">
                     Khóa Hệ Thống
                 </button>
             </div>
@@ -1163,7 +1206,7 @@
                         <circle cx="9" cy="7" r="4"></circle>
                     </svg>
                     <div class="stat-val" id="totalUsers">0</div>
-                    <div class="stat-label">Tổng Nhân Sự</div>
+                    <div class="stat-label" data-i18n="totalEmp">Tổng Nhân Sự</div>
                 </div>
                 <div class="bento-card">
                     <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1172,7 +1215,7 @@
                         <line x1="8" y1="2" x2="8" y2="6"></line>
                     </svg>
                     <div class="stat-val" id="totalShifts">0</div>
-                    <div class="stat-label">Ca Đăng Ký</div>
+                    <div class="stat-label" data-i18n="totalShifts">Ca Đăng Ký</div>
                 </div>
             </div>
 
@@ -1183,14 +1226,14 @@
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                         <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
                     </svg> 
-                    Mở Lịch
+                    <span data-i18n="openShift">Mở Lịch</span>
                 </div>
                 <div class="dock-btn warning" id="lockBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                     </svg> 
-                    Khóa
+                    <span data-i18n="lock">Khóa</span>
                 </div>
                 <div class="dock-btn info" id="copyBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1200,14 +1243,14 @@
                         <line x1="16" y1="17" x2="8" y2="17"></line>
                         <polyline points="10 9 9 9 8 9"></polyline>
                     </svg> 
-                    Xuất File
+                    <span data-i18n="export">Xuất File</span>
                 </div>
                 <div class="dock-btn danger" id="clearBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="3 6 5 6 21 6"></polyline>
                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                     </svg> 
-                    Dọn Dẹp
+                    <span data-i18n="cleanup">Dọn Dẹp</span>
                 </div>
             </div>
 
@@ -1222,14 +1265,88 @@
 </div>
 
 <footer>
-    © 2026 WorkShift <span>Pro</span> Enterprise.<br>
-    Designed & Engineered by <strong>Dang Tung</strong>. All rights reserved.
+    © 2026 WorkShift <span class="pro-text">Pro</span> Enterprise.<br>
+    <span data-i18n="designed">Designed & Engineered by</span> <strong>Dang Tung</strong>. <span data-i18n="rights">All rights reserved.</span>
 </footer>
 
 <!-- =========================================================
      JAVASCRIPT MODULES & LOGIC
 ========================================================= -->
 <script type="module">
+    // --- 0. MULTI-LANGUAGE SYSTEM (I18N) ---
+    const i18n = {
+        vi: {
+            realtime: "Đồng bộ realtime:", title: "Đăng Ký Ca Làm", subtitle: "Hệ thống xếp lịch nội bộ | An Cafe & QuyChe Network", employeeId: "Định danh nhân sự", placeholder: "Ví dụ: Đăng Tùng...", schedule: "Đăng ký lịch làm việc (Tuần này)", confirmBtn: "Xác Nhận Đăng Ký", managerBtn: "Truy Cập Khu Vực Quản Lý", secureAccess: "Secure Access", highPrivilege: "Hệ thống phân quyền cấp cao", dashboard: "DASHBOARD", lockSys: "Khóa Hệ Thống", totalEmp: "Tổng Nhân Sự", totalShifts: "Ca Đăng Ký", openShift: "Mở Lịch", lock: "Khóa", export: "Xuất File", cleanup: "Dọn Dẹp", designed: "Designed & Engineered by", rights: "All rights reserved.",
+            dayFullName_T2: "Thứ 2", dayFullName_T3: "Thứ 3", dayFullName_T4: "Thứ 4", dayFullName_T5: "Thứ 5", dayFullName_T6: "Thứ 6", dayFullName_T7: "Thứ 7", dayFullName_CN: "Chủ Nhật",
+            dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
+            off: "-- Nghỉ --", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự"
+        },
+        en: {
+            realtime: "Realtime sync:", title: "Shift Registration", subtitle: "Internal Scheduling System | An Cafe & QuyChe Network", employeeId: "Employee Identity", placeholder: "Example: Dang Tung...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.",
+            dayFullName_T2: "Monday", dayFullName_T3: "Tuesday", dayFullName_T4: "Wednesday", dayFullName_T5: "Thursday", dayFullName_T6: "Friday", dayFullName_T7: "Saturday", dayFullName_CN: "Sunday",
+            dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
+            off: "-- Off --", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity"
+        },
+        zh: {
+            realtime: "同步实时:", title: "排班注册", subtitle: "内部排班系统 | An Cafe & QuyChe Network", employeeId: "员工身份", placeholder: "示例：Dang Tung...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.",
+            dayFullName_T2: "星期一", dayFullName_T3: "星期二", dayFullName_T4: "星期三", dayFullName_T5: "星期四", dayFullName_T6: "星期五", dayFullName_T7: "星期六", dayFullName_CN: "星期日",
+            dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
+            off: "-- 休息 --", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份"
+        },
+        ko: {
+            realtime: "실시간 동기화:", title: "근무 교대 등록", subtitle: "내부 일정 시스템 | An Cafe & QuyChe Network", employeeId: "직원 신원", placeholder: "예: Dang Tung...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.",
+            dayFullName_T2: "월요일", dayFullName_T3: "화요일", dayFullName_T4: "수요일", dayFullName_T5: "목요일", dayFullName_T6: "금요일", dayFullName_T7: "토요일", dayFullName_CN: "일요일",
+            dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
+            off: "-- 휴무 --", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원"
+        },
+        ja: {
+            realtime: "リアルタイム同期:", title: "シフト登録", subtitle: "内部スケジュールシステム | An Cafe & QuyChe Network", employeeId: "従業員ID", placeholder: "例：Dang Tung...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.",
+            dayFullName_T2: "月曜日", dayFullName_T3: "火曜日", dayFullName_T4: "水曜日", dayFullName_T5: "木曜日", dayFullName_T6: "金曜日", dayFullName_T7: "土曜日", dayFullName_CN: "日曜日",
+            dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
+            off: "-- 休み --", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID"
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'vi';
+    document.getElementById('langSelect').value = currentLang;
+
+    function t(key) {
+        return i18n[currentLang][key] || key;
+    }
+
+    function updateLanguageUI() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            el.innerText = t(el.getAttribute('data-i18n'));
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+        });
+        
+        // Update Calendar texts
+        DAYS.forEach((day, index) => {
+            const fullDayEl = document.getElementById(`fullDayText_${day}`);
+            const shortDayEl = document.getElementById(`shortDayText_${day}`);
+            if(fullDayEl) fullDayEl.innerText = t('dayFullName_' + day);
+            if(shortDayEl) shortDayEl.innerText = t('dayShort_' + day);
+        });
+
+        // Update empty select options
+        document.querySelectorAll('.custom-select option[value=""]').forEach(el => {
+            el.innerText = t('off');
+        });
+
+        updateStatusUI(); // Refresh status banner texts
+        if (!document.getElementById("adminPanel").classList.contains("hidden")) {
+            fetchAndRenderAdminData(); // Refresh table headers
+        }
+    }
+
+    document.getElementById('langSelect').addEventListener('change', (e) => {
+        currentLang = e.target.value;
+        localStorage.setItem('lang', currentLang);
+        updateLanguageUI();
+    });
+
     // --- 1. FIREBASE INITIALIZATION ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
     import { getDatabase, ref, set, get, remove, onValue } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
@@ -1428,18 +1545,20 @@
     // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM THEO TỪNG NGÀY TRONG TUẦN ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
-        const fullDayName = dayName === 'CN' ? 'Chủ Nhật' : 'Thứ ' + dayName.charAt(1);
+        const fullDayName = t('dayFullName_' + dayName);
+        const shortDayName = t('dayShort_' + dayName);
+        const offText = t('off');
         const gridSpanStyle = dayName === 'CN' ? 'grid-column: 1 / -1;' : '';
         const optionsHtml = SHIFTS.map(s => `<option value="${s.id}">${s.id}</option>`).join("");
         
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
                 <div class="day-header">
-                    <span>${fullDayName}</span>
-                    <span class="day-badge">${dayName}</span>
+                    <span id="fullDayText_${dayName}">${fullDayName}</span>
+                    <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
                 </div>
                 <select id="${dayName}" class="custom-select">
-                    <option value="">-- Nghỉ --</option>
+                    <option value="">${offText}</option>
                     ${optionsHtml}
                 </select>
             </div>
@@ -1481,18 +1600,18 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 3px;">
-                            <span style="font-size: 14px; font-weight: 800; color: var(--danger); text-transform: uppercase; line-height: 1;">Hệ thống khóa</span>
-                            <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); line-height: 1;">Ngưng nhận đăng ký</span>
+                            <span style="font-size: 14px; font-weight: 800; color: var(--danger); text-transform: uppercase; line-height: 1;">${t('sysLocked')}</span>
+                            <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); line-height: 1;">${t('stopReg')}</span>
                         </div>
                     </div>
                     <div style="text-align: right; display: flex; flex-direction: column; gap: 3px; background: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0;">
-                        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; line-height: 1;">Mở lại vào</span>
-                        <span style="font-size: 12px; color: var(--info); font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1;">Thứ 2</span>
+                        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; line-height: 1;">${t('reopenAt')}</span>
+                        <span style="font-size: 12px; color: var(--info); font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1;">${t('monday')}</span>
                     </div>
                 </div>
             `;
             submitBtn.disabled = true; 
-            submitBtn.innerHTML = "Đã Khóa Đăng Ký";
+            submitBtn.innerHTML = t('sysLocked');
         } else {
             lockStatus.style.background = "linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05))";
             lockStatus.style.border = "1px solid rgba(16, 185, 129, 0.2)";
@@ -1505,18 +1624,18 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 3px;">
-                            <span style="font-size: 14px; font-weight: 800; color: var(--success); text-transform: uppercase; line-height: 1;">Đang mở cửa</span>
-                            <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); line-height: 1;">Hệ thống trực tuyến</span>
+                            <span style="font-size: 14px; font-weight: 800; color: var(--success); text-transform: uppercase; line-height: 1;">${t('sysOpen')}</span>
+                            <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); line-height: 1;">${t('sysOnline')}</span>
                         </div>
                     </div>
                     <div style="text-align: right; display: flex; flex-direction: column; gap: 3px; background: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0;">
-                        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; line-height: 1;">Khóa tự động</span>
+                        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; line-height: 1;">${t('autoLock')}</span>
                         <span style="font-size: 12px; color: var(--warning); font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1;">20:00 T6</span>
                     </div>
                 </div>
             `;
             submitBtn.disabled = false; 
-            submitBtn.innerHTML = `Xác Nhận Đăng Ký`;
+            submitBtn.innerHTML = t('confirmBtn');
         }
     }
 
@@ -1527,11 +1646,11 @@
         
         if(!employeeName) {
             nameInput.focus();
-            return showToast("Vui lòng nhập định danh nhân sự!", "warning");
+            return showToast(t('placeholder'), "warning");
         }
         
         if(isSystemLocked()) {
-            return showToast("Hệ thống đã khóa, không thể đăng ký", "error");
+            return showToast(t('sysLocked'), "error");
         }
         
         const schedule = {}; 
@@ -1541,12 +1660,12 @@
         });
         
         if(!Object.keys(schedule).length) {
-            return showToast("Vui lòng đăng ký ít nhất 1 ca làm việc!", "warning");
+            return showToast(t('off'), "warning");
         }
 
         const btn = document.getElementById("submitBtn");
         const originalText = btn.innerHTML;
-        btn.innerHTML = `Đang đồng bộ dữ liệu...`; 
+        btn.innerHTML = `...`; 
         btn.disabled = true;
 
         try {
@@ -1562,14 +1681,14 @@
                 timestamp: Date.now() 
             });
             
-            showToast("Đăng ký hoàn tất! Chúc bạn làm việc hiệu quả.", "success");
+            showToast("Success", "success");
             
             nameInput.value = ""; 
             DAYS.forEach(day => document.getElementById(day).value = "");
             
         } catch(error) { 
             console.error("Firebase fetch error:", error);
-            showToast("Lỗi kết nối mạng: " + error.message, "error"); 
+            showToast("Error: " + error.message, "error"); 
         } finally { 
             btn.innerHTML = originalText; 
             btn.disabled = false; 
@@ -1692,7 +1811,7 @@
     });
 
     function loginAdmin() {
-        showToast("Truy cập hệ thống quản trị", "success");
+        showToast("Welcome", "success");
         document.getElementById("loginSection").classList.add("hidden"); 
         document.getElementById("adminPanel").classList.remove("hidden");
         fetchAndRenderAdminData();
@@ -1717,7 +1836,7 @@
             if(!snapshot.exists()) {
                 tableContainer.innerHTML = `
                     <div style="padding: 40px; color: var(--text-muted); text-align: center; font-weight: 600;">
-                        Không có dữ liệu trong tuần này.
+                        ${t('emptyData')}
                     </div>
                 `;
                 document.getElementById("totalUsers").innerText = "0"; 
@@ -1730,11 +1849,11 @@
             let countShifts = 0;
             
             // Khởi tạo bảng HTML và dữ liệu Excel thô
-            let htmlTable = `<table><thead><tr><th>Định danh nhân sự</th>`;
-            htmlTable += DAYS.map(day => `<th>${day}</th>`).join('');
+            let htmlTable = `<table><thead><tr><th>${t('staffIdentity')}</th>`;
+            htmlTable += DAYS.map(day => `<th>${t('dayShort_' + day)}</th>`).join('');
             htmlTable += `</tr></thead><tbody>`;
             
-            rawExcelDataExport = `Định Danh Nhân Sự\t${DAYS.join('\t')}\n`;
+            rawExcelDataExport = `${t('staffIdentity')}\t${DAYS.map(day => t('dayShort_' + day)).join('\t')}\n`;
             
             // Sắp xếp danh sách tên nhân viên theo Alphabet
             const sortedNames = Object.keys(data).sort();
@@ -1784,7 +1903,7 @@
             
         } catch(error) { 
             console.error("Firebase fetch error:", error);
-            showToast("Lỗi tải dữ liệu: " + (error.message || "Vui lòng kiểm tra lại"), "error"); 
+            showToast("Error: " + (error.message || "Please check again"), "error"); 
         }
     }
 
@@ -1792,39 +1911,39 @@
     
     // Copy bảng dữ liệu ra format Excel
     document.getElementById("copyBtn").onclick = () => {
-        if(!rawExcelDataExport) return showToast("Bảng dữ liệu đang trống", "warning");
+        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning");
         
         navigator.clipboard.writeText(rawExcelDataExport)
-            .then(() => showToast("Đã copy toàn bộ dữ liệu. Hãy dán vào Excel/Sheets.", "success"))
-            .catch(() => showToast("Trình duyệt từ chối quyền Copy", "error"));
+            .then(() => showToast("Copied Data", "success"))
+            .catch(() => showToast("Error Copying", "error"));
     };
     
     // Lệnh Mở Lịch Đăng Ký
     document.getElementById("unlockBtn").onclick = async () => { 
-        if(confirm("Mở lại hệ thống đăng ký ca làm?")) { 
+        if(confirm("Confirm action?")) { 
             await set(ref(db,"settings/lock"), false); 
-            showToast("Hệ thống đã được MỞ khóa", "success"); 
+            showToast("Success", "success"); 
         } 
     };
     
     // Lệnh Khóa Lịch Đăng Ký
     document.getElementById("lockBtn").onclick = async () => { 
-        if(confirm("Ép đóng hệ thống đăng ký ngay lập tức?")) { 
+        if(confirm("Confirm action?")) { 
             await set(ref(db,"settings/lock"), true); 
-            showToast("Hệ thống đã KHÓA", "warning"); 
+            showToast("Locked", "warning"); 
         } 
     };
     
     // Lệnh Xóa Dữ Liệu (Reset Tuần Mới)
     document.getElementById("clearBtn").onclick = async () => {
-        if(confirm("CẢNH BÁO QUAN TRỌNG: Bạn đang yêu cầu xóa sạch dữ liệu.\nHành động này không thể hoàn tác. Tiếp tục?")) {
-            const validationPin = prompt("Xin lỗi vì sự bất tiện, nhưng để thực hiện Lệnh XÓA TOÀN BỘ DATA, bạn vẫn cần nhập mã PIN khẩn cấp (2005):");
+        if(confirm("DANGER: Are you sure?")) {
+            const validationPin = prompt("Enter PIN:");
             if(validationPin === "2005") { 
                 await remove(ref(db,"dangKy")); 
-                showToast("Dữ liệu hệ thống đã được dọn dẹp sạch sẽ", "success"); 
+                showToast("Cleared", "success"); 
                 fetchAndRenderAdminData(); // Tải lại bảng điều khiển rỗng
             } else {
-                showToast("Lệnh xóa bị hủy do nhập sai mã PIN", "error");
+                showToast("Invalid PIN", "error");
             }
         }
     };
@@ -1892,7 +2011,7 @@
     // Kích hoạt Engine Vật Lý
     function activateGravityEasterEgg() {
         isGravityActive = true;
-        showToast("⚠️ CẢNH BÁO: Mất trọng lực hệ thống!", "warning");
+        showToast("⚠️ GRAVITY FAILURE", "warning");
         if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
 
         // Tạo nút Khôi Phục (Reset)
@@ -1981,6 +2100,9 @@
         
         requestAnimationFrame(updatePhysics);
     }
+
+    // Call init language on load
+    updateLanguageUI();
 </script>
 
 </body>
