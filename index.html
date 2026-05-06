@@ -88,7 +88,7 @@
         }
 
         /* =========================================================
-           04. HEADER & BRANDING (BẢN UPDATE VỊ TRÍ)
+           04. HEADER & BRANDING
         ========================================================= */
         .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; gap: 16px; flex-wrap: wrap; }
         .brand-group { display: flex; flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -101,14 +101,12 @@
 
         .header-controls { display: flex; align-items: center; gap: 10px; }
         
-        /* Language Dropdown moved next to logo */
         .lang-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); height: 38px; padding: 0 28px 0 14px; border-radius: 19px; font-weight: 700; font-family: inherit; font-size: 13px !important; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); outline: none; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: 0.3s; }
         .lang-toggle:focus { border-color: var(--primary); }
 
         .theme-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-shrink: 0; }
         .theme-toggle:active { transform: scale(0.9) rotate(15deg); }
 
-        /* Mobile Header Alignment */
         @media (max-width: 600px) {
             .header { flex-direction: column; gap: 16px; align-items: stretch; }
             .brand-group { width: 100%; justify-content: space-between; align-items: center; }
@@ -125,11 +123,68 @@
         .card-title { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
         .card-subtitle { color: var(--text-muted); font-size: 14px; font-weight: 500; }
 
-        /* Status Banner */
-        .status-banner { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 16px; margin-bottom: 28px; font-weight: 700; font-size: 14px; transition: all 0.4s ease; box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); }
+        /* =========================================================
+           06. PREMIUM STATUS PANEL (BẢN CHUYÊN NGHIỆP)
+        ========================================================= */
+        .status-panel {
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            padding: 18px 24px; border-radius: 24px; margin-bottom: 32px;
+            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        /* Hiệu ứng tia quét ngang (Scanner) */
+        .status-panel::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            animation: scan 3s linear infinite; pointer-events: none;
+        }
+        @keyframes scan { 0% { left: -100%; } 100% { left: 200%; } }
+
+        .status-panel.sys-open {
+            border-color: rgba(16, 185, 129, 0.4); background: linear-gradient(145deg, rgba(16, 185, 129, 0.08), transparent);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.08), inset 0 0 0 1px rgba(16, 185, 129, 0.1);
+        }
+        .status-panel.sys-locked {
+            border-color: rgba(239, 68, 68, 0.4); background: linear-gradient(145deg, rgba(239, 68, 68, 0.08), transparent);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.08), inset 0 0 0 1px rgba(239, 68, 68, 0.1);
+        }
+
+        .st-icon-box {
+            position: relative; width: 52px; height: 52px; border-radius: 18px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            z-index: 2;
+        }
+        .sys-open .st-icon-box { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: var(--success); box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
+        .sys-locked .st-icon-box { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); box-shadow: 0 0 20px rgba(239, 68, 68, 0.2); }
+
+        .st-pulse { position: absolute; width: 100%; height: 100%; border-radius: inherit; animation: boxPing 2s cubic-bezier(0, 0, 0.2, 1) infinite; z-index: -1; }
+        .sys-open .st-pulse { background: rgba(16, 185, 129, 0.5); }
+        .sys-locked .st-pulse { background: rgba(239, 68, 68, 0.5); }
+        @keyframes boxPing { 75%, 100% { transform: scale(1.6); opacity: 0; } }
+
+        .st-info { flex: 1; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+        .st-title { font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1; }
+        .sys-open .st-title { color: var(--success); } .sys-locked .st-title { color: var(--danger); }
+        .st-desc { font-size: 12px; font-weight: 600; color: var(--text-muted); line-height: 1.2; }
+
+        .st-meta {
+            display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+            background: rgba(0,0,0,0.25); padding: 12px 16px; border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; z-index: 2;
+        }
+        .st-meta-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1; }
+        .st-meta-value { font-size: 14px; font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1; }
+        .sys-open .st-meta-value { color: var(--warning); } .sys-locked .st-meta-value { color: var(--info); }
+        
+        @media(max-width: 480px) {
+            .status-panel { flex-direction: column; align-items: stretch; gap: 16px; }
+            .st-meta { flex-direction: row; justify-content: space-between; align-items: center; padding: 14px 16px; }
+        }
 
         /* =========================================================
-           06. FORMS & BẢN NÂNG CẤP SELECT (CUSTOM DROPDOWN UI)
+           07. FORMS & BẢN NÂNG CẤP SELECT (CUSTOM DROPDOWN UI)
         ========================================================= */
         .input-wrapper { position: relative; margin-bottom: 24px; }
         .input-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
@@ -143,36 +198,28 @@
         .day-card { 
             background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 16px; 
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); 
-            position: relative; z-index: 1; /* Cần thiết cho Dropdown 3D overlap */
+            position: relative; z-index: 1;
         }
         .day-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
         .day-card:focus-within { border-color: var(--primary); background: var(--bg-glass-heavy); box-shadow: 0 8px 24px var(--primary-glow); }
         .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 800; font-size: 13px; color: var(--text-main); }
         .day-badge { font-size: 10px; padding: 4px 8px; border-radius: 6px; background: var(--border-glass); color: var(--text-muted); }
 
-        /* UI Select Mới (Xóa bỏ Native Select iOS) */
+        /* UI Select Mới */
         .custom-dropdown { position: relative; width: 100%; font-family: inherit; }
-        
         .dropdown-selected {
             width: 100%; padding: 14px 16px; border-radius: 14px; 
             border: 2px solid transparent; background: var(--input-bg); 
             color: var(--text-main); font-weight: 800; font-size: 14px; 
             display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            user-select: none;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); user-select: none;
         }
         .dropdown-selected:active { transform: scale(0.97); }
-        
         .dropdown-selected .select-arrow { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); color: var(--text-muted); }
         
-        /* Trạng thái Dropdown Mở */
-        .custom-dropdown.open .dropdown-selected {
-            border-color: var(--primary); background: var(--bg-glass-heavy);
-            box-shadow: 0 4px 20px var(--primary-light);
-        }
+        .custom-dropdown.open .dropdown-selected { border-color: var(--primary); background: var(--bg-glass-heavy); box-shadow: 0 4px 20px var(--primary-light); }
         .custom-dropdown.open .select-arrow { transform: rotate(180deg); color: var(--primary); }
         
-        /* Bảng chọn Option */
         .dropdown-options {
             position: absolute; top: calc(100% + 8px); left: 0; right: 0;
             background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
@@ -182,25 +229,15 @@
             opacity: 0; visibility: hidden; transform: translateY(-10px) scale(0.95);
             transform-origin: top center; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .custom-dropdown.open .dropdown-options {
-            opacity: 1; visibility: visible; transform: translateY(0) scale(1);
-        }
+        .custom-dropdown.open .dropdown-options { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
         
-        /* Item Option */
-        .dropdown-option {
-            padding: 12px 16px; font-weight: 700; font-size: 14px; color: var(--text-main);
-            border-radius: 10px; cursor: pointer; transition: 0.2s; margin-bottom: 4px;
-        }
+        .dropdown-option { padding: 12px 16px; font-weight: 700; font-size: 14px; color: var(--text-main); border-radius: 10px; cursor: pointer; transition: 0.2s; margin-bottom: 4px; }
         .dropdown-option:last-child { margin-bottom: 0; }
-        .dropdown-option:hover, .dropdown-option:active {
-            background: var(--primary-light); color: var(--primary); padding-left: 20px;
-        }
+        .dropdown-option:hover, .dropdown-option:active { background: var(--primary-light); color: var(--primary); padding-left: 20px; }
         
-        /* Scrollbar tàng hình gọn gàng */
         .dropdown-options::-webkit-scrollbar { width: 5px; }
         .dropdown-options::-webkit-scrollbar-thumb { background: var(--border-glass); border-radius: 10px; }
 
-        /* Dynamic Colors cho Dropdown */
         .dropdown-selected.sel-c1 { background: var(--info-bg); color: var(--info); border-color: rgba(59, 130, 246, 0.4); }
         .dropdown-selected.sel-c2 { background: var(--warning-bg); color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
         .dropdown-selected.sel-c3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; border-color: rgba(168, 85, 247, 0.4); }
@@ -208,7 +245,7 @@
         .dropdown-selected.sel-double { background: var(--primary-light); color: var(--primary); border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 0 10px var(--primary-glow); }
 
         /* =========================================================
-           07. BUTTONS & ACTIONS
+           08. BUTTONS & ACTIONS
         ========================================================= */
         .btn { width: 100%; padding: 18px; border-radius: 18px; font-family: inherit; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; }
         .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: white; box-shadow: 0 10px 20px -5px var(--primary-glow); }
@@ -218,7 +255,7 @@
         .btn-outline:active { transform: scale(0.96); background: var(--border-glass); }
 
         /* =========================================================
-           08. BENTO DASHBOARD & TABLE
+           09. BENTO DASHBOARD & TABLE
         ========================================================= */
         .dashboard-container { position: relative; }
         .dashboard-container::before { content: ''; position: absolute; top: -20px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.5; }
@@ -273,9 +310,6 @@
         footer strong { color: var(--primary); font-weight: 800; }
         footer span.pro-text { color: var(--primary); font-weight: 700; }
 
-        /* =========================================================
-           09. RESPONSIVE DESIGN (MOBILE FINE-TUNING)
-        ========================================================= */
         @media (max-width: 600px) {
             .card { padding: 28px 20px; border-radius: 28px; }
             .card-title { font-size: 24px; }
@@ -290,7 +324,7 @@
         }
 
         /* =========================================================
-           10. SUPPORT MODAL & BELL ANIMATION
+           10. SUPPORT MODAL & BELL
         ========================================================= */
         .bell-ring svg { animation: ring 2.5s ease-in-out infinite; transform-origin: top center; }
         @keyframes ring { 0% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-10deg); } 30% { transform: rotate(5deg); } 40% { transform: rotate(-5deg); } 50% { transform: rotate(0); } 100% { transform: rotate(0); } }
@@ -308,7 +342,6 @@
 
 <body>
 
-<!-- Hiệu ứng không gian nền -->
 <canvas id="bg-canvas"></canvas>
 <div class="mesh-blob blob-1"></div>
 <div class="mesh-blob blob-2"></div>
@@ -338,7 +371,7 @@
         </div>
         
         <div class="header-controls">
-            <!-- Nút Chuông Hỗ Trợ -->
+            <!-- Nút Chuông -->
             <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -390,7 +423,6 @@
         </div>
     </div>
 
-    <!-- Hệ thống thông báo nổi (Toast) -->
     <div id="toastContainer" class="toast-container"></div>
 
     <!-- ==========================================
@@ -402,9 +434,9 @@
             <div class="card-subtitle" data-i18n="subtitle">Hệ thống xếp lịch nội bộ | An Cafe & QuyChe Network</div>
         </div>
         
-        <!-- Trạng thái hệ thống (Khóa/Mở) -->
-        <div id="lockStatus" class="status-banner" style="padding: 16px;">
-            <div class="skeleton" style="width: 100%; height: 38px; border-radius: 12px;"></div>
+        <!-- TRẠNG THÁI HỆ THỐNG CAO CẤP -->
+        <div id="lockStatus">
+            <div class="skeleton" style="width: 100%; height: 85px; border-radius: 24px; margin-bottom: 32px;"></div>
         </div>
 
         <!-- Khung nhập tên -->
@@ -425,7 +457,7 @@
             </div>
         </div>
 
-        <!-- Lưới chọn ca làm việc theo ngày BẢN NÂNG CẤP CAO CẤP -->
+        <!-- LƯỚI CHỌN CA LÀM BẢN NÂNG CẤP CAO CẤP -->
         <div style="margin-bottom: 32px;">
             <label class="input-label" style="margin-bottom: 12px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -442,31 +474,23 @@
         </div>
 
         <!-- Các nút hành động chính -->
-        <button id="submitBtn" class="btn btn-primary" data-i18n="confirmBtn">
-            Xác Nhận Đăng Ký
-        </button>
-        <button id="managerBtn" class="btn btn-outline" data-i18n="managerBtn">
-            Truy Cập Khu Vực Quản Lý
-        </button>
+        <button id="submitBtn" class="btn btn-primary" data-i18n="confirmBtn">Xác Nhận Đăng Ký</button>
+        <button id="managerBtn" class="btn btn-outline" data-i18n="managerBtn">Truy Cập Khu Vực Quản Lý</button>
     </main>
 
     <!-- ==========================================
          PHẦN 2: KHU VỰC DÀNH CHO QUẢN TRỊ VIÊN
     =========================================== -->
     <main class="card hidden" id="managerBox" style="position: relative; min-height: 250px; display: flex; flex-direction: column; justify-content: center;">
-        
-        <!-- 2.1 SECRET SWIPE AUTH (Bảo Mật Ẩn Tuyệt Đối) -->
         <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
                 <h2 class="card-title" style="color: var(--primary);" data-i18n="secureAccess">Secure Access</h2>
                 <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
             </div>
-            
             <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: 32px;"></canvas>
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
-        <!-- 2.2 Bảng Điều Khiển Quản Trị (Hi-Tech Dashboard) -->
         <div id="adminPanel" class="hidden dashboard-container">
             <div class="dashboard-header-flex">
                 <div>
@@ -477,67 +501,40 @@
                 <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">Khóa Hệ Thống</button>
             </div>
 
-            <!-- Bento Stats -->
             <div class="bento-grid">
                 <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                    </svg>
+                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
                     <div class="stat-val" id="totalUsers">0</div>
                     <div class="stat-label" data-i18n="totalEmp">Tổng Nhân Sự</div>
                 </div>
                 <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                    </svg>
+                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
                     <div class="stat-val" id="totalShifts">0</div>
                     <div class="stat-label" data-i18n="totalShifts">Ca Đăng Ký</div>
                 </div>
             </div>
 
-            <!-- Thanh Hành Động Nhanh (Action Dock V2) -->
             <div class="action-dock">
                 <div class="dock-btn success" id="unlockBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
-                    </svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg> 
                     <span data-i18n="openShift">Mở Lịch</span>
                 </div>
                 <div class="dock-btn warning" id="lockBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> 
                     <span data-i18n="lock">Khóa</span>
                 </div>
                 <div class="dock-btn info" id="copyBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> 
                     <span data-i18n="export">Xuất File</span>
                 </div>
                 <div class="dock-btn danger" id="clearBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                    </svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> 
                     <span data-i18n="cleanup">Dọn Dẹp</span>
                 </div>
             </div>
 
-            <!-- Bảng Dữ Liệu Khung Ngang -->
             <div class="table-container">
-                <div id="excelTable" class="table-wrapper">
-                    <!-- Javascript Data Render -->
-                </div>
+                <div id="excelTable" class="table-wrapper"></div>
             </div>
         </div>
     </main>
@@ -552,7 +549,7 @@
      JAVASCRIPT MODULES & LOGIC
 ========================================================= -->
 <script type="module">
-    // --- KHÓA ZOOM TRÊN IOS BẰNG JAVASCRIPT ĐẶC BIỆT ---
+    // --- KHÓA ZOOM TRÊN IOS BẰNG JAVASCRIPT ---
     document.addEventListener('touchmove', function (event) {
         if (event.scale !== 1 || event.touches.length > 1) { event.preventDefault(); }
     }, { passive: false });
@@ -622,7 +619,6 @@
             if(fullDayEl) fullDayEl.innerText = t('dayFullName_' + day);
             if(shortDayEl) shortDayEl.innerText = t('dayShort_' + day);
             
-            // Cập nhật văn bản Dropdown
             const hiddenInput = document.getElementById(day);
             if(hiddenInput && hiddenInput.value === "") {
                 document.getElementById('text_' + day).innerText = t('off');
@@ -742,7 +738,7 @@
     closeSupportBtn.addEventListener('click', () => { supportModal.classList.add('hidden'); });
     supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.add('hidden'); });
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM THEO TỪNG NGÀY TRONG TUẦN (BẢN NÂNG CẤP CUSTOM DROPDOWN) ---
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (CUSTOM DROPDOWN UI MỚI) ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
         const fullDayName = t('dayFullName_' + dayName); const shortDayName = t('dayShort_' + dayName); const offText = t('off');
@@ -771,21 +767,13 @@
         `;
     });
 
-    // Hàm điều khiển tắt mở Custom Dropdown trên Window để gọi từ inline onclick
     window.toggleDropdown = function(dayName) {
         document.querySelectorAll('.custom-dropdown').forEach(el => {
-            if (el.id !== 'dropdown_' + dayName) {
-                el.classList.remove('open');
-                el.closest('.day-card').style.zIndex = '1';
-            }
+            if (el.id !== 'dropdown_' + dayName) { el.classList.remove('open'); el.closest('.day-card').style.zIndex = '1'; }
         });
-        const dropdown = document.getElementById('dropdown_' + dayName);
-        const card = dropdown.closest('.day-card');
-        if (dropdown.classList.contains('open')) {
-            dropdown.classList.remove('open'); card.style.zIndex = '1';
-        } else {
-            dropdown.classList.add('open'); card.style.zIndex = '10'; // Nổi lên trên các card khác
-        }
+        const dropdown = document.getElementById('dropdown_' + dayName); const card = dropdown.closest('.day-card');
+        if (dropdown.classList.contains('open')) { dropdown.classList.remove('open'); card.style.zIndex = '1'; } 
+        else { dropdown.classList.add('open'); card.style.zIndex = '10'; }
     };
 
     window.selectShift = function(dayName, value, label) {
@@ -793,13 +781,11 @@
         document.getElementById(dayName).value = value;
         document.getElementById('text_' + dayName).innerText = label;
         
-        dropdown.classList.remove('open');
-        dropdown.closest('.day-card').style.zIndex = '1';
+        dropdown.classList.remove('open'); dropdown.closest('.day-card').style.zIndex = '1';
         
         const selectedDiv = dropdown.querySelector('.dropdown-selected');
-        selectedDiv.className = 'dropdown-selected'; // Xóa màu cũ
+        selectedDiv.className = 'dropdown-selected';
         
-        // Dynamic color
         if (value === 'C1') selectedDiv.classList.add('sel-c1');
         else if (value === 'C2') selectedDiv.classList.add('sel-c2');
         else if (value === 'C3') selectedDiv.classList.add('sel-c3');
@@ -807,17 +793,13 @@
         else if (value.startsWith('2C')) selectedDiv.classList.add('sel-double');
     };
 
-    // Tắt dropdown khi click ra ngoài
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.custom-dropdown')) {
-            document.querySelectorAll('.custom-dropdown').forEach(el => {
-                el.classList.remove('open');
-                el.closest('.day-card').style.zIndex = '1';
-            });
+            document.querySelectorAll('.custom-dropdown').forEach(el => { el.classList.remove('open'); el.closest('.day-card').style.zIndex = '1'; });
         }
     });
 
-    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG THEO THỜI GIAN THỰC ---
+    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG (UI CAO CẤP MỚI) ---
     let manualLock = null;
     onValue(ref(db, "settings/lock"), snap => { manualLock = snap.exists() ? snap.val() : null; updateStatusUI(); });
 
@@ -830,44 +812,40 @@
     function updateStatusUI() {
         const lockStatus = document.getElementById("lockStatus"); const submitBtn = document.getElementById("submitBtn");
         if (isSystemLocked()) {
-            lockStatus.style.background = "linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05))"; lockStatus.style.border = "1px solid rgba(239, 68, 68, 0.2)"; lockStatus.style.boxShadow = "0 8px 20px rgba(239, 68, 68, 0.05)";
+            lockStatus.className = "status-panel sys-locked";
             lockStatus.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 10px;">
-                    <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
-                        <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: rgba(239, 68, 68, 0.2); border-radius: 12px; border: 1px solid rgba(239,68,68,0.3); flex-shrink: 0;">
-                            <div class="pulse-ring" style="position: absolute; background: var(--danger); opacity: 0.5;"></div>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 3px;">
-                            <span style="font-size: 14px; font-weight: 800; color: var(--danger); text-transform: uppercase; line-height: 1;">${t('sysLocked')}</span>
-                            <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); line-height: 1;">${t('stopReg')}</span>
-                        </div>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div class="st-icon-box">
+                        <div class="st-pulse"></div>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                     </div>
-                    <div style="text-align: right; display: flex; flex-direction: column; gap: 3px; background: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0;">
-                        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; line-height: 1;">${t('reopenAt')}</span>
-                        <span style="font-size: 12px; color: var(--info); font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1;">${t('monday')}</span>
+                    <div class="st-info">
+                        <span class="st-title">${t('sysLocked')}</span>
+                        <span class="st-desc">${t('stopReg')}</span>
                     </div>
+                </div>
+                <div class="st-meta">
+                    <span class="st-meta-label">${t('reopenAt')}</span>
+                    <span class="st-meta-value">${t('monday')}</span>
                 </div>
             `;
             submitBtn.disabled = true; submitBtn.innerHTML = t('sysLocked');
         } else {
-            lockStatus.style.background = "linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05))"; lockStatus.style.border = "1px solid rgba(16, 185, 129, 0.2)"; lockStatus.style.boxShadow = "0 8px 20px rgba(16, 185, 129, 0.05)";
+            lockStatus.className = "status-panel sys-open";
             lockStatus.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 10px;">
-                    <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
-                        <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: rgba(16, 185, 129, 0.2); border-radius: 12px; border: 1px solid rgba(16,185,129,0.3); flex-shrink: 0;">
-                            <div class="pulse-ring" style="position: absolute; background: var(--success); opacity: 0.5;"></div>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 3px;">
-                            <span style="font-size: 14px; font-weight: 800; color: var(--success); text-transform: uppercase; line-height: 1;">${t('sysOpen')}</span>
-                            <span style="font-size: 11px; font-weight: 600; color: var(--text-muted); line-height: 1;">${t('sysOnline')}</span>
-                        </div>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div class="st-icon-box">
+                        <div class="st-pulse"></div>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     </div>
-                    <div style="text-align: right; display: flex; flex-direction: column; gap: 3px; background: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0;">
-                        <span style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 800; line-height: 1;">${t('autoLock')}</span>
-                        <span style="font-size: 12px; color: var(--warning); font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1;">20:00 T6</span>
+                    <div class="st-info">
+                        <span class="st-title">${t('sysOpen')}</span>
+                        <span class="st-desc">${t('sysOnline')}</span>
                     </div>
+                </div>
+                <div class="st-meta">
+                    <span class="st-meta-label">${t('autoLock')}</span>
+                    <span class="st-meta-value">20:00 T6</span>
                 </div>
             `;
             submitBtn.disabled = false; submitBtn.innerHTML = t('confirmBtn');
@@ -881,11 +859,7 @@
         if(isSystemLocked()) { return showToast(t('sysLocked'), "error"); }
         
         const schedule = {}; 
-        DAYS.forEach(day => { 
-            const selectedShift = document.getElementById(day).value; 
-            if(selectedShift) schedule[day] = selectedShift; 
-        });
-        
+        DAYS.forEach(day => { const selectedShift = document.getElementById(day).value; if(selectedShift) schedule[day] = selectedShift; });
         if(!Object.keys(schedule).length) return showToast(t('off'), "warning");
 
         const btn = document.getElementById("submitBtn"); const originalText = btn.innerHTML;
@@ -900,7 +874,6 @@
             await set(ref(db, "dangKy/" + employeeName), { lich: schedule, timestamp: Date.now() });
             showToast("Success", "success");
             
-            // Xóa rỗng sau khi gửi
             nameInput.value = ""; 
             DAYS.forEach(day => {
                 document.getElementById(day).value = "";
@@ -925,7 +898,7 @@
         document.getElementById("userCard").classList.remove("hidden"); document.getElementById("loginSection").classList.remove("hidden");
     };
 
-    // --- 11. XỬ LÝ VUỐT NGANG ẨN & VỆT KÉO (SECRET SWIPE TRAIL) ---
+    // --- 11. XỬ LÝ VUỐT NGANG ẨN & VỆT KÉO ---
     let startX = 0; let isSwiping = false; let swipeTriggered = false; let trailPoints = [];
     const swipeZone = document.getElementById('swipeZone'); const trailCanvas = document.getElementById('swipeTrailCanvas'); const tCtx = trailCanvas.getContext('2d');
 
