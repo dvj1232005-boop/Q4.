@@ -91,12 +91,10 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent; /* Nâng cấp: Tắt nháy đen khi ấn trên iOS */
         }
 
         html, body {
             touch-action: manipulation; /* Chặn hoàn toàn double-tap zoom gây khó chịu */
-            overscroll-behavior-y: none; /* Nâng cấp: Chống hiệu ứng kéo nảy (bounce) khó chịu của Safari */
         }
 
         body {
@@ -111,18 +109,9 @@
             position: relative;
             
             /* Tinh chỉnh cho iOS */
+            -webkit-tap-highlight-color: transparent;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            
-            /* Nâng cấp: Chống bôi đen rác giao diện khi thao tác nhanh */
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        /* Ngoại lệ cho phép bôi đen/nhập liệu ở các input */
-        input, textarea {
-            -webkit-user-select: auto;
-            user-select: auto;
         }
 
         .mono {
@@ -520,7 +509,6 @@
             color: var(--text-muted);
         }
 
-        /* Custom Select được thay thế bởi Nâng cấp Bottom Sheet bên dưới */
         .custom-select {
             width: 100%;
             padding: 12px 14px;
@@ -539,152 +527,6 @@
             background-position: right 10px center;
             -webkit-appearance: none;
             appearance: none;
-        }
-
-        /* =========================================================
-           08.5. NÂNG CẤP IOS NATIVE BOTTOM SHEET CHO CHỌN CA LÀM
-        ========================================================= */
-        .shift-picker-btn {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid var(--border-glass);
-            background: var(--bg-base);
-            color: var(--text-main);
-            font-weight: 700;
-            font-family: inherit;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: 0.2s;
-            outline: none;
-        }
-
-        .shift-picker-btn:hover, .shift-picker-btn:active {
-            background: var(--bg-glass-heavy);
-            border-color: var(--primary);
-        }
-
-        .shift-picker-btn span.selected-text { 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-        }
-
-        .bottom-sheet-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            z-index: 99999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .bottom-sheet-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        
-        .bottom-sheet {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            background: var(--bg-glass-heavy);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-top-left-radius: 32px;
-            border-top-right-radius: 32px;
-            padding: 24px 20px calc(24px + env(safe-area-inset-bottom));
-            transform: translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
-            border-top: 1px solid var(--border-glass);
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
-        }
-
-        .bottom-sheet-overlay.active .bottom-sheet {
-            transform: translateY(0);
-        }
-        
-        .sheet-handle {
-            width: 40px; height: 5px;
-            background: var(--border-glass);
-            border-radius: 5px;
-            margin: 0 auto 20px;
-        }
-
-        .sheet-title {
-            text-align: center;
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 20px;
-            font-family: inherit;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .sheet-options-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            max-height: 60vh;
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            padding-bottom: 10px;
-        }
-
-        .sheet-option {
-            background: var(--input-bg);
-            border: 2px solid var(--border-glass);
-            padding: 16px;
-            border-radius: 16px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--text-main);
-            transition: 0.2s;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-        }
-
-        .sheet-option span.opt-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .sheet-option:active {
-            transform: scale(0.95);
-            background: var(--bg-glass-heavy);
-        }
-
-        .sheet-option.active {
-            border-color: var(--primary);
-            background: var(--primary-light);
-            color: var(--primary);
-        }
-
-        .sheet-option.active span.opt-label {
-            color: var(--primary);
-            opacity: 0.8;
-        }
-        
-        /* Riêng nút Nghỉ (Off) chiếm 2 cột */
-        .sheet-option.off-btn {
-            grid-column: 1 / -1;
-            border-color: var(--border-glass);
-            background: transparent;
-        }
-
-        .sheet-option.off-btn:active {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: var(--danger);
-            color: var(--danger);
         }
 
         /* =========================================================
@@ -1000,13 +842,12 @@
 
         tr:hover td:first-child {
             border-left: 3px solid var(--primary);
-            /* Bỏ hiệu ứng chuyển màu nền đen khi hover tên NV */
         }
 
         .avatar {
             width: 30px;
             height: 30px;
-            border-radius: 10px; /* Techy slightly square avatar */
+            border-radius: 10px;
             background: linear-gradient(135deg, var(--primary), var(--info));
             color: white;
             display: flex;
@@ -1046,9 +887,9 @@
             width: 100%;
             height: 100%;
             z-index: 10;
-            touch-action: none; /* Ngăn chặn cuộn trang khi đang vuốt ngang */
+            touch-action: none;
             cursor: grab;
-            background: transparent; /* Tàng hình hoàn toàn */
+            background: transparent;
             border-radius: 32px;
             transition: background 0.3s ease;
         }
@@ -1057,7 +898,6 @@
             cursor: grabbing;
         }
 
-        /* Nút Thoát (Tech Style) */
         .btn-exit {
             background: transparent;
             border: 1px solid rgba(239, 68, 68, 0.3);
@@ -1145,7 +985,7 @@
         ========================================================= */
         footer {
             text-align: center;
-            padding: 30px 0 40px; /* Thêm padding dưới để an toàn trên mobile */
+            padding: 30px 0 40px; 
             font-size: 13px;
             color: var(--text-muted);
             font-weight: 500;
@@ -1208,6 +1048,101 @@
                 transform: translateY(0);
             }
         }
+
+        /* =========================================================
+           16. SUPPORT MODAL & BELL ANIMATION
+        ========================================================= */
+        .bell-ring svg {
+            animation: ring 2.5s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            10% { transform: rotate(15deg); }
+            20% { transform: rotate(-10deg); }
+            30% { transform: rotate(5deg); }
+            40% { transform: rotate(-5deg); }
+            50% { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
+
+        .support-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .support-modal:not(.hidden) {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .support-modal-content {
+            background: var(--bg-glass-heavy);
+            border: 1px solid var(--border-glass);
+            border-radius: 28px;
+            padding: 32px 24px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            position: relative;
+            transform: translateY(30px);
+            transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--shadow-card), 0 0 0 1px inset rgba(255,255,255,0.1);
+        }
+
+        .support-modal:not(.hidden) .support-modal-content {
+            transform: translateY(0);
+        }
+
+        .support-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .support-close:active { transform: scale(0.9); }
+
+        .support-icon-wrapper {
+            width: 56px; height: 56px;
+            background: var(--info-bg);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 20px var(--info-bg);
+        }
+
+        .support-modal h3 {
+            margin-bottom: 12px;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .support-modal p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
     </style>
 </head>
 
@@ -1239,6 +1174,14 @@
         
         <!-- Controls: Language & Theme -->
         <div class="header-controls">
+            <!-- NÚT CHUÔNG HỖ TRỢ -->
+            <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+            </button>
+
             <select id="langSelect" class="lang-toggle">
                 <option value="vi">🇻🇳 VI</option>
                 <option value="en">🇬🇧 EN</option>
@@ -1265,6 +1208,27 @@
             </button>
         </div>
     </header>
+
+    <!-- MODAL HỖ TRỢ KỸ THUẬT -->
+    <div id="supportModal" class="support-modal hidden">
+        <div class="support-modal-content">
+            <button class="support-close" id="closeSupportBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="support-icon-wrapper">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <h3 data-i18n="supportTitle">Trung Tâm Hỗ Trợ</h3>
+            <p data-i18n="supportDesc">Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ PhuongAnh. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.</p>
+            
+            <a href="#" class="btn btn-primary" style="padding: 14px; font-size: 13px;" data-i18n="contactAdminBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Liên Hệ Quản Lý Ngay
+            </a>
+        </div>
+    </div>
 
     <!-- Hệ thống thông báo nổi (Toast) -->
     <div id="toastContainer" class="toast-container"></div>
@@ -1422,17 +1386,6 @@
     </main>
 </div>
 
-<!-- NATIVE BOTTOM SHEET COMPONENT CHO SHIFT SELECTION -->
-<div class="bottom-sheet-overlay" id="shiftSheetOverlay">
-    <div class="bottom-sheet" id="shiftSheet">
-        <div class="sheet-handle"></div>
-        <div class="sheet-title" id="sheetTitleText">Chọn Ca Làm</div>
-        <div class="sheet-options-grid" id="sheetOptionsContainer">
-            <!-- Render từ JS -->
-        </div>
-    </div>
-</div>
-
 <footer>
     © 2026 WorkShift <span class="pro-text">Pro</span> Enterprise.<br>
     <span data-i18n="designed">Designed & Engineered by</span> <strong>Dang Tung</strong>. <span data-i18n="rights">All rights reserved.</span>
@@ -1448,39 +1401,51 @@
             realtime: "Đồng bộ realtime:", title: "Đăng Ký Ca Làm", subtitle: "Hệ thống xếp lịch nội bộ | An Cafe & QuyChe Network", employeeId: "Định danh nhân sự", placeholder: "Ví dụ: Đăng Tùng...", schedule: "Đăng ký lịch làm việc (Tuần này)", confirmBtn: "Xác Nhận Đăng Ký", managerBtn: "Truy Cập Khu Vực Quản Lý", secureAccess: "Secure Access", highPrivilege: "Hệ thống phân quyền cấp cao", dashboard: "DASHBOARD", lockSys: "Khóa Hệ Thống", totalEmp: "Tổng Nhân Sự", totalShifts: "Ca Đăng Ký", openShift: "Mở Lịch", lock: "Khóa", export: "Xuất File", cleanup: "Dọn Dẹp", designed: "Designed & Engineered by", rights: "All rights reserved.",
             dayFullName_T2: "Thứ 2", dayFullName_T3: "Thứ 3", dayFullName_T4: "Thứ 4", dayFullName_T5: "Thứ 5", dayFullName_T6: "Thứ 6", dayFullName_T7: "Thứ 7", dayFullName_CN: "Chủ Nhật",
             dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
-            off: "-- Nghỉ --", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự"
+            off: "-- Nghỉ --", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
+            supportTitle: "Trung Tâm Hỗ Trợ", 
+            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ Ban Quản Trị. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.", 
+            contactAdminBtn: "Liên Hệ Quản Lý Ngay"
         },
         en: {
             realtime: "Realtime sync:", title: "Shift Registration", subtitle: "Internal Scheduling System | An Cafe & QuyChe Network", employeeId: "Employee Identity", placeholder: "Example: Dang Tung...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.",
             dayFullName_T2: "Monday", dayFullName_T3: "Tuesday", dayFullName_T4: "Wednesday", dayFullName_T5: "Thursday", dayFullName_T6: "Friday", dayFullName_T7: "Saturday", dayFullName_CN: "Sunday",
             dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
-            off: "-- Off --", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity"
+            off: "-- Off --", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
+            supportTitle: "Support Center", 
+            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact the Administration. We will address and resolve them immediately.", 
+            contactAdminBtn: "Contact Manager"
         },
         zh: {
             realtime: "同步实时:", title: "排班注册", subtitle: "内部排班系统 | An Cafe & QuyChe Network", employeeId: "员工身份", placeholder: "示例：Dang Tung...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.",
             dayFullName_T2: "星期一", dayFullName_T3: "星期二", dayFullName_T4: "星期三", dayFullName_T5: "星期四", dayFullName_T6: "星期五", dayFullName_T7: "星期六", dayFullName_CN: "星期日",
             dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
-            off: "-- 休息 --", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份"
+            off: "-- 休息 --", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
+            supportTitle: "支持中心", 
+            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系管理部门。我们将立即处理并解决。", 
+            contactAdminBtn: "联系经理"
         },
         ko: {
             realtime: "실시간 동기화:", title: "근무 교대 등록", subtitle: "내부 일정 시스템 | An Cafe & QuyChe Network", employeeId: "직원 신원", placeholder: "예: Dang Tung...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.",
             dayFullName_T2: "월요일", dayFullName_T3: "화요일", dayFullName_T4: "수요일", dayFullName_T5: "목요일", dayFullName_T6: "금요일", dayFullName_T7: "토요일", dayFullName_CN: "일요일",
             dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
-            off: "-- 휴무 --", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원"
+            off: "-- 휴무 --", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
+            supportTitle: "지원 센터", 
+            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 관리팀에 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.", 
+            contactAdminBtn: "관리자에게 문의"
         },
         ja: {
             realtime: "リアルタイム同期:", title: "シフト登録", subtitle: "内部スケジュールシステム | An Cafe & QuyChe Network", employeeId: "従業員ID", placeholder: "例：Dang Tung...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.",
             dayFullName_T2: "月曜日", dayFullName_T3: "火曜日", dayFullName_T4: "水曜日", dayFullName_T5: "木曜日", dayFullName_T6: "金曜日", dayFullName_T7: "土曜日", dayFullName_CN: "日曜日",
             dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
-            off: "-- 休み --", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID"
+            off: "-- 休み --", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
+            supportTitle: "サポートセンター", 
+            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、管理部門にご連絡ください。直ちに対応し、解決いたします。", 
+            contactAdminBtn: "マネージャーに連絡"
         }
     };
 
     let currentLang = localStorage.getItem('lang') || 'vi';
     document.getElementById('langSelect').value = currentLang;
-
-    // Lưu trữ state đăng ký của Local User (thay vì đọc từ thẻ select)
-    let currentShiftsState = { T2: "", T3: "", T4: "", T5: "", T6: "", T7: "", CN: "" };
 
     function t(key) {
         return i18n[currentLang][key] || key;
@@ -1500,12 +1465,11 @@
             const shortDayEl = document.getElementById(`shortDayText_${day}`);
             if(fullDayEl) fullDayEl.innerText = t('dayFullName_' + day);
             if(shortDayEl) shortDayEl.innerText = t('dayShort_' + day);
-            
-            // Cập nhật text trên button nếu đang chọn Off
-            if(currentShiftsState[day] === "") {
-                const displayEl = document.getElementById(`displayShift_${day}`);
-                if(displayEl) displayEl.innerText = t('off');
-            }
+        });
+
+        // Update empty select options
+        document.querySelectorAll('.custom-select option[value=""]').forEach(el => {
+            el.innerText = t('off');
         });
 
         updateStatusUI(); // Refresh status banner texts
@@ -1715,13 +1679,36 @@
         }, 3000);
     }
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM BẰNG BOTTOM SHEET IOS ---
+    // --- 6.5 LOGIC MODAL HỖ TRỢ ---
+    const supportBtn = document.getElementById('supportBtn');
+    const supportModal = document.getElementById('supportModal');
+    const closeSupportBtn = document.getElementById('closeSupportBtn');
+
+    // Mở popup
+    supportBtn.addEventListener('click', () => {
+        supportModal.classList.remove('hidden');
+        // Xóa class rung chuông sau khi user đã click xem
+        supportBtn.classList.remove('bell-ring'); 
+    });
+
+    // Đóng popup bằng nút X
+    closeSupportBtn.addEventListener('click', () => {
+        supportModal.classList.add('hidden');
+    });
+
+    // Đóng popup khi click ra ngoài vùng nền mờ
+    supportModal.addEventListener('click', (e) => {
+        if(e.target === supportModal) supportModal.classList.add('hidden');
+    });
+
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM THEO TỪNG NGÀY TRONG TUẦN ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
         const fullDayName = t('dayFullName_' + dayName);
         const shortDayName = t('dayShort_' + dayName);
         const offText = t('off');
         const gridSpanStyle = dayName === 'CN' ? 'grid-column: 1 / -1;' : '';
+        const optionsHtml = SHIFTS.map(s => `<option value="${s.id}">${s.id}</option>`).join("");
         
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
@@ -1729,71 +1716,12 @@
                     <span id="fullDayText_${dayName}">${fullDayName}</span>
                     <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
                 </div>
-                <button type="button" class="shift-picker-btn" onclick="openShiftSheet('${dayName}')">
-                    <span class="selected-text" id="displayShift_${dayName}">${offText}</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </button>
+                <select id="${dayName}" class="custom-select">
+                    <option value="">${offText}</option>
+                    ${optionsHtml}
+                </select>
             </div>
         `;
-    });
-
-    // --- 7.5. LOGIC BOTTOM SHEET CHỌN CA LÀM ---
-    let activeDayForSheet = null;
-    const sheetOverlay = document.getElementById("shiftSheetOverlay");
-    const optionsContainer = document.getElementById("sheetOptionsContainer");
-    const titleText = document.getElementById("sheetTitleText");
-
-    window.openShiftSheet = function(dayName) {
-        if(isSystemLocked()) return showToast(t('sysLocked'), "error");
-        
-        // Cảm ứng rung nhẹ Native iOS (nếu thiết bị hỗ trợ)
-        if(navigator.vibrate) navigator.vibrate([20]);
-        
-        activeDayForSheet = dayName;
-        titleText.innerText = `${t('dayFullName_' + dayName)} - ${t('dayShort_' + dayName)}`;
-        
-        let htmlOptions = `<div class="sheet-option off-btn ${currentShiftsState[dayName] === "" ? "active" : ""}" onclick="selectShift('')">
-            ${t('off')} <span class="opt-label">Không đăng ký</span>
-        </div>`;
-        
-        SHIFTS.forEach(shift => {
-            const isActive = currentShiftsState[dayName] === shift.id ? "active" : "";
-            htmlOptions += `
-            <div class="sheet-option ${isActive}" onclick="selectShift('${shift.id}')">
-                ${shift.id} <span class="opt-label">${shift.label}</span>
-            </div>`;
-        });
-        
-        optionsContainer.innerHTML = htmlOptions;
-        sheetOverlay.classList.add('active');
-    };
-
-    window.selectShift = function(shiftId) {
-        if(navigator.vibrate) navigator.vibrate([10]);
-        currentShiftsState[activeDayForSheet] = shiftId;
-        
-        const displayEl = document.getElementById(`displayShift_${activeDayForSheet}`);
-        if(shiftId === "") {
-            displayEl.innerText = t('off');
-            displayEl.style.color = "var(--text-main)";
-        } else {
-            displayEl.innerText = shiftId;
-            displayEl.style.color = "var(--primary)";
-        }
-        
-        closeSheet();
-    };
-
-    function closeSheet() {
-        sheetOverlay.classList.remove('active');
-        activeDayForSheet = null;
-    }
-    
-    // Đóng sheet khi bấm ra vùng tối
-    sheetOverlay.addEventListener('click', (e) => {
-        if (e.target === sheetOverlay) closeSheet();
     });
 
     // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG THEO THỜI GIAN THỰC ---
@@ -1885,17 +1813,12 @@
         }
         
         const schedule = {}; 
-        let hasAnyShift = false;
-        
         DAYS.forEach(day => { 
-            const selectedShift = currentShiftsState[day]; 
-            if(selectedShift) {
-                schedule[day] = selectedShift; 
-                hasAnyShift = true;
-            }
+            const selectedShift = document.getElementById(day).value; 
+            if(selectedShift) schedule[day] = selectedShift; 
         });
         
-        if(!hasAnyShift) {
+        if(!Object.keys(schedule).length) {
             return showToast(t('off'), "warning");
         }
 
@@ -1920,14 +1843,7 @@
             showToast("Success", "success");
             
             nameInput.value = ""; 
-            DAYS.forEach(day => {
-                currentShiftsState[day] = "";
-                const displayEl = document.getElementById(`displayShift_${day}`);
-                if(displayEl) {
-                    displayEl.innerText = t('off');
-                    displayEl.style.color = "var(--text-main)";
-                }
-            });
+            DAYS.forEach(day => document.getElementById(day).value = "");
             
         } catch(error) { 
             console.error("Firebase fetch error:", error);
