@@ -23,106 +23,49 @@
            01. DESIGN SYSTEM & CSS VARIABLES
         ========================================================= */
         :root[data-theme="light"] {
-            --primary: #dc2626;
-            --primary-hover: #b91c1c;
-            --primary-light: #fef2f2;
-            --primary-glow: rgba(220, 38, 38, 0.3);
-            
-            --bg-base: #f8fafc;
-            --bg-glass: rgba(255, 255, 255, 0.75);
-            --bg-glass-heavy: rgba(255, 255, 255, 0.95);
-            
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            
-            --border-glass: rgba(0, 0, 0, 0.08);
-            --input-bg: rgba(241, 245, 249, 0.8);
-            
+            --primary: #dc2626; --primary-hover: #b91c1c; --primary-light: #fef2f2; --primary-glow: rgba(220, 38, 38, 0.3);
+            --bg-base: #f8fafc; --bg-glass: rgba(255, 255, 255, 0.75); --bg-glass-heavy: rgba(255, 255, 255, 0.95);
+            --text-main: #0f172a; --text-muted: #64748b;
+            --border-glass: rgba(0, 0, 0, 0.08); --input-bg: rgba(241, 245, 249, 0.8);
             --success: #10b981; --success-bg: rgba(16, 185, 129, 0.1);
             --warning: #f59e0b; --warning-bg: rgba(245, 158, 11, 0.1);
             --danger: #ef4444;  --danger-bg: rgba(239, 68, 68, 0.1);
             --info: #3b82f6;    --info-bg: rgba(59, 130, 246, 0.1);
-            
-            --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            --shadow-card: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-            
-            --canvas-dot: #cbd5e1;
-            --canvas-line: rgba(203, 213, 225, 0.4);
-            
-            --blob-1: #8b5cf6;
-            --blob-2: #ec4899;
+            --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.07); --shadow-card: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+            --canvas-dot: #cbd5e1; --canvas-line: rgba(203, 213, 225, 0.4);
+            --blob-1: #8b5cf6; --blob-2: #ec4899;
         }
 
         :root[data-theme="dark"] {
-            --primary: #ef4444;
-            --primary-hover: #f87171;
-            --primary-light: rgba(239, 68, 68, 0.15);
-            --primary-glow: rgba(239, 68, 68, 0.6);
-            
-            --bg-base: #020617;
-            --bg-glass: rgba(15, 23, 42, 0.6);
-            --bg-glass-heavy: rgba(15, 23, 42, 0.85);
-            
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            
-            --border-glass: rgba(255, 255, 255, 0.1);
-            --input-bg: rgba(30, 41, 59, 0.6);
-            
+            --primary: #ef4444; --primary-hover: #f87171; --primary-light: rgba(239, 68, 68, 0.15); --primary-glow: rgba(239, 68, 68, 0.6);
+            --bg-base: #020617; --bg-glass: rgba(15, 23, 42, 0.6); --bg-glass-heavy: rgba(15, 23, 42, 0.85);
+            --text-main: #f8fafc; --text-muted: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.1); --input-bg: rgba(30, 41, 59, 0.6);
             --success: #34d399; --success-bg: rgba(16, 185, 129, 0.15);
             --warning: #fbbf24; --warning-bg: rgba(245, 158, 11, 0.15);
             --danger: #f87171;  --danger-bg: rgba(239, 68, 68, 0.15);
             --info: #60a5fa;    --info-bg: rgba(59, 130, 246, 0.15);
-            
-            --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            
-            --canvas-dot: #334155;
-            --canvas-line: rgba(51, 65, 85, 0.5);
-            
-            --blob-1: #6366f1;
-            --blob-2: #f43f5e;
+            --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.4); --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            --canvas-dot: #334155; --canvas-line: rgba(51, 65, 85, 0.5);
+            --blob-1: #6366f1; --blob-2: #f43f5e;
         }
 
         /* =========================================================
            02. RESET & BASE (iOS OPTIMIZED)
         ========================================================= */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            touch-action: manipulation;
-            -webkit-text-size-adjust: 100%;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            background-color: var(--bg-base); color: var(--text-main);
             transition: background-color 0.5s ease, color 0.5s ease;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            position: relative;
-            
-            -webkit-tap-highlight-color: transparent;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; position: relative;
+            -webkit-tap-highlight-color: transparent; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
         }
-
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        input, select, textarea, button,
-        input[type="text"], 
-        input[type="number"], 
-        .form-control, 
-        .custom-select {
-            font-size: 16px !important; 
-            touch-action: manipulation;
+        input, select, textarea, button, input[type="text"], input[type="number"], .form-control {
+            font-size: 16px !important; touch-action: manipulation;
         }
 
         /* =========================================================
@@ -140,30 +83,38 @@
         }
 
         .app-wrapper {
-            position: relative;
-            z-index: 10; display: flex; flex-direction: column; min-height: 100vh; width: 100%; max-width: 700px; margin: 0 auto; padding: 0 16px;
-            padding-top: max(16px, env(safe-area-inset-top));
-            padding-bottom: max(16px, env(safe-area-inset-bottom));
+            position: relative; z-index: 10; display: flex; flex-direction: column; min-height: 100vh; width: 100%; max-width: 700px; margin: 0 auto; padding: 0 16px;
+            padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom));
         }
 
         /* =========================================================
-           04. HEADER & BRANDING
+           04. HEADER & BRANDING (BẢN UPDATE VỊ TRÍ)
         ========================================================= */
-        .header { display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 0; }
-        .brand-group { display: flex; flex-direction: column; gap: 6px; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; gap: 16px; flex-wrap: wrap; }
+        .brand-group { display: flex; flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
         .brand-logo { font-weight: 800; font-size: 24px; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer; user-select: none; }
         .brand-logo svg { filter: drop-shadow(0 0 8px var(--primary-glow)); color: var(--primary); }
 
-        .update-ticker { font-size: 11px; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px; background: var(--bg-glass); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        .update-pulse { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: blink 1.5s infinite; }
+        .update-ticker { font-size: 11px; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px; background: var(--bg-glass); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); justify-content: center; }
+        .update-pulse { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: blink 1.5s infinite; flex-shrink: 0; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         .header-controls { display: flex; align-items: center; gap: 10px; }
-        .lang-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); height: 44px; padding: 0 30px 0 14px; border-radius: 22px; font-weight: 700; font-family: inherit; font-size: 16px !important; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); outline: none; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: 0.3s; }
+        
+        /* Language Dropdown moved next to logo */
+        .lang-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); height: 38px; padding: 0 28px 0 14px; border-radius: 19px; font-weight: 700; font-family: inherit; font-size: 13px !important; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); outline: none; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: 0.3s; }
         .lang-toggle:focus { border-color: var(--primary); }
 
-        .theme-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .theme-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-shrink: 0; }
         .theme-toggle:active { transform: scale(0.9) rotate(15deg); }
+
+        /* Mobile Header Alignment */
+        @media (max-width: 600px) {
+            .header { flex-direction: column; gap: 16px; align-items: stretch; }
+            .brand-group { width: 100%; justify-content: space-between; align-items: center; }
+            .header-controls { width: 100%; justify-content: space-between; gap: 8px; }
+            .update-ticker { flex: 1; height: 44px; }
+        }
 
         /* =========================================================
            05. GLASS CARD COMPONENTS
@@ -178,7 +129,7 @@
         .status-banner { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: 16px; margin-bottom: 28px; font-weight: 700; font-size: 14px; transition: all 0.4s ease; box-shadow: inset 0 2px 10px rgba(0,0,0,0.05); }
 
         /* =========================================================
-           06. FORMS & BẢN NÂNG CẤP SELECT
+           06. FORMS & BẢN NÂNG CẤP SELECT (CUSTOM DROPDOWN UI)
         ========================================================= */
         .input-wrapper { position: relative; margin-bottom: 24px; }
         .input-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
@@ -192,31 +143,69 @@
         .day-card { 
             background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 16px; 
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); 
+            position: relative; z-index: 1; /* Cần thiết cho Dropdown 3D overlap */
         }
         .day-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
         .day-card:focus-within { border-color: var(--primary); background: var(--bg-glass-heavy); box-shadow: 0 8px 24px var(--primary-glow); }
         .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 800; font-size: 13px; color: var(--text-main); }
         .day-badge { font-size: 10px; padding: 4px 8px; border-radius: 6px; background: var(--border-glass); color: var(--text-muted); }
 
-        /* Wrapper bọc Select để custom mũi tên */
-        .select-wrapper { position: relative; width: 100%; }
-        .select-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-muted); transition: 0.3s; }
-        .select-wrapper:focus-within .select-arrow { color: var(--primary); }
-
-        /* Nâng cấp diện mạo Select */
-        .custom-select {
-            width: 100%; padding: 14px 40px 14px 16px; border-radius: 14px; border: 2px solid transparent; 
-            background: var(--input-bg); color: var(--text-main); font-weight: 800; font-size: 15px !important; 
-            font-family: inherit; outline: none; transition: 0.3s ease; appearance: none; -webkit-appearance: none; cursor: pointer;
-        }
-        .custom-select:hover { background: var(--border-glass); }
+        /* UI Select Mới (Xóa bỏ Native Select iOS) */
+        .custom-dropdown { position: relative; width: 100%; font-family: inherit; }
         
-        /* Hiệu ứng Đổi màu Động (Dynamic Color) khi chọn Ca */
-        .custom-select.sel-c1 { background: var(--info-bg); color: var(--info); border-color: rgba(59, 130, 246, 0.4); }
-        .custom-select.sel-c2 { background: var(--warning-bg); color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
-        .custom-select.sel-c3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; border-color: rgba(168, 85, 247, 0.4); }
-        .custom-select.sel-f  { background: var(--danger-bg); color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
-        .custom-select.sel-double { background: var(--primary-light); color: var(--primary); border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 0 10px var(--primary-glow); }
+        .dropdown-selected {
+            width: 100%; padding: 14px 16px; border-radius: 14px; 
+            border: 2px solid transparent; background: var(--input-bg); 
+            color: var(--text-main); font-weight: 800; font-size: 14px; 
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            user-select: none;
+        }
+        .dropdown-selected:active { transform: scale(0.97); }
+        
+        .dropdown-selected .select-arrow { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); color: var(--text-muted); }
+        
+        /* Trạng thái Dropdown Mở */
+        .custom-dropdown.open .dropdown-selected {
+            border-color: var(--primary); background: var(--bg-glass-heavy);
+            box-shadow: 0 4px 20px var(--primary-light);
+        }
+        .custom-dropdown.open .select-arrow { transform: rotate(180deg); color: var(--primary); }
+        
+        /* Bảng chọn Option */
+        .dropdown-options {
+            position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+            background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
+            border-radius: 16px; padding: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            z-index: 100; max-height: 220px; overflow-y: auto;
+            opacity: 0; visibility: hidden; transform: translateY(-10px) scale(0.95);
+            transform-origin: top center; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .custom-dropdown.open .dropdown-options {
+            opacity: 1; visibility: visible; transform: translateY(0) scale(1);
+        }
+        
+        /* Item Option */
+        .dropdown-option {
+            padding: 12px 16px; font-weight: 700; font-size: 14px; color: var(--text-main);
+            border-radius: 10px; cursor: pointer; transition: 0.2s; margin-bottom: 4px;
+        }
+        .dropdown-option:last-child { margin-bottom: 0; }
+        .dropdown-option:hover, .dropdown-option:active {
+            background: var(--primary-light); color: var(--primary); padding-left: 20px;
+        }
+        
+        /* Scrollbar tàng hình gọn gàng */
+        .dropdown-options::-webkit-scrollbar { width: 5px; }
+        .dropdown-options::-webkit-scrollbar-thumb { background: var(--border-glass); border-radius: 10px; }
+
+        /* Dynamic Colors cho Dropdown */
+        .dropdown-selected.sel-c1 { background: var(--info-bg); color: var(--info); border-color: rgba(59, 130, 246, 0.4); }
+        .dropdown-selected.sel-c2 { background: var(--warning-bg); color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
+        .dropdown-selected.sel-c3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; border-color: rgba(168, 85, 247, 0.4); }
+        .dropdown-selected.sel-f  { background: var(--danger-bg); color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
+        .dropdown-selected.sel-double { background: var(--primary-light); color: var(--primary); border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 0 10px var(--primary-glow); }
 
         /* =========================================================
            07. BUTTONS & ACTIONS
@@ -285,31 +274,9 @@
         footer span.pro-text { color: var(--primary); font-weight: 700; }
 
         /* =========================================================
-           09. RESPONSIVE DESIGN (FIX LỖI KHUẤT IOS MOBILE)
+           09. RESPONSIVE DESIGN (MOBILE FINE-TUNING)
         ========================================================= */
         @media (max-width: 600px) {
-            /* Fix Header hiển thị không đủ chỗ */
-            .header {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .brand-group {
-                flex-direction: row;
-                width: 100%;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .header-controls {
-                width: 100%;
-                justify-content: center;
-                gap: 16px;
-            }
-            .lang-toggle {
-                flex: 1; /* Nút ngôn ngữ tự mở rộng cân đối */
-                text-align: center;
-                padding-left: 10px;
-            }
-
             .card { padding: 28px 20px; border-radius: 28px; }
             .card-title { font-size: 24px; }
             .bento-grid { gap: 12px; }
@@ -323,7 +290,7 @@
         }
 
         /* =========================================================
-           10. SUPPORT MODAL & BELL
+           10. SUPPORT MODAL & BELL ANIMATION
         ========================================================= */
         .bell-ring svg { animation: ring 2.5s ease-in-out infinite; transform-origin: top center; }
         @keyframes ring { 0% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-10deg); } 30% { transform: rotate(5deg); } 40% { transform: rotate(-5deg); } 50% { transform: rotate(0); } 100% { transform: rotate(0); } }
@@ -347,7 +314,7 @@
 <div class="mesh-blob blob-2"></div>
 
 <div class="app-wrapper" id="app">
-    <!-- TOP NAVIGATION -->
+    <!-- TOP NAVIGATION CẬP NHẬT VỊ TRÍ MỚI -->
     <header class="header">
         <div class="brand-group">
             <div class="brand-logo">
@@ -359,22 +326,8 @@
                 </svg>
                 WorkShift <span style="font-weight: 400; opacity: 0.7;">PRO</span>
             </div>
-            <div class="update-ticker" id="timeTicker">
-                <div class="update-pulse"></div> 
-                <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
-            </div>
-        </div>
-        
-        <!-- Controls: Language & Theme -->
-        <div class="header-controls">
-            <!-- NÚT CHUÔNG THÔNG BÁO -->
-            <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                </svg>
-            </button>
-
+            
+            <!-- Bộ chọn ngôn ngữ đưa lên trên -->
             <select id="langSelect" class="lang-toggle">
                 <option value="vi">🇻🇳 VI</option>
                 <option value="en">🇬🇧 EN</option>
@@ -382,7 +335,24 @@
                 <option value="ko">🇰🇷 KO</option>
                 <option value="ja">🇯🇵 JA</option>
             </select>
+        </div>
+        
+        <div class="header-controls">
+            <!-- Nút Chuông Hỗ Trợ -->
+            <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+            </button>
 
+            <!-- Ticker Đồng hồ đưa xuống dưới -->
+            <div class="update-ticker" id="timeTicker">
+                <div class="update-pulse"></div> 
+                <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
+            </div>
+
+            <!-- Nút Theme -->
             <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
                 <svg id="moonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -455,7 +425,7 @@
             </div>
         </div>
 
-        <!-- Lưới chọn ca làm việc theo ngày -->
+        <!-- Lưới chọn ca làm việc theo ngày BẢN NÂNG CẤP CAO CẤP -->
         <div style="margin-bottom: 32px;">
             <label class="input-label" style="margin-bottom: 12px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -467,7 +437,7 @@
                 <span data-i18n="schedule">Đăng ký lịch làm việc (Tuần này)</span>
             </label>
             <div id="form" class="calendar-grid" style="margin-bottom: 0;">
-                <!-- Javascript sẽ tự động render các ngày vào đây -->
+                <!-- Javascript sẽ tự động render các thẻ Dropdown Custom vào đây -->
             </div>
         </div>
 
@@ -492,7 +462,6 @@
                 <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
             </div>
             
-            <!-- Vùng vuốt tàng hình phủ toàn bộ khu vực màn hình này -->
             <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: 32px;"></canvas>
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
@@ -505,9 +474,7 @@
                         <span style="color: var(--primary); font-family: 'JetBrains Mono', monospace;">>_</span> <span data-i18n="dashboard">DASHBOARD</span>
                     </h2>
                 </div>
-                <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">
-                    Khóa Hệ Thống
-                </button>
+                <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">Khóa Hệ Thống</button>
             </div>
 
             <!-- Bento Stats -->
@@ -585,19 +552,14 @@
      JAVASCRIPT MODULES & LOGIC
 ========================================================= -->
 <script type="module">
-    // --- KHÓA ZOOM TRÊN IOS BẰNG JAVASCRIPT ---
+    // --- KHÓA ZOOM TRÊN IOS BẰNG JAVASCRIPT ĐẶC BIỆT ---
     document.addEventListener('touchmove', function (event) {
-        if (event.scale !== 1 || event.touches.length > 1) {
-            event.preventDefault();
-        }
+        if (event.scale !== 1 || event.touches.length > 1) { event.preventDefault(); }
     }, { passive: false });
-
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function (event) {
         const now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
+        if (now - lastTouchEnd <= 300) { event.preventDefault(); }
         lastTouchEnd = now;
     }, false);
 
@@ -648,52 +610,40 @@
     let currentLang = localStorage.getItem('lang') || 'vi';
     document.getElementById('langSelect').value = currentLang;
 
-    function t(key) {
-        return i18n[currentLang][key] || key;
-    }
+    function t(key) { return i18n[currentLang][key] || key; }
 
     function updateLanguageUI() {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            el.innerHTML = t(el.getAttribute('data-i18n'));
-        });
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
-        });
+        document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n')); });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = t(el.getAttribute('data-i18n-placeholder')); });
         
-        // Update Calendar texts
-        DAYS.forEach((day, index) => {
+        DAYS.forEach((day) => {
             const fullDayEl = document.getElementById(`fullDayText_${day}`);
             const shortDayEl = document.getElementById(`shortDayText_${day}`);
             if(fullDayEl) fullDayEl.innerText = t('dayFullName_' + day);
             if(shortDayEl) shortDayEl.innerText = t('dayShort_' + day);
-        });
-
-        // Update empty select options
-        document.querySelectorAll('.custom-select option[value=""]').forEach(el => {
-            el.innerText = t('off');
+            
+            // Cập nhật văn bản Dropdown
+            const hiddenInput = document.getElementById(day);
+            if(hiddenInput && hiddenInput.value === "") {
+                document.getElementById('text_' + day).innerText = t('off');
+            }
+            const offOption = document.querySelector(`#dropdown_${day} .dropdown-option:first-child`);
+            if(offOption) offOption.innerText = t('off');
         });
 
         updateStatusUI(); 
-        if (!document.getElementById("adminPanel").classList.contains("hidden")) {
-            fetchAndRenderAdminData(); 
-        }
+        if (!document.getElementById("adminPanel").classList.contains("hidden")) { fetchAndRenderAdminData(); }
     }
 
     document.getElementById('langSelect').addEventListener('change', (e) => {
-        currentLang = e.target.value;
-        localStorage.setItem('lang', currentLang);
-        updateLanguageUI();
+        currentLang = e.target.value; localStorage.setItem('lang', currentLang); updateLanguageUI();
     });
 
     // --- 1. FIREBASE INITIALIZATION ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
     import { getDatabase, ref, set, get, remove, onValue } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM", 
-        databaseURL: "https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app"
-    };
-    
+    const firebaseConfig = { apiKey: "AIzaSyCK6yfVr9VBMGwhbvYMXkJqMoRjo4Om2LM", databaseURL: "https://an-quy-default-rtdb.asia-southeast1.firebasedatabase.app" };
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
@@ -712,26 +662,16 @@
     // --- 3. MODULE ĐỒNG BỘ THỜI GIAN THỰC ---
     function updateClock() {
         const now = new Date();
-        const timeString = now.toLocaleTimeString('vi-VN', { hour12: false });
-        document.getElementById('realTime').textContent = timeString;
+        document.getElementById('realTime').textContent = now.toLocaleTimeString('vi-VN', { hour12: false });
     }
-    setInterval(updateClock, 1000); 
-    updateClock();
+    setInterval(updateClock, 1000); updateClock();
 
     // --- 4. MODULE CANVAS MẠNG NHỆN TƯƠNG TÁC ---
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let particlesArray;
-
-    function resizeCanvas() { 
-        canvas.width = window.innerWidth; 
-        canvas.height = window.innerHeight; 
-    }
-    window.addEventListener('resize', resizeCanvas); 
-    resizeCanvas();
+    const canvas = document.getElementById('bg-canvas'); const ctx = canvas.getContext('2d'); let particlesArray;
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
 
     let mouse = { x: null, y: null, radius: 100 };
-    
     window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; });
     window.addEventListener('touchend', () => { mouse.x = undefined; mouse.y = undefined; });
     window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
@@ -741,49 +681,32 @@
         constructor(x, y, dx, dy, size, color) { this.x = x; this.y = y; this.dx = dx; this.dy = dy; this.size = size; this.color = color; }
         draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false); ctx.fillStyle = this.color; ctx.fill(); }
         update() {
-            if(this.x > canvas.width || this.x < 0) this.dx = -this.dx;
-            if(this.y > canvas.height || this.y < 0) this.dy = -this.dy;
-            
+            if(this.x > canvas.width || this.x < 0) this.dx = -this.dx; if(this.y > canvas.height || this.y < 0) this.dy = -this.dy;
             let dist = Math.sqrt((mouse.x - this.x) ** 2 + (mouse.y - this.y) ** 2);
             if(dist < mouse.radius + this.size) {
-                if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 1.5;
-                if(mouse.x > this.x && this.x > this.size * 10) this.x -= 1.5;
-                if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 1.5;
-                if(mouse.y > this.y && this.y > this.size * 10) this.y -= 1.5;
+                if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 1.5; if(mouse.x > this.x && this.x > this.size * 10) this.x -= 1.5;
+                if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 1.5; if(mouse.y > this.y && this.y > this.size * 10) this.y -= 1.5;
             }
             this.x += this.dx; this.y += this.dy; this.draw();
         }
     }
 
     function initCanvas() {
-        particlesArray = [];
-        let noOfParticles = (canvas.height * canvas.width) / 10000;
-        
+        particlesArray = []; let noOfParticles = (canvas.height * canvas.width) / 10000;
         for(let i = 0; i < noOfParticles; i++) {
-            let size = (Math.random() * 2) + 1;
-            let color = getComputedStyle(document.documentElement).getPropertyValue('--canvas-dot').trim();
-            particlesArray.push(new Particle(
-                Math.random() * (innerWidth - size * 2) + size * 2, 
-                Math.random() * (innerHeight - size * 2) + size * 2, 
-                (Math.random() * 0.4) - 0.2, 
-                (Math.random() * 0.4) - 0.2, 
-                size, color
-            ));
+            let size = (Math.random() * 2) + 1; let color = getComputedStyle(document.documentElement).getPropertyValue('--canvas-dot').trim();
+            particlesArray.push(new Particle(Math.random() * (innerWidth - size * 2) + size * 2, Math.random() * (innerHeight - size * 2) + size * 2, (Math.random() * 0.4) - 0.2, (Math.random() * 0.4) - 0.2, size, color));
         }
     }
 
     function animateCanvas() {
-        requestAnimationFrame(animateCanvas);
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        requestAnimationFrame(animateCanvas); ctx.clearRect(0, 0, innerWidth, innerHeight);
         let lineColor = getComputedStyle(document.documentElement).getPropertyValue('--canvas-line').trim();
-        
         for(let i = 0; i < particlesArray.length; i++) {
             particlesArray[i].update();
             for(let j = i; j < particlesArray.length; j++) {
                 if(((particlesArray[i].x - particlesArray[j].x) ** 2 + (particlesArray[i].y - particlesArray[j].y) ** 2) < (canvas.width / 7) * (canvas.height / 7)) {
-                    ctx.beginPath(); ctx.strokeStyle = lineColor; ctx.lineWidth = 1;
-                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
+                    ctx.beginPath(); ctx.strokeStyle = lineColor; ctx.lineWidth = 1; ctx.moveTo(particlesArray[i].x, particlesArray[i].y); ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
                 }
             }
         }
@@ -791,66 +714,42 @@
     initCanvas(); animateCanvas();
 
     // --- 5. MODULE QUẢN LÝ GIAO DIỆN LIGHT/DARK THEME ---
-    const themeBtn = document.getElementById('themeBtn');
-    const html = document.documentElement;
-    const savedTheme = localStorage.getItem('theme') || 'dark'; 
-    
-    html.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
+    const themeBtn = document.getElementById('themeBtn'); const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'dark'; html.setAttribute('data-theme', savedTheme); updateThemeIcon(savedTheme);
 
     themeBtn.onclick = () => {
         const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', newTheme); 
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme); 
-        initCanvas(); 
+        html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme); initCanvas(); 
     };
 
     function updateThemeIcon(theme) {
-        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark');
-        document.getElementById('sunIcon').classList.toggle('hidden', theme === 'light');
+        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark'); document.getElementById('sunIcon').classList.toggle('hidden', theme === 'light');
     }
 
     // --- 6. HỆ THỐNG TOAST THÔNG BÁO ---
     function showToast(msg, type = 'success') {
-        const container = document.getElementById('toastContainer');
-        const toast = document.createElement('div'); 
-        toast.className = `toast toast-${type}`;
-        
-        const icons = {
-            success: '<polyline points="20 6 9 17 4 12"></polyline>',
-            error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
-            warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'
-        };
-        
+        const container = document.getElementById('toastContainer'); const toast = document.createElement('div'); toast.className = `toast toast-${type}`;
+        const icons = { success: '<polyline points="20 6 9 17 4 12"></polyline>', error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>', warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>' };
         toast.innerHTML = `<div class="toast-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
-        container.appendChild(toast);
-        void toast.offsetWidth; 
-        toast.classList.add('show');
+        container.appendChild(toast); void toast.offsetWidth; toast.classList.add('show');
         setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); }, 3000);
     }
 
     // --- 6.5 LOGIC MODAL THÔNG BÁO HỖ TRỢ ---
-    const supportBtn = document.getElementById('supportBtn');
-    const supportModal = document.getElementById('supportModal');
-    const closeSupportBtn = document.getElementById('closeSupportBtn');
-
-    supportBtn.addEventListener('click', () => {
-        supportModal.classList.remove('hidden');
-        supportBtn.classList.remove('bell-ring'); 
-    });
-
+    const supportBtn = document.getElementById('supportBtn'); const supportModal = document.getElementById('supportModal'); const closeSupportBtn = document.getElementById('closeSupportBtn');
+    supportBtn.addEventListener('click', () => { supportModal.classList.remove('hidden'); supportBtn.classList.remove('bell-ring'); });
     closeSupportBtn.addEventListener('click', () => { supportModal.classList.add('hidden'); });
     supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.add('hidden'); });
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM THEO TỪNG NGÀY TRONG TUẦN (BẢN NÂNG CẤP) ---
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM THEO TỪNG NGÀY TRONG TUẦN (BẢN NÂNG CẤP CUSTOM DROPDOWN) ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
-        const fullDayName = t('dayFullName_' + dayName);
-        const shortDayName = t('dayShort_' + dayName);
-        const offText = t('off');
+        const fullDayName = t('dayFullName_' + dayName); const shortDayName = t('dayShort_' + dayName); const offText = t('off');
         const gridSpanStyle = dayName === 'CN' ? 'grid-column: 1 / -1;' : '';
-        const optionsHtml = SHIFTS.map(s => `<option value="${s.id}">${s.id}</option>`).join("");
+        
+        let optionsHtml = `<div class="dropdown-option" onclick="selectShift('${dayName}', '', '${offText}')">${offText}</div>`;
+        SHIFTS.forEach(s => { optionsHtml += `<div class="dropdown-option" onclick="selectShift('${dayName}', '${s.id}', '${s.id}')">${s.id}</div>`; });
         
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
@@ -858,64 +757,80 @@
                     <span id="fullDayText_${dayName}">${fullDayName}</span>
                     <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
                 </div>
-                <div class="select-wrapper">
-                    <select id="${dayName}" class="custom-select">
-                        <option value="">${offText}</option>
-                        ${optionsHtml}
-                    </select>
-                    <svg class="select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
+                <div class="custom-dropdown" id="dropdown_${dayName}">
+                    <div class="dropdown-selected" onclick="toggleDropdown('${dayName}')">
+                        <span class="selected-text" id="text_${dayName}">${offText}</span>
+                        <svg class="select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="dropdown-options">${optionsHtml}</div>
+                    <input type="hidden" id="${dayName}" value="">
                 </div>
             </div>
         `;
     });
 
-    // Thêm Event Listener đổi màu khi chọn Ca làm việc
-    setTimeout(() => {
-        DAYS.forEach(day => {
-            const selectEl = document.getElementById(day);
-            selectEl.addEventListener('change', function() {
-                // Xóa toàn bộ class màu cũ
-                this.classList.remove('sel-c1', 'sel-c2', 'sel-c3', 'sel-f', 'sel-double');
-                
-                const val = this.value;
-                if (val === 'C1') this.classList.add('sel-c1');
-                else if (val === 'C2') this.classList.add('sel-c2');
-                else if (val === 'C3') this.classList.add('sel-c3');
-                else if (val.startsWith('F')) this.classList.add('sel-f');
-                else if (val.startsWith('2C')) this.classList.add('sel-double');
-            });
+    // Hàm điều khiển tắt mở Custom Dropdown trên Window để gọi từ inline onclick
+    window.toggleDropdown = function(dayName) {
+        document.querySelectorAll('.custom-dropdown').forEach(el => {
+            if (el.id !== 'dropdown_' + dayName) {
+                el.classList.remove('open');
+                el.closest('.day-card').style.zIndex = '1';
+            }
         });
-    }, 0);
+        const dropdown = document.getElementById('dropdown_' + dayName);
+        const card = dropdown.closest('.day-card');
+        if (dropdown.classList.contains('open')) {
+            dropdown.classList.remove('open'); card.style.zIndex = '1';
+        } else {
+            dropdown.classList.add('open'); card.style.zIndex = '10'; // Nổi lên trên các card khác
+        }
+    };
+
+    window.selectShift = function(dayName, value, label) {
+        const dropdown = document.getElementById('dropdown_' + dayName);
+        document.getElementById(dayName).value = value;
+        document.getElementById('text_' + dayName).innerText = label;
+        
+        dropdown.classList.remove('open');
+        dropdown.closest('.day-card').style.zIndex = '1';
+        
+        const selectedDiv = dropdown.querySelector('.dropdown-selected');
+        selectedDiv.className = 'dropdown-selected'; // Xóa màu cũ
+        
+        // Dynamic color
+        if (value === 'C1') selectedDiv.classList.add('sel-c1');
+        else if (value === 'C2') selectedDiv.classList.add('sel-c2');
+        else if (value === 'C3') selectedDiv.classList.add('sel-c3');
+        else if (value.startsWith('F')) selectedDiv.classList.add('sel-f');
+        else if (value.startsWith('2C')) selectedDiv.classList.add('sel-double');
+    };
+
+    // Tắt dropdown khi click ra ngoài
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.custom-dropdown')) {
+            document.querySelectorAll('.custom-dropdown').forEach(el => {
+                el.classList.remove('open');
+                el.closest('.day-card').style.zIndex = '1';
+            });
+        }
+    });
 
     // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG THEO THỜI GIAN THỰC ---
     let manualLock = null;
-    
-    onValue(ref(db, "settings/lock"), snap => { 
-        manualLock = snap.exists() ? snap.val() : null; 
-        updateStatusUI(); 
-    });
+    onValue(ref(db, "settings/lock"), snap => { manualLock = snap.exists() ? snap.val() : null; updateStatusUI(); });
 
     function isSystemLocked() {
-        if(manualLock === true) return true; 
-        if(manualLock === false) return false;
-        
-        const now = new Date();
-        const dayOfWeek = now.getDay(); 
-        const hours = now.getHours();
-        
+        if(manualLock === true) return true; if(manualLock === false) return false;
+        const now = new Date(); const dayOfWeek = now.getDay(); const hours = now.getHours();
         return (dayOfWeek === 5 && hours >= 20) || dayOfWeek === 6 || dayOfWeek === 0;
     }
 
     function updateStatusUI() {
-        const lockStatus = document.getElementById("lockStatus");
-        const submitBtn = document.getElementById("submitBtn");
-        
+        const lockStatus = document.getElementById("lockStatus"); const submitBtn = document.getElementById("submitBtn");
         if (isSystemLocked()) {
-            lockStatus.style.background = "linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05))";
-            lockStatus.style.border = "1px solid rgba(239, 68, 68, 0.2)";
-            lockStatus.style.boxShadow = "0 8px 20px rgba(239, 68, 68, 0.05)";
+            lockStatus.style.background = "linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05))"; lockStatus.style.border = "1px solid rgba(239, 68, 68, 0.2)"; lockStatus.style.boxShadow = "0 8px 20px rgba(239, 68, 68, 0.05)";
             lockStatus.innerHTML = `
                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 10px;">
                     <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
@@ -934,12 +849,9 @@
                     </div>
                 </div>
             `;
-            submitBtn.disabled = true; 
-            submitBtn.innerHTML = t('sysLocked');
+            submitBtn.disabled = true; submitBtn.innerHTML = t('sysLocked');
         } else {
-            lockStatus.style.background = "linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05))";
-            lockStatus.style.border = "1px solid rgba(16, 185, 129, 0.2)";
-            lockStatus.style.boxShadow = "0 8px 20px rgba(16, 185, 129, 0.05)";
+            lockStatus.style.background = "linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05))"; lockStatus.style.border = "1px solid rgba(16, 185, 129, 0.2)"; lockStatus.style.boxShadow = "0 8px 20px rgba(16, 185, 129, 0.05)";
             lockStatus.innerHTML = `
                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 10px;">
                     <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
@@ -958,16 +870,13 @@
                     </div>
                 </div>
             `;
-            submitBtn.disabled = false; 
-            submitBtn.innerHTML = t('confirmBtn');
+            submitBtn.disabled = false; submitBtn.innerHTML = t('confirmBtn');
         }
     }
 
     // --- 9. XỬ LÝ SỰ KIỆN GỬI FORM LÊN FIREBASE ---
     document.getElementById("submitBtn").onclick = async () => {
-        const nameInput = document.getElementById("name");
-        const employeeName = nameInput.value.trim();
-        
+        const nameInput = document.getElementById("name"); const employeeName = nameInput.value.trim();
         if(!employeeName) { nameInput.focus(); return showToast(t('placeholder'), "warning"); }
         if(isSystemLocked()) { return showToast(t('sysLocked'), "error"); }
         
@@ -979,8 +888,7 @@
         
         if(!Object.keys(schedule).length) return showToast(t('off'), "warning");
 
-        const btn = document.getElementById("submitBtn");
-        const originalText = btn.innerHTML;
+        const btn = document.getElementById("submitBtn"); const originalText = btn.innerHTML;
         btn.innerHTML = `...`; btn.disabled = true;
 
         try {
@@ -992,16 +900,16 @@
             await set(ref(db, "dangKy/" + employeeName), { lich: schedule, timestamp: Date.now() });
             showToast("Success", "success");
             
+            // Xóa rỗng sau khi gửi
             nameInput.value = ""; 
             DAYS.forEach(day => {
-                const sel = document.getElementById(day);
-                sel.value = "";
-                sel.dispatchEvent(new Event('change')); // Kích hoạt đổi màu về mặc định
+                document.getElementById(day).value = "";
+                document.getElementById('text_' + day).innerText = t('off');
+                document.querySelector(`#dropdown_${day} .dropdown-selected`).className = 'dropdown-selected';
             });
             
         } catch(error) { 
-            console.error("Firebase fetch error:", error);
-            showToast("Error: " + error.message, "error"); 
+            console.error("Firebase fetch error:", error); showToast("Error: " + error.message, "error"); 
         } finally { 
             btn.innerHTML = originalText; btn.disabled = false; 
         }
@@ -1009,48 +917,34 @@
 
     // --- 10. ĐIỀU HƯỚNG GIỮA KHU VỰC USER VÀ MANAGER ---
     document.getElementById("managerBtn").onclick = () => {
-        document.getElementById("userCard").classList.add("hidden"); 
-        document.getElementById("managerBox").classList.remove("hidden"); 
-        initSwipeTrail();
+        document.getElementById("userCard").classList.add("hidden"); document.getElementById("managerBox").classList.remove("hidden"); initSwipeTrail();
     };
 
     document.getElementById("logoutBtn").onclick = () => {
-        document.getElementById("adminPanel").classList.add("hidden"); 
-        document.getElementById("managerBox").classList.add("hidden");
-        document.getElementById("userCard").classList.remove("hidden"); 
-        document.getElementById("loginSection").classList.remove("hidden");
+        document.getElementById("adminPanel").classList.add("hidden"); document.getElementById("managerBox").classList.add("hidden");
+        document.getElementById("userCard").classList.remove("hidden"); document.getElementById("loginSection").classList.remove("hidden");
     };
 
     // --- 11. XỬ LÝ VUỐT NGANG ẨN & VỆT KÉO (SECRET SWIPE TRAIL) ---
     let startX = 0; let isSwiping = false; let swipeTriggered = false; let trailPoints = [];
-    const swipeZone = document.getElementById('swipeZone');
-    const trailCanvas = document.getElementById('swipeTrailCanvas');
-    const tCtx = trailCanvas.getContext('2d');
+    const swipeZone = document.getElementById('swipeZone'); const trailCanvas = document.getElementById('swipeTrailCanvas'); const tCtx = trailCanvas.getContext('2d');
 
     function initSwipeTrail() {
-        swipeTriggered = false; isSwiping = false; trailPoints = [];
-        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height); resizeTrailCanvas();
+        swipeTriggered = false; isSwiping = false; trailPoints = []; tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height); resizeTrailCanvas();
     }
 
     function resizeTrailCanvas() {
-        const rect = swipeZone.parentElement.getBoundingClientRect();
-        trailCanvas.width = rect.width; trailCanvas.height = rect.height;
+        const rect = swipeZone.parentElement.getBoundingClientRect(); trailCanvas.width = rect.width; trailCanvas.height = rect.height;
     }
     window.addEventListener('resize', resizeTrailCanvas);
 
     function drawTrail() {
-        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-        if (trailPoints.length < 2) return;
-
+        tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height); if (trailPoints.length < 2) return;
         tCtx.beginPath(); tCtx.moveTo(trailPoints[0].x, trailPoints[0].y);
         for(let i = 1; i < trailPoints.length; i++) {
-            const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2;
-            const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2;
-            tCtx.quadraticCurveTo(trailPoints[i-1].x, trailPoints[i-1].y, xc, yc);
+            const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2; const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2; tCtx.quadraticCurveTo(trailPoints[i-1].x, trailPoints[i-1].y, xc, yc);
         }
-        
-        tCtx.strokeStyle = 'rgba(16, 185, 129, 0.8)'; tCtx.lineWidth = 6; tCtx.lineCap = 'round';
-        tCtx.shadowBlur = 15; tCtx.shadowColor = 'rgba(16, 185, 129, 1)'; tCtx.stroke();
+        tCtx.strokeStyle = 'rgba(16, 185, 129, 0.8)'; tCtx.lineWidth = 6; tCtx.lineCap = 'round'; tCtx.shadowBlur = 15; tCtx.shadowColor = 'rgba(16, 185, 129, 1)'; tCtx.stroke();
     }
 
     setInterval(() => {
@@ -1064,15 +958,10 @@
 
     swipeZone.addEventListener('pointermove', (e) => {
         if (!isSwiping || swipeTriggered) return;
-        
-        const rect = trailCanvas.getBoundingClientRect();
-        trailPoints.push({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-        drawTrail();
-        
+        const rect = trailCanvas.getBoundingClientRect(); trailPoints.push({ x: e.clientX - rect.left, y: e.clientY - rect.top }); drawTrail();
         if (e.clientX - startX > 150) {
             swipeTriggered = true; isSwiping = false;
-            tCtx.fillStyle = "rgba(16, 185, 129, 0.2)"; tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height);
-            if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+            tCtx.fillStyle = "rgba(16, 185, 129, 0.2)"; tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height); if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
             setTimeout(() => { loginAdmin(); initSwipeTrail(); }, 300);
         }
     });
@@ -1080,164 +969,94 @@
     swipeZone.addEventListener('pointerup', (e) => { if (!isSwiping) return; isSwiping = false; swipeZone.releasePointerCapture(e.pointerId); });
 
     function loginAdmin() {
-        showToast("Welcome", "success");
-        document.getElementById("loginSection").classList.add("hidden"); 
-        document.getElementById("adminPanel").classList.remove("hidden");
-        fetchAndRenderAdminData();
+        showToast("Welcome", "success"); document.getElementById("loginSection").classList.add("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); fetchAndRenderAdminData();
     }
 
     // --- 12. LOGIC DASHBOARD QUẢN TRỊ VIÊN ---
     let rawExcelDataExport = ""; 
-    
     async function fetchAndRenderAdminData() {
-        const tableContainer = document.getElementById("excelTable");
-        tableContainer.innerHTML = `<div style="padding: 40px; text-align: center;"><div class="skeleton" style="height: 150px; border-radius: 16px;"></div></div>`;
-        
+        const tableContainer = document.getElementById("excelTable"); tableContainer.innerHTML = `<div style="padding: 40px; text-align: center;"><div class="skeleton" style="height: 150px; border-radius: 16px;"></div></div>`;
         try {
             const snapshot = await get(ref(db, "dangKy"));
-            
             if(!snapshot.exists()) {
-                tableContainer.innerHTML = `<div style="padding: 40px; color: var(--text-muted); text-align: center; font-weight: 600;">${t('emptyData')}</div>`;
-                document.getElementById("totalUsers").innerText = "0"; document.getElementById("totalShifts").innerText = "0"; 
-                return;
+                tableContainer.innerHTML = `<div style="padding: 40px; color: var(--text-muted); text-align: center; font-weight: 600;">${t('emptyData')}</div>`; document.getElementById("totalUsers").innerText = "0"; document.getElementById("totalShifts").innerText = "0"; return;
             }
             
             const data = snapshot.val() || {}; let countUsers = 0; let countShifts = 0;
-            let htmlTable = `<table><thead><tr><th>${t('staffIdentity')}</th>`;
-            htmlTable += DAYS.map(day => `<th>${t('dayShort_' + day)}</th>`).join(''); htmlTable += `</tr></thead><tbody>`;
+            let htmlTable = `<table><thead><tr><th>${t('staffIdentity')}</th>`; htmlTable += DAYS.map(day => `<th>${t('dayShort_' + day)}</th>`).join(''); htmlTable += `</tr></thead><tbody>`;
             rawExcelDataExport = `${t('staffIdentity')}\t${DAYS.map(day => t('dayShort_' + day)).join('\t')}\n`;
             
             const sortedNames = Object.keys(data).sort();
-            
             sortedNames.forEach(employeeName => {
-                const employeeData = data[employeeName] || {}; countUsers++; 
-                const avatarChar = String(employeeName).charAt(0).toUpperCase();
-                
-                htmlTable += `<tr><td><div class="avatar">${avatarChar}</div>${employeeName}</td>`; 
-                rawExcelDataExport += `${employeeName}\t`;
+                const employeeData = data[employeeName] || {}; countUsers++; const avatarChar = String(employeeName).charAt(0).toUpperCase();
+                htmlTable += `<tr><td><div class="avatar">${avatarChar}</div>${employeeName}</td>`; rawExcelDataExport += `${employeeName}\t`;
                 
                 const lichData = (employeeData && typeof employeeData === 'object') ? employeeData.lich : null;
-
                 DAYS.forEach((day, index) => {
-                    const shiftRegistered = lichData ? lichData[day] : null; 
-                    if(shiftRegistered) countShifts++;
-                    
-                    const shiftInfoObj = shiftRegistered ? SHIFTS.find(s => s.id === shiftRegistered) : null;
-                    const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : (shiftRegistered ? 'badge-double' : 'badge-none');
-                    const displayValue = shiftRegistered || '-';
-                    
-                    htmlTable += `<td><span class="shift-badge ${cssBadgeClass}">${displayValue}</span></td>`;
-                    rawExcelDataExport += `${displayValue}${index === DAYS.length - 1 ? '' : '\t'}`;
+                    const shiftRegistered = lichData ? lichData[day] : null; if(shiftRegistered) countShifts++;
+                    const shiftInfoObj = shiftRegistered ? SHIFTS.find(s => s.id === shiftRegistered) : null; const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : (shiftRegistered ? 'badge-double' : 'badge-none'); const displayValue = shiftRegistered || '-';
+                    htmlTable += `<td><span class="shift-badge ${cssBadgeClass}">${displayValue}</span></td>`; rawExcelDataExport += `${displayValue}${index === DAYS.length - 1 ? '' : '\t'}`;
                 });
                 htmlTable += `</tr>`; rawExcelDataExport += `\n`;
             });
             tableContainer.innerHTML = htmlTable + `</tbody></table>`;
             animateNumberCounter("totalUsers", 0, countUsers, 800); animateNumberCounter("totalShifts", 0, countShifts, 800);
             
-        } catch(error) { 
-            console.error("Firebase fetch error:", error); showToast("Error: " + (error.message || "Please check again"), "error"); 
-        }
+        } catch(error) { console.error("Firebase fetch error:", error); showToast("Error: " + (error.message || "Please check again"), "error"); }
     }
 
     // --- 13. CÁC HÀNH ĐỘNG CỦA QUẢN TRỊ VIÊN ---
     document.getElementById("copyBtn").onclick = () => {
-        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning");
-        navigator.clipboard.writeText(rawExcelDataExport).then(() => showToast("Copied Data", "success")).catch(() => showToast("Error Copying", "error"));
+        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning"); navigator.clipboard.writeText(rawExcelDataExport).then(() => showToast("Copied Data", "success")).catch(() => showToast("Error Copying", "error"));
     };
-    
     document.getElementById("unlockBtn").onclick = async () => { if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), false); showToast("Success", "success"); } };
     document.getElementById("lockBtn").onclick = async () => { if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), true); showToast("Locked", "warning"); } };
-    
     document.getElementById("clearBtn").onclick = async () => {
-        if(confirm("DANGER: Are you sure?")) {
-            const validationPin = prompt("Enter PIN:");
-            if(validationPin === "2005") { 
-                await remove(ref(db,"dangKy")); showToast("Cleared", "success"); fetchAndRenderAdminData(); 
-            } else { showToast("Invalid PIN", "error"); }
-        }
+        if(confirm("DANGER: Are you sure?")) { const validationPin = prompt("Enter PIN:"); if(validationPin === "2005") { await remove(ref(db,"dangKy")); showToast("Cleared", "success"); fetchAndRenderAdminData(); } else { showToast("Invalid PIN", "error"); } }
     };
 
     // --- 14. HÀM TIỆN ÍCH (UTILITIES) ---
     function animateNumberCounter(elementId, startValue, endValue, durationMs) {
         let element = document.getElementById(elementId); let startTimestamp = null;
         const step = (timestamp) => {
-            if(!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / durationMs, 1);
-            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue);
-            if(progress < 1) { window.requestAnimationFrame(step); }
-        }; 
-        window.requestAnimationFrame(step);
+            if(!startTimestamp) startTimestamp = timestamp; const progress = Math.min((timestamp - startTimestamp) / durationMs, 1);
+            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue); if(progress < 1) { window.requestAnimationFrame(step); }
+        }; window.requestAnimationFrame(step);
     }
 
     // =========================================================
     // 15. EASTER EGG: PHYSICS GRAVITY FALL (KHÔNG TRỌNG LỰC)
     // =========================================================
     let isGravityActive = false; let logoClickCount = 0;
-    
     const brandLogo = document.querySelector('.brand-logo');
-    brandLogo.addEventListener('click', () => {
-        if(isGravityActive) return; logoClickCount++;
-        if(logoClickCount >= 5) { activateGravityEasterEgg(); }
-        setTimeout(() => { logoClickCount = 0; }, 2000);
-    });
-
+    brandLogo.addEventListener('click', () => { if(isGravityActive) return; logoClickCount++; if(logoClickCount >= 5) { activateGravityEasterEgg(); } setTimeout(() => { logoClickCount = 0; }, 2000); });
+    
     let lastX, lastY, lastZ;
     window.addEventListener('devicemotion', (event) => {
-        if (isGravityActive) return;
-        let accel = event.accelerationIncludingGravity;
-        if(!accel || accel.x === null) return;
-        
+        if (isGravityActive) return; let accel = event.accelerationIncludingGravity; if(!accel || accel.x === null) return;
         let deltaX = Math.abs(lastX ? accel.x - lastX : 0); let deltaY = Math.abs(lastY ? accel.y - lastY : 0); let deltaZ = Math.abs(lastZ ? accel.z - lastZ : 0);
-        if (deltaX + deltaY + deltaZ > 40) { activateGravityEasterEgg(); }
-        lastX = accel.x; lastY = accel.y; lastZ = accel.z;
+        if (deltaX + deltaY + deltaZ > 40) { activateGravityEasterEgg(); } lastX = accel.x; lastY = accel.y; lastZ = accel.z;
     });
 
     function activateGravityEasterEgg() {
-        isGravityActive = true; showToast("⚠️ GRAVITY FAILURE", "warning");
-        if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
-
-        const resetBtn = document.createElement('button');
-        resetBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Khóa & Khôi Phục`;
-        resetBtn.style.cssText = "position:fixed; top: max(24px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 999999; padding: 14px 24px; border-radius: 20px; background: var(--danger); color: white; font-weight: 800; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.6); cursor: pointer; display: flex; align-items: center; font-family: inherit;";
-        document.body.appendChild(resetBtn);
-        resetBtn.onclick = () => window.location.reload();
-
+        isGravityActive = true; showToast("⚠️ GRAVITY FAILURE", "warning"); if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        const resetBtn = document.createElement('button'); resetBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Khóa & Khôi Phục`; resetBtn.style.cssText = "position:fixed; top: max(24px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 999999; padding: 14px 24px; border-radius: 20px; background: var(--danger); color: white; font-weight: 800; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.6); cursor: pointer; display: flex; align-items: center; font-family: inherit;"; document.body.appendChild(resetBtn); resetBtn.onclick = () => window.location.reload();
         const elements = document.querySelectorAll('.card, .header'); const physicsElements = [];
-
         elements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            el.style.width = rect.width + 'px'; el.style.height = rect.height + 'px'; el.style.position = 'fixed';
-            el.style.top = rect.top + 'px'; el.style.left = rect.left + 'px'; el.style.margin = '0';
-            el.style.transition = 'none'; el.style.zIndex = '9999';
-
-            physicsElements.push({
-                el: el, x: rect.left, y: rect.top,
-                vx: (Math.random() - 0.5) * 15, vy: -5 - Math.random() * 10,
-                rotation: 0, vr: (Math.random() - 0.5) * 10
-            });
+            const rect = el.getBoundingClientRect(); el.style.width = rect.width + 'px'; el.style.height = rect.height + 'px'; el.style.position = 'fixed'; el.style.top = rect.top + 'px'; el.style.left = rect.left + 'px'; el.style.margin = '0'; el.style.transition = 'none'; el.style.zIndex = '9999';
+            physicsElements.push({ el: el, x: rect.left, y: rect.top, vx: (Math.random() - 0.5) * 15, vy: -5 - Math.random() * 10, rotation: 0, vr: (Math.random() - 0.5) * 10 });
         });
-
         const gravity = 0.8; const bounce = 0.5;
-        
         function updatePhysics() {
             if(!isGravityActive) return;
             physicsElements.forEach(p => {
                 p.vy += gravity; p.x += p.vx; p.y += p.vy; p.rotation += p.vr;
-
-                if (p.y + p.el.offsetHeight > window.innerHeight) {
-                    p.y = window.innerHeight - p.el.offsetHeight; p.vy *= -bounce; p.vx *= 0.95; p.vr *= 0.95;
-                }
-                
-                if (p.x < 0) { p.x = 0; p.vx *= -bounce; p.vr *= -0.8; } 
-                else if (p.x + p.el.offsetWidth > window.innerWidth) { p.x = window.innerWidth - p.el.offsetWidth; p.vx *= -bounce; p.vr *= -0.8; }
-
+                if (p.y + p.el.offsetHeight > window.innerHeight) { p.y = window.innerHeight - p.el.offsetHeight; p.vy *= -bounce; p.vx *= 0.95; p.vr *= 0.95; }
+                if (p.x < 0) { p.x = 0; p.vx *= -bounce; p.vr *= -0.8; } else if (p.x + p.el.offsetWidth > window.innerWidth) { p.x = window.innerWidth - p.el.offsetWidth; p.vx *= -bounce; p.vr *= -0.8; }
                 p.el.style.top = p.y + 'px'; p.el.style.left = p.x + 'px'; p.el.style.transform = `rotate(${p.rotation}deg)`;
-            });
-            requestAnimationFrame(updatePhysics);
-        }
-        requestAnimationFrame(updatePhysics);
+            }); requestAnimationFrame(updatePhysics);
+        } requestAnimationFrame(updatePhysics);
     }
-
     updateLanguageUI();
 </script>
 
