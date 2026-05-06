@@ -124,10 +124,10 @@
         .card-subtitle { color: var(--text-muted); font-size: 14px; font-weight: 500; }
 
         /* =========================================================
-           06. PREMIUM STATUS PANEL (BẢN CHUYÊN NGHIỆP)
+           06. PREMIUM STATUS PANEL (BẢN CHUYÊN NGHIỆP - GỌN NHẸ)
         ========================================================= */
         .status-panel {
-            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            display: flex; align-items: center; justify-content: center; gap: 16px;
             padding: 18px 24px; border-radius: 24px; margin-bottom: 32px;
             position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
@@ -164,23 +164,13 @@
         .sys-locked .st-pulse { background: rgba(239, 68, 68, 0.5); }
         @keyframes boxPing { 75%, 100% { transform: scale(1.6); opacity: 0; } }
 
-        .st-info { flex: 1; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
-        .st-title { font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1; }
+        .st-info { display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+        .st-title { font-size: 18px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.1; }
         .sys-open .st-title { color: var(--success); } .sys-locked .st-title { color: var(--danger); }
-        .st-desc { font-size: 12px; font-weight: 600; color: var(--text-muted); line-height: 1.2; }
+        .st-desc { font-size: 13px; font-weight: 600; color: var(--text-muted); line-height: 1.2; }
 
-        .st-meta {
-            display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
-            background: rgba(0,0,0,0.25); padding: 12px 16px; border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; z-index: 2;
-        }
-        .st-meta-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1; }
-        .st-meta-value { font-size: 14px; font-family: 'JetBrains Mono', monospace; font-weight: 800; line-height: 1; }
-        .sys-open .st-meta-value { color: var(--warning); } .sys-locked .st-meta-value { color: var(--info); }
-        
         @media(max-width: 480px) {
-            .status-panel { flex-direction: column; align-items: stretch; gap: 16px; }
-            .st-meta { flex-direction: row; justify-content: space-between; align-items: center; padding: 14px 16px; }
+            .status-panel { flex-direction: row; justify-content: flex-start; }
         }
 
         /* =========================================================
@@ -324,7 +314,7 @@
         }
 
         /* =========================================================
-           10. SUPPORT MODAL & BELL
+           10. SUPPORT MODAL & BELL ANIMATION
         ========================================================= */
         .bell-ring svg { animation: ring 2.5s ease-in-out infinite; transform-origin: top center; }
         @keyframes ring { 0% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-10deg); } 30% { transform: rotate(5deg); } 40% { transform: rotate(-5deg); } 50% { transform: rotate(0); } 100% { transform: rotate(0); } }
@@ -337,6 +327,7 @@
         .support-close:active { transform: scale(0.9); }
         .support-icon-wrapper { width: 56px; height: 56px; background: var(--info-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 0 20px var(--info-bg); }
         .support-modal h3 { margin-bottom: 12px; color: var(--text-main); font-weight: 800; font-size: 18px; }
+        .support-modal p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500; }
     </style>
 </head>
 
@@ -347,7 +338,7 @@
 <div class="mesh-blob blob-2"></div>
 
 <div class="app-wrapper" id="app">
-    <!-- TOP NAVIGATION CẬP NHẬT VỊ TRÍ MỚI -->
+    <!-- TOP NAVIGATION -->
     <header class="header">
         <div class="brand-group">
             <div class="brand-logo">
@@ -360,7 +351,6 @@
                 WorkShift <span style="font-weight: 400; opacity: 0.7;">PRO</span>
             </div>
             
-            <!-- Bộ chọn ngôn ngữ đưa lên trên -->
             <select id="langSelect" class="lang-toggle">
                 <option value="vi">🇻🇳 VI</option>
                 <option value="en">🇬🇧 EN</option>
@@ -379,7 +369,7 @@
                 </svg>
             </button>
 
-            <!-- Ticker Đồng hồ đưa xuống dưới -->
+            <!-- Ticker Đồng hồ -->
             <div class="update-ticker" id="timeTicker">
                 <div class="update-pulse"></div> 
                 <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
@@ -566,7 +556,7 @@
             realtime: "Đồng bộ realtime:", title: "Đăng Ký Ca Làm", subtitle: "Hệ thống xếp lịch nội bộ | An Cafe & QuyChe Network", employeeId: "Định danh nhân sự", placeholder: "Ví dụ: Đăng Tùng...", schedule: "Đăng ký lịch làm việc (Tuần này)", confirmBtn: "Xác Nhận Đăng Ký", managerBtn: "Truy Cập Khu Vực Quản Lý", secureAccess: "Secure Access", highPrivilege: "Hệ thống phân quyền cấp cao", dashboard: "DASHBOARD", lockSys: "Khóa Hệ Thống", totalEmp: "Tổng Nhân Sự", totalShifts: "Ca Đăng Ký", openShift: "Mở Lịch", lock: "Khóa", export: "Xuất File", cleanup: "Dọn Dẹp", designed: "Designed & Engineered by", rights: "All rights reserved.",
             dayFullName_T2: "Thứ 2", dayFullName_T3: "Thứ 3", dayFullName_T4: "Thứ 4", dayFullName_T5: "Thứ 5", dayFullName_T6: "Thứ 6", dayFullName_T7: "Thứ 7", dayFullName_CN: "Chủ Nhật",
             dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
-            off: "-- Nghỉ --", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
+            off: "OFF", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
             supportTitle: "Trung Tâm Thông Báo", 
             supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức."
         },
@@ -574,7 +564,7 @@
             realtime: "Realtime sync:", title: "Shift Registration", subtitle: "Internal Scheduling System | An Cafe & QuyChe Network", employeeId: "Employee Identity", placeholder: "Example: Dang Tung...", schedule: "Register Work Shift (This week)", confirmBtn: "Confirm Registration", managerBtn: "Access Management Area", secureAccess: "Secure Access", highPrivilege: "High Privilege System", dashboard: "DASHBOARD", lockSys: "Lock System", totalEmp: "Total Staff", totalShifts: "Registered Shifts", openShift: "Open Shift", lock: "Lock", export: "Export", cleanup: "Clean Up", designed: "Designed & Engineered by", rights: "All rights reserved.",
             dayFullName_T2: "Monday", dayFullName_T3: "Tuesday", dayFullName_T4: "Wednesday", dayFullName_T5: "Thursday", dayFullName_T6: "Friday", dayFullName_T7: "Saturday", dayFullName_CN: "Sunday",
             dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
-            off: "-- Off --", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
+            off: "OFF", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
             supportTitle: "Notification Center", 
             supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>. We will address and resolve them immediately."
         },
@@ -582,7 +572,7 @@
             realtime: "同步实时:", title: "排班注册", subtitle: "内部排班系统 | An Cafe & QuyChe Network", employeeId: "员工身份", placeholder: "示例：Dang Tung...", schedule: "注册工作班次（本周）", confirmBtn: "确认注册", managerBtn: "访问管理区", secureAccess: "安全访问", highPrivilege: "高权限系统", dashboard: "仪表板", lockSys: "锁定系统", totalEmp: "总员工", totalShifts: "注册班次", openShift: "开放班次", lock: "锁定", export: "导出", cleanup: "清理", designed: "设计与工程 by", rights: "保留所有权利.",
             dayFullName_T2: "星期一", dayFullName_T3: "星期二", dayFullName_T4: "星期三", dayFullName_T5: "星期四", dayFullName_T6: "星期五", dayFullName_T7: "星期六", dayFullName_CN: "星期日",
             dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
-            off: "-- 休息 --", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
+            off: "OFF", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
             supportTitle: "通知中心", 
             supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>。我们将立即处理并解决。"
         },
@@ -590,7 +580,7 @@
             realtime: "실시간 동기화:", title: "근무 교대 등록", subtitle: "내부 일정 시스템 | An Cafe & QuyChe Network", employeeId: "직원 신원", placeholder: "예: Dang Tung...", schedule: "근무 교대 등록 (이번 주)", confirmBtn: "등록 확인", managerBtn: "관리 영역 접근", secureAccess: "보안 접근", highPrivilege: "고권한 시스템", dashboard: "대시보드", lockSys: "시스템 잠금", totalEmp: "총 직원", totalShifts: "등록된 교대", openShift: "교대 열기", lock: "잠금", export: "내보내기", cleanup: "정리", designed: "설계 및 엔지니어링 by", rights: "모든 권리 보유.",
             dayFullName_T2: "월요일", dayFullName_T3: "화요일", dayFullName_T4: "수요일", dayFullName_T5: "목요일", dayFullName_T6: "금요일", dayFullName_T7: "토요일", dayFullName_CN: "일요일",
             dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
-            off: "-- 휴무 --", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
+            off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
             supportTitle: "알림 센터", 
             supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다."
         },
@@ -598,7 +588,7 @@
             realtime: "リアルタイム同期:", title: "シフト登録", subtitle: "内部スケジュールシステム | An Cafe & QuyChe Network", employeeId: "従業員ID", placeholder: "例：Dang Tung...", schedule: "シフト登録（今週）", confirmBtn: "登録の確認", managerBtn: "管理エリアへのアクセス", secureAccess: "セキュアアクセス", highPrivilege: "高権限システム", dashboard: "ダッシュボード", lockSys: "システムロック", totalEmp: "総従業員", totalShifts: "登録済みシフト", openShift: "シフトを開く", lock: "ロック", export: "エクスポート", cleanup: "クリーンアップ", designed: "設計とエンジニアリング by", rights: "全著作権所有.",
             dayFullName_T2: "月曜日", dayFullName_T3: "火曜日", dayFullName_T4: "水曜日", dayFullName_T5: "木曜日", dayFullName_T6: "金曜日", dayFullName_T7: "土曜日", dayFullName_CN: "日曜日",
             dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
-            off: "-- 休み --", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
+            off: "OFF", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
             supportTitle: "通知センター", 
             supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。"
         }
@@ -824,10 +814,6 @@
                         <span class="st-desc">${t('stopReg')}</span>
                     </div>
                 </div>
-                <div class="st-meta">
-                    <span class="st-meta-label">${t('reopenAt')}</span>
-                    <span class="st-meta-value">${t('monday')}</span>
-                </div>
             `;
             submitBtn.disabled = true; submitBtn.innerHTML = t('sysLocked');
         } else {
@@ -842,10 +828,6 @@
                         <span class="st-title">${t('sysOpen')}</span>
                         <span class="st-desc">${t('sysOnline')}</span>
                     </div>
-                </div>
-                <div class="st-meta">
-                    <span class="st-meta-label">${t('autoLock')}</span>
-                    <span class="st-meta-value">20:00 T6</span>
                 </div>
             `;
             submitBtn.disabled = false; submitBtn.innerHTML = t('confirmBtn');
