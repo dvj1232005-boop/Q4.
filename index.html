@@ -7,370 +7,690 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="WorkShift Pro">
-    <meta name="theme-color" content="#020617">
+    <meta name="theme-color" content="#070b14">
     
-    <title>WorkShift Pro Enterprise | Final</title>
+    <title>WorkShift Pro Enterprise | Fantasy RPG Tavern</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* =========================================================
-           01. DESIGN SYSTEM & CSS VARIABLES
-        ========================================================= */
-        :root[data-theme="light"] {
-            --primary: #dc2626; --primary-hover: #b91c1c; --primary-light: #fef2f2; --primary-glow: rgba(220, 38, 38, 0.3);
-            --bg-base: #f8fafc; --bg-glass: rgba(255, 255, 255, 0.75); --bg-glass-heavy: rgba(255, 255, 255, 0.95);
-            --text-main: #0f172a; --text-muted: #64748b;
-            --border-glass: rgba(0, 0, 0, 0.08); --input-bg: rgba(241, 245, 249, 0.8);
-            --success: #10b981; --success-bg: rgba(16, 185, 129, 0.1);
-            --warning: #f59e0b; --warning-bg: rgba(245, 158, 11, 0.1);
-            --danger: #ef4444;  --danger-bg: rgba(239, 68, 68, 0.1);
-            --info: #3b82f6;    --info-bg: rgba(59, 130, 246, 0.1);
-            --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.07); --shadow-card: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-            --canvas-dot: #cbd5e1; --canvas-line: rgba(203, 213, 225, 0.4);
-            --blob-1: #8b5cf6; --blob-2: #ec4899;
-        }
-
-        :root[data-theme="dark"] {
-            --primary: #ef4444; --primary-hover: #f87171; --primary-light: rgba(239, 68, 68, 0.15); --primary-glow: rgba(239, 68, 68, 0.6);
-            --bg-base: #020617; --bg-glass: rgba(15, 23, 42, 0.6); --bg-glass-heavy: rgba(15, 23, 42, 0.85);
-            --text-main: #f8fafc; --text-muted: #94a3b8;
-            --border-glass: rgba(255, 255, 255, 0.1); --input-bg: rgba(30, 41, 59, 0.6);
-            --success: #34d399; --success-bg: rgba(16, 185, 129, 0.15);
-            --warning: #fbbf24; --warning-bg: rgba(245, 158, 11, 0.15);
-            --danger: #f87171;  --danger-bg: rgba(239, 68, 68, 0.15);
-            --info: #60a5fa;    --info-bg: rgba(59, 130, 246, 0.15);
-            --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.4); --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            --canvas-dot: #334155; --canvas-line: rgba(51, 65, 85, 0.5);
-            --blob-1: #6366f1; --blob-2: #f43f5e;
-        }
-
-        /* =========================================================
-           02. RESET & BASE
+           01. CSS RESET & VIEWPORT FIXES
         ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-base); color: var(--text-main);
-            transition: background-color 0.5s ease, color 0.5s ease;
-            min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; position: relative;
-            -webkit-tap-highlight-color: transparent; -webkit-font-smoothing: antialiased;
+            font-family: var(--font-main);
+            background-color: var(--color-night-base);
+            color: var(--color-text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
         }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: var(--font-mono); }
+        .hidden { display: none !important; }
 
-        input, select, textarea, button, input[type="text"] {
-            font-size: 16px !important; touch-action: manipulation;
+        /* =========================================================
+           02. DESIGN SYSTEM TOKENS
+        ========================================================= */
+        :root {
+            --font-display: 'Cinzel', 'Plus Jakarta Sans', -apple-system, serif;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --font-weight-reg: 400;
+            --font-weight-semi: 600;
+            --font-weight-bold: 800;
+
+            --color-night-base: #060913;
+            --color-night-sky: #0b1329;
+            --color-night-surface: #101c38;
+            --color-night-card: rgba(11, 20, 42, 0.92);
+
+            --color-gold-bright: #fcd34d;
+            --color-gold-antique: #d97706;
+            --color-gold-shadow: #78350f;
+            --color-amber-lantern: #f59e0b;
+
+            --color-wood-dark: #1a0f08;
+            --color-wood-mid: #2b180d;
+            --color-wood-light: #442614;
+            --color-parchment-deep: #16121e;
+
+            --color-cyan-moon: #38bdf8;
+            --color-cyan-glow: rgba(56, 189, 248, 0.35);
+            --color-amethyst-purple: #c084fc;
+
+            --color-crimson-blood: #ef4444;
+            --color-crimson-dark: #7f1d1d;
+            --color-crimson-glow: rgba(239, 68, 68, 0.4);
+
+            --color-text-title: #fef3c7;
+            --color-text-main: #f1f5f9;
+            --color-text-muted: #94a3b8;
+            --color-text-disabled: #475569;
+
+            --space-2xs: 2px;
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 12px;
+            --space-lg: 16px;
+            --space-xl: 20px;
+            --space-2xl: 24px;
+            --space-3xl: 32px;
+
+            --glow-lantern: 0 0 16px rgba(245, 158, 11, 0.4);
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --radius-pill: 9999px;
+
+            --z-background: 0;
+            --z-foliage: 5;
+            --z-app-base: 10;
+            --z-dropdown-open: 60;
+            --z-header-sticky: 100;
+            --z-toast: 9000;
+            --z-modal: 9999;
+        }
+
+        :root[data-theme="light"] {
+            --color-night-base: #0a1128;
+            --color-night-sky: #131f42;
+            --color-night-card: rgba(16, 27, 58, 0.94);
+            --color-text-main: #f8fafc;
+            --color-text-muted: #cbd5e1;
+        }
+
+        /* Chống auto-zoom trên iOS Safari */
+        #name, #langSelect {
+            font-size: 16px !important;
         }
 
         /* =========================================================
-           03. BACKGROUND EFFECTS
+           03. WORLD BACKGROUND LAYERS (Mid-Autumn Fantasy)
         ========================================================= */
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
-        .mesh-blob { position: fixed; border-radius: 50%; filter: blur(120px); -webkit-filter: blur(120px); z-index: 0; opacity: 0.35; animation: blob-bounce 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
-        .blob-1 { top: -10%; left: -10%; width: 55vw; height: 55vw; background: var(--blob-1); animation-delay: 0s; }
-        .blob-2 { bottom: -20%; right: -10%; width: 50vw; height: 50vw; background: var(--blob-2); animation-delay: -5s; }
-
-        @keyframes blob-bounce {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(5%, 10%) scale(1.1); }
-            100% { transform: translate(-5%, -5%) scale(0.9); }
+        #bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: var(--z-background); pointer-events: none;
         }
+        .sky-backdrop {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at 60% 15%, #1e293b 0%, var(--color-night-sky) 50%, var(--color-night-base) 100%);
+            z-index: 0; pointer-events: none;
+        }
+        .moon-disc {
+            position: fixed; top: 12px; right: 12%; width: 110px; height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fffbeb 20%, #fde68a 60%, #d97706 100%);
+            box-shadow: 0 0 45px rgba(253, 230, 138, 0.5), 0 0 90px rgba(217, 119, 6, 0.3);
+            z-index: 1; pointer-events: none; opacity: 0.88;
+        }
+        .cloud-ribbon {
+            position: fixed; background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.15), transparent);
+            border-radius: 50px; filter: blur(8px); z-index: 2; pointer-events: none;
+            animation: cloudFloat 35s infinite linear alternate;
+        }
+        .cloud-1 { top: 70px; right: 5%; width: 220px; height: 35px; }
+        .cloud-2 { top: 110px; left: 8%; width: 180px; height: 28px; animation-duration: 45s; }
+        @keyframes cloudFloat {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(40px); }
+        }
+        .foliage-branch {
+            position: fixed; top: 0; pointer-events: none; z-index: var(--z-foliage);
+        }
+        .foliage-left { left: 0; width: 120px; height: 120px; }
+        .foliage-right { right: 0; width: 140px; height: 140px; }
 
+        /* =========================================================
+           04. APP CONTAINER & SAFE AREA
+        ========================================================= */
         .app-wrapper {
-            position: relative; z-index: 10; display: flex; flex-direction: column; min-height: 100vh; width: 100%; max-width: 700px; margin: 0 auto; padding: 0 16px;
-            padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom));
+            position: relative; z-index: var(--z-app-base); display: flex; flex-direction: column;
+            min-height: 100vh; width: 100%; max-width: 680px; margin: 0 auto;
+            padding: 0 var(--space-lg);
+            padding-top: max(16px, env(safe-area-inset-top));
+            padding-bottom: max(16px, env(safe-area-inset-bottom));
         }
 
         /* =========================================================
-           04. HEADER & BRANDING
+           05. TAVERN HEADER & SIGNBOARD
         ========================================================= */
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; gap: 16px; flex-wrap: wrap; }
-        .brand-group { display: flex; flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
-        
-        .brand-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; transition: transform 0.2s; }
-        .brand-logo:active { transform: scale(0.95); }
-        .brand-logo-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-        .brand-logo-title { font-weight: 800; font-size: 19px; letter-spacing: 0.5px; line-height: 1; text-transform: uppercase; color: var(--text-main); }
-        .brand-logo-sub { font-size: 9px; font-weight: 800; color: var(--primary); letter-spacing: 1px; line-height: 1; text-transform: uppercase; }
-
-        .update-ticker { font-size: 11px; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px; background: var(--bg-glass); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); justify-content: center; }
-        .update-pulse { width: 6px; height: 6px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success); animation: blink 1.5s infinite; flex-shrink: 0; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        .header-controls { display: flex; align-items: center; gap: 10px; }
-        
-        .lang-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); height: 38px; padding: 0 28px 0 14px; border-radius: 19px; font-weight: 700; font-family: inherit; font-size: 13px !important; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); outline: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: 0.3s; }
-        .lang-toggle:focus { border-color: var(--primary); }
-
-        .theme-toggle { background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-main); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-shrink: 0; }
-        .theme-toggle:active { transform: scale(0.9) rotate(15deg); }
-
-        @media (max-width: 600px) {
-            .header { flex-direction: column; gap: 16px; align-items: stretch; }
-            .brand-group { width: 100%; justify-content: space-between; align-items: center; }
-            .header-controls { width: 100%; justify-content: space-between; gap: 8px; }
-            .update-ticker { flex: 1; height: 44px; }
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: var(--space-md) 0 var(--space-lg); gap: var(--space-sm);
         }
+        .brand-group {
+            display: flex; align-items: center; gap: var(--space-sm);
+        }
+        .brand-logo {
+            display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;
+            text-decoration: none;
+        }
+        .brand-logo-text {
+            display: flex; flex-direction: column; align-items: flex-start;
+        }
+        .brand-logo-title {
+            font-family: var(--font-display); font-weight: 900; font-size: 18px;
+            color: var(--color-text-title); text-shadow: var(--shadow-soft-sm);
+            letter-spacing: 0.5px; line-height: 1.1;
+        }
+        .brand-logo-sub {
+            font-family: var(--font-mono); font-size: 9px; font-weight: 800;
+            color: var(--color-gold-bright); letter-spacing: 1.5px; text-transform: uppercase;
+        }
+        .header-controls {
+            display: flex; align-items: center; gap: 6px;
+        }
+        .lang-toggle {
+            background: var(--color-night-surface);
+            border: 1.5px solid var(--color-gold-antique);
+            color: var(--color-gold-bright);
+            height: 38px; padding: 0 24px 0 10px; border-radius: var(--radius-pill);
+            font-weight: 700; font-family: var(--font-main);
+            outline: none; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fcd34d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 8px center;
+            box-shadow: var(--shadow-soft-sm); cursor: pointer;
+        }
+        .theme-toggle {
+            background: var(--color-night-surface);
+            border: 1.5px solid var(--color-gold-antique);
+            color: var(--color-gold-bright);
+            width: 38px; height: 38px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: var(--shadow-soft-sm);
+            flex-shrink: 0; transition: transform 0.2s;
+        }
+        .theme-toggle:active { transform: scale(0.92); }
+
+        .update-ticker {
+            font-size: 11px; font-weight: 700; color: var(--color-text-muted);
+            display: flex; align-items: center; gap: 6px;
+            background: rgba(11, 20, 42, 0.85); padding: 6px 12px;
+            border-radius: var(--radius-pill); border: 1px solid rgba(217, 119, 6, 0.4);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+            margin-bottom: var(--space-md); align-self: center;
+        }
+        .update-pulse {
+            width: 7px; height: 7px; background: #10b981; border-radius: 50%;
+            box-shadow: 0 0 8px #10b981; animation: pulseGlow 1.8s infinite;
+        }
+        @keyframes pulseGlow { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
         /* =========================================================
-           05. GLASS CARD & LINK HẤP DẪN & TYPEWRITER EFFECT
+           06. MAIN QUEST BOARD CONTAINER (#userCard)
         ========================================================= */
-        .card { background: var(--bg-glass-heavy); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border-radius: 32px; padding: 36px 28px; box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.1); border: 1px solid var(--border-glass); margin-bottom: 24px; animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; transform: translateY(30px); }
-        @keyframes scaleIn { to { opacity: 1; transform: translateY(0); } }
-        .card-header { text-align: center; margin-bottom: 32px; }
-        .card-title { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
-        
+        .card {
+            background: var(--color-night-card);
+            border: 2px solid var(--color-gold-antique);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl) var(--space-lg);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(254, 243, 199, 0.15);
+            position: relative;
+            margin-bottom: var(--space-2xl);
+             -webkit-
+        }
+        .card::before {
+            content: ''; position: absolute; top: -6px; left: 16px; right: 16px; height: 6px;
+            background: repeating-linear-gradient(90deg, var(--color-gold-antique) 0px, var(--color-gold-antique) 8px, transparent 8px, transparent 16px);
+            opacity: 0.6; pointer-events: none;
+        }
+        .card-header { text-align: center; margin-bottom: var(--space-lg); }
+        .card-title {
+            font-family: var(--font-display); font-size: 24px; font-weight: 900;
+            color: var(--color-text-title); letter-spacing: -0.3px; line-height: 1.25;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 15px rgba(252, 211, 77, 0.3);
+            margin-bottom: var(--space-xs);
+        }
         .ancafe-link {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            color: var(--primary); font-weight: 800; text-decoration: none; font-size: 14px;
-            padding: 8px 24px; border-radius: 20px;
-            background: var(--primary-light); border: 1px solid rgba(239, 68, 68, 0.2);
-            box-shadow: 0 4px 15px var(--primary-glow); 
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            margin-top: 8px; margin-bottom: 12px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            color: var(--color-gold-bright); font-weight: 800; text-decoration: none; font-size: 13px;
+            padding: 6px 18px; border-radius: var(--radius-pill);
+            background: rgba(217, 119, 6, 0.15); border: 1px solid var(--color-gold-antique);
+            box-shadow: 0 2px 10px rgba(217, 119, 6, 0.2);
+            transition: all 0.2s; margin-top: 4px; margin-bottom: 8px;
         }
-        .ancafe-link:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px var(--primary-glow); }
-        .ancafe-link:active { transform: translateY(0) scale(0.95); }
-
-        /* Typewriter Effect CSS */
+        .ancafe-link:active { transform: scale(0.96); }
         .slogan-container {
             display: flex; justify-content: center; align-items: center;
-            min-height: 24px; width: 100%; margin-bottom: 4px;
+            min-height: 20px; width: 100%; margin-top: 4px;
         }
         .slogan-text {
-            font-size: 13.5px; font-weight: 600; color: var(--text-muted); font-style: italic;
+            font-size: 13px; font-weight: 600; color: var(--color-text-muted); font-style: italic;
         }
         .type-cursor {
-            font-size: 14px; color: var(--primary); font-weight: 800;
-            margin-left: 2px; animation: blinkCursor 0.7s infinite;
+            font-size: 13px; color: var(--color-gold-bright); font-weight: 800;
+            animation: blinkCur 0.8s infinite; margin-left: 2px;
         }
-        @keyframes blinkCursor {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        @keyframes blinkCur { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* =========================================================
-           06. PREMIUM STATUS PANEL
+           08. ARCANE LOCK STATUS SEAL (#lockStatus)
         ========================================================= */
         .status-panel {
-            display: flex; align-items: center; justify-content: center; gap: 20px;
-            padding: 20px 24px; border-radius: 24px; margin-bottom: 32px;
-            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
-            box-shadow: var(--shadow-soft); text-align: center;
+            display: flex; align-items: center; justify-content: flex-start; gap: var(--space-md);
+            padding: 14px 18px; border-radius: var(--radius-md); margin-bottom: var(--space-xl);
+            background: rgba(6, 11, 25, 0.85); border: 1.5px solid var(--color-gold-antique);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6), var(--shadow-soft-sm);
         }
-        
-        .status-panel::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            animation: scan 3s linear infinite; pointer-events: none;
-        }
-        @keyframes scan { 0% { left: -100%; } 100% { left: 200%; } }
-
         .status-panel.sys-open {
-            border-color: rgba(16, 185, 129, 0.4); background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), transparent);
-            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.1), inset 0 0 0 1px rgba(16, 185, 129, 0.15);
+            border-color: var(--color-cyan-moon);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(6, 11, 25, 0.9));
         }
         .status-panel.sys-locked {
-            border-color: rgba(239, 68, 68, 0.4); background: linear-gradient(145deg, rgba(239, 68, 68, 0.1), transparent);
-            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.1), inset 0 0 0 1px rgba(239, 68, 68, 0.15);
+            border-color: var(--color-crimson-blood);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(6, 11, 25, 0.9));
         }
-
         .st-icon-box {
-            position: relative; width: 56px; height: 56px; border-radius: 20px;
+            width: 48px; height: 48px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-            z-index: 2;
+            border: 1px solid rgba(255,255,255,0.15); box-shadow: var(--shadow-soft-sm);
         }
-        .sys-open .st-icon-box { background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: var(--success); box-shadow: 0 0 25px rgba(16, 185, 129, 0.3); }
-        .sys-locked .st-icon-box { background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: var(--danger); box-shadow: 0 0 25px rgba(239, 68, 68, 0.3); }
-
-        .st-pulse { position: absolute; width: 100%; height: 100%; border-radius: inherit; animation: boxPing 2s cubic-bezier(0, 0, 0.2, 1) infinite; z-index: -1; }
-        .sys-open .st-pulse { background: rgba(16, 185, 129, 0.6); }
-        .sys-locked .st-pulse { background: rgba(239, 68, 68, 0.6); }
-        @keyframes boxPing { 75%, 100% { transform: scale(1.6); opacity: 0; } }
-
-        .st-info { display: flex; flex-direction: column; gap: 4px; z-index: 2; text-align: left; }
-        .st-title { font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; }
-        .sys-open .st-title { color: var(--success); text-shadow: 0 0 10px rgba(16, 185, 129, 0.4); } 
-        .sys-locked .st-title { color: var(--danger); text-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
-        .st-desc { font-size: 13px; font-weight: 600; color: var(--text-muted); line-height: 1.2; letter-spacing: 0.3px;}
+        .sys-open .st-icon-box { background: rgba(56, 189, 248, 0.2); color: var(--color-cyan-moon); }
+        .sys-locked .st-icon-box { background: rgba(239, 68, 68, 0.25); color: var(--color-crimson-blood); }
+        .st-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+        .st-title {
+            font-family: var(--font-display); font-size: 16px; font-weight: 800; letter-spacing: 0.5px;
+        }
+        .sys-open .st-title { color: var(--color-cyan-moon); text-shadow: 0 0 10px var(--color-cyan-glow); }
+        .sys-locked .st-title { color: var(--color-crimson-blood); text-shadow: 0 0 10px var(--color-crimson-glow); }
+        .st-desc { font-size: 12px; font-weight: 600; color: var(--color-text-muted); }
 
         /* =========================================================
-           07. FORMS & DROPDOWN UI
+           09. GUILD MEMBER IDENTITY SLATE (#name)
         ========================================================= */
-        .input-wrapper { position: relative; margin-bottom: 24px; }
-        .input-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        .input-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; transition: 0.3s; }
-        .form-control { width: 100%; padding: 18px 20px 18px 52px; border-radius: 18px; border: 2px solid var(--border-glass); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-weight: 600; transition: 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); -webkit-appearance: none; appearance: none; }
-        .form-control:focus { background: var(--bg-glass-heavy); border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); outline: none; }
-        .form-control:focus + .input-icon { color: var(--primary); }
-
-        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 32px; }
-        
-        .day-card { 
-            background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 20px; padding: 16px; 
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); 
-            position: relative; z-index: 1;
+        .input-label {
+            display: flex; align-items: center; gap: 6px; font-size: 12.5px;
+            font-weight: 800; color: var(--color-text-title); text-transform: uppercase;
+            letter-spacing: 0.8px; margin-bottom: 8px;
         }
-        .day-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
-        .day-card:focus-within { border-color: var(--primary); background: var(--bg-glass-heavy); box-shadow: 0 8px 24px var(--primary-glow); }
-        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 800; font-size: 13px; color: var(--text-main); }
-        .day-badge { font-size: 10px; padding: 4px 8px; border-radius: 6px; background: var(--border-glass); color: var(--text-muted); }
+        .input-wrapper { position: relative; margin-bottom: var(--space-xl); }
+        .input-icon {
+            position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+            color: var(--color-gold-antique); pointer-events: none;
+        }
+        .form-control {
+            width: 100%; padding: 14px 16px 14px 46px; border-radius: var(--radius-md);
+            border: 1.5px solid rgba(217, 119, 6, 0.5); background: rgba(6, 11, 25, 0.8);
+            color: var(--color-text-title); font-family: var(--font-main); font-weight: 700;
+            transition: all 0.2s; box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+            appearance: none; -webkit-appearance: none;
+        }
+        .form-control:focus {
+            border-color: var(--color-gold-bright); outline: none;
+            background: rgba(10, 18, 38, 0.95);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.6), 0 0 12px rgba(252, 211, 77, 0.25);
+        }
 
-        .custom-dropdown { position: relative; width: 100%; font-family: inherit; }
-        .dropdown-selected {
-            width: 100%; padding: 14px 16px; border-radius: 14px; 
-            border: 2px solid transparent; background: var(--input-bg); 
-            color: var(--text-main); font-weight: 800; font-size: 14px; 
+        /* =========================================================
+           10. WEEKLY QUEST GRID LAYOUT & 11. DAY QUEST CARD
+        ========================================================= */
+        .calendar-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+            margin-bottom: var(--space-xl);
+        }
+        .day-card {
+            background: rgba(10, 18, 38, 0.85); border: 1.5px solid rgba(217, 119, 6, 0.35);
+            border-radius: var(--radius-md); padding: 12px 10px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), var(--shadow-soft-sm);
+            position: relative; z-index: 1; transition: border-color 0.2s;
+        }
+        .day-card:hover { border-color: rgba(252, 211, 77, 0.6); }
+        .day-header {
             display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); user-select: none;
+            margin-bottom: 8px; font-weight: 800; font-size: 13px; color: var(--color-text-main);
         }
-        .dropdown-selected:active { transform: scale(0.97); }
-        .dropdown-selected .select-arrow { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); color: var(--text-muted); }
-        
-        .custom-dropdown.open .dropdown-selected { border-color: var(--primary); background: var(--bg-glass-heavy); box-shadow: 0 4px 20px var(--primary-light); }
-        .custom-dropdown.open .select-arrow { transform: rotate(180deg); color: var(--primary); }
-        
+        .day-badge {
+            font-family: var(--font-mono); font-size: 10px; padding: 2px 6px;
+            border-radius: 4px; background: rgba(217, 119, 6, 0.2);
+            color: var(--color-gold-bright); border: 1px solid rgba(217, 119, 6, 0.4);
+        }
+
+        /* =========================================================
+           12. RUNIC SHIFT SELECTOR (.custom-dropdown)
+        ========================================================= */
+        .custom-dropdown { position: relative; width: 100%; }
+        .dropdown-selected {
+            width: 100%; padding: 10px 12px; border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(6, 11, 25, 0.9);
+            color: var(--color-text-main); font-weight: 800; font-size: 13.5px;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; user-select: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            transition: all 0.2s; min-height: 42px;
+        }
+        .dropdown-selected:active { transform: scale(0.98); }
+        .dropdown-selected .select-arrow {
+            transition: transform 0.25s; color: var(--color-gold-antique); flex-shrink: 0;
+        }
+        .custom-dropdown.open .dropdown-selected {
+            border-color: var(--color-gold-bright); background: rgba(15, 26, 54, 1);
+            box-shadow: 0 0 12px rgba(252, 211, 77, 0.25);
+        }
+        .custom-dropdown.open .select-arrow { transform: rotate(180deg); color: var(--color-gold-bright); }
+
         .dropdown-options {
-            position: absolute; top: calc(100% + 8px); left: 0; right: 0;
-            background: var(--bg-glass-heavy); border: 1px solid var(--border-glass);
-            border-radius: 16px; padding: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-            z-index: 100; max-height: 220px; overflow-y: auto;
-            opacity: 0; visibility: hidden; transform: translateY(-10px) scale(0.95);
-            transform-origin: top center; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+            background: #081024; border: 1.5px solid var(--color-gold-antique);
+            border-radius: 12px; padding: 6px; box-shadow: 0 14px 30px rgba(0, 0, 0, 0.9);
+            z-index: var(--z-dropdown-open); max-height: 200px; overflow-y: auto;
+            opacity: 0; visibility: hidden; transform: translateY(-8px);
+            transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
         }
-        .custom-dropdown.open .dropdown-options { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-        
-        .dropdown-option { padding: 12px 16px; font-weight: 700; font-size: 14px; color: var(--text-main); border-radius: 10px; cursor: pointer; transition: 0.2s; margin-bottom: 4px; }
-        .dropdown-option:last-child { margin-bottom: 0; }
-        .dropdown-option:hover, .dropdown-option:active { background: var(--primary-light); color: var(--primary); padding-left: 20px; }
-        
-        .dropdown-options::-webkit-scrollbar { width: 5px; }
-        .dropdown-options::-webkit-scrollbar-thumb { background: var(--border-glass); border-radius: 10px; }
+        .custom-dropdown.open .dropdown-options { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-option {
+            padding: 8px 12px; font-weight: 700; font-size: 13px; color: var(--color-text-main);
+            border-radius: 8px; cursor: pointer; transition: 0.15s; margin-bottom: 2px;
+        }
+        .dropdown-option:hover, .dropdown-option:active {
+            background: rgba(217, 119, 6, 0.25); color: var(--color-gold-bright);
+        }
 
-        .dropdown-selected.sel-c1 { background: var(--info-bg); color: var(--info); border-color: rgba(59, 130, 246, 0.4); }
-        .dropdown-selected.sel-c2 { background: var(--warning-bg); color: var(--warning); border-color: rgba(245, 158, 11, 0.4); }
-        .dropdown-selected.sel-c3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; border-color: rgba(168, 85, 247, 0.4); }
-        .dropdown-selected.sel-f  { background: var(--danger-bg); color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
-        .dropdown-selected.sel-double { background: var(--primary-light); color: var(--primary); border-color: rgba(239, 68, 68, 0.6); box-shadow: 0 0 10px var(--primary-glow); }
-
-        /* =========================================================
-           08. BUTTONS & ACTIONS
-        ========================================================= */
-        .btn { width: 100%; padding: 18px; border-radius: 18px; font-family: inherit; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: white; box-shadow: 0 10px 20px -5px var(--primary-glow); }
-        .btn-primary:active:not(:disabled) { transform: scale(0.96); box-shadow: 0 4px 10px -5px var(--primary-glow); }
-        .btn-primary:disabled { opacity: 0.6; filter: grayscale(0.5); cursor: not-allowed; }
-        .btn-outline { background: transparent; border: 2px solid var(--border-glass); color: var(--text-main); margin-top: 12px; }
-        .btn-outline:active { transform: scale(0.96); background: var(--border-glass); }
+        /* Mã màu ca làm theo Token */
+        .dropdown-selected.sel-c1 { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.5); }
+        .dropdown-selected.sel-c2 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.5); }
+        .dropdown-selected.sel-c3 { background: rgba(192, 132, 252, 0.15); color: #c084fc; border-color: rgba(192, 132, 252, 0.5); }
+        .dropdown-selected.sel-f  { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.5); }
+        .dropdown-selected.sel-double { background: rgba(252, 211, 77, 0.15); color: #fcd34d; border-color: rgba(252, 211, 77, 0.6); box-shadow: 0 0 10px rgba(252, 211, 77, 0.2); }
 
         /* =========================================================
-           09. BENTO DASHBOARD & TABLE
+           13. ACTION BUTTONS (#submitBtn, #managerBtn)
         ========================================================= */
-        .dashboard-container { position: relative; }
-        .dashboard-container::before { content: ''; position: absolute; top: -20px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.5; }
-        .dashboard-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px dashed var(--border-glass); }
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
-        .bento-card { background: linear-gradient(145deg, var(--bg-glass-heavy) 0%, rgba(15, 23, 42, 0.4) 100%); border: 1px solid var(--border-glass); border-radius: 24px; padding: 24px; box-shadow: var(--shadow-soft), inset 0 0 20px rgba(0,0,0,0.2); position: relative; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: transform 0.3s ease, box-shadow 0.3s ease; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 20px 20px; }
-        .bento-card::after { content: ''; position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); border-top-left-radius: 24px; opacity: 0.5; }
-        .bento-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 0 0 1px var(--primary-glow); }
-        .stat-val { font-size: 42px; font-weight: 800; color: var(--text-main); font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 8px; text-shadow: 0 0 15px var(--primary-glow); position: relative; z-index: 2; }
-        .stat-label { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; position: relative; z-index: 2; }
-        .bento-icon { position: absolute; top: 50%; right: -10px; transform: translateY(-50%) scale(3.5); color: var(--primary); opacity: 0.05; pointer-events: none; z-index: 1; }
+        .btn {
+            width: 100%; padding: 15px; border-radius: var(--radius-md);
+            font-family: var(--font-main); font-size: 14px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.8px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.15s; border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%);
+            border: 1.5px solid #f87171; color: #fff8db;
+            box-shadow: 0 6px 18px rgba(185, 28, 28, 0.45), var(--shadow-soft-sm);
+        }
+        .btn-primary:active:not(:disabled) {
+            transform: translateY(2px); box-shadow: 0 2px 8px rgba(185, 28, 28, 0.4);
+        }
+        .btn-primary:disabled {
+            opacity: 0.55; filter: grayscale(0.6); cursor: not-allowed;
+        }
+        .btn-outline {
+            background: rgba(11, 20, 42, 0.7); border: 1.5px solid var(--color-gold-antique);
+            color: var(--color-gold-bright); margin-top: 10px; box-shadow: var(--shadow-soft-sm);
+        }
+        .btn-outline:active { transform: translateY(1px); background: rgba(217, 119, 6, 0.15); }
 
-        .action-dock { background: rgba(0, 0, 0, 0.2); padding: 12px; border-radius: 28px; border: 1px solid var(--border-glass); box-shadow: inset 0 4px 15px rgba(0,0,0,0.3); display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
-        .dock-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px 8px; border-radius: 20px; background: var(--bg-glass); color: var(--text-main); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; border: 1px solid transparent; position: relative; overflow: hidden; text-align: center; }
-        .dock-btn::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; border-radius: 3px; background: currentColor; opacity: 0; transition: 0.3s; }
-        .dock-btn:hover { background: var(--bg-glass-heavy); }
-        .dock-btn:active { transform: scale(0.92); }
-        .dock-btn.success { color: var(--success); } .dock-btn.warning { color: var(--warning); } .dock-btn.info { color: var(--info); } .dock-btn.danger { color: var(--danger); }
-        .dock-btn:hover::before { opacity: 1; box-shadow: 0 0 10px currentColor; }
-        .dock-btn svg { width: 24px; height: 24px; filter: drop-shadow(0 0 5px currentColor); }
-
-        .table-container { border-radius: 24px; border: 1px solid var(--border-glass); background: var(--bg-glass); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: relative; }
-        .table-wrapper { overflow-x: auto; max-height: 400px; -webkit-overflow-scrolling: touch; }
-        .table-wrapper::-webkit-scrollbar { display: none; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th { background: rgba(0,0,0,0.4); color: var(--text-muted); font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; padding: 18px 12px; text-align: center; border-bottom: 2px solid var(--primary); white-space: nowrap; position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        th:first-child { text-align: left; left: 0; z-index: 20; background: rgba(0,0,0,0.6); box-shadow: 2px 0 5px rgba(0,0,0,0.2); }
-        td { padding: 16px 12px; text-align: center; border-bottom: 1px solid var(--border-glass); font-weight: 600; white-space: nowrap; transition: background 0.2s; }
-        tr:hover td { background: rgba(255,255,255,0.05); }
-        td:first-child { text-align: left; position: sticky; left: 0; background: var(--bg-glass-heavy); z-index: 5; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 12px; box-shadow: 2px 0 5px rgba(0,0,0,0.05); border-left: 3px solid transparent; transition: 0.2s; }
-        tr:hover td:first-child { border-left: 3px solid var(--primary); }
-
-        .shift-badge { display: inline-flex; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 11px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .badge-c1 { background: var(--info-bg); color: var(--info); border: 1px solid rgba(59, 130, 246, 0.3); } .badge-c2 { background: var(--warning-bg); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); } .badge-c3 { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); } .badge-f { background: var(--danger-bg); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3); } .badge-double { background: var(--primary-bg); color: var(--primary); border: 1px solid rgba(220, 38, 38, 0.4); box-shadow: 0 0 10px var(--primary-light);} .badge-none { background: transparent; color: var(--border-glass); box-shadow: none;}
-
-        .swipe-auth-zone { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; touch-action: none; cursor: grab; background: transparent; border-radius: 32px; transition: background 0.3s ease; }
+        /* =========================================================
+           14. GUILD MASTER CHAMBER & 15. ADMIN SANCTUM
+        ========================================================= */
+        .swipe-auth-zone {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; touch-action: none; cursor: grab; background: transparent;
+        }
         .swipe-auth-zone:active { cursor: grabbing; }
-        .btn-exit { background: transparent; border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); padding: 8px 16px; border-radius: 12px; font-weight: 800; font-size: 12px; text-transform: uppercase; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: 0.3s; }
-        .btn-exit:hover { background: var(--danger-bg); box-shadow: 0 0 15px var(--danger-bg); }
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: var(--space-lg);
+        }
+        .bento-card {
+            background: rgba(6, 11, 25, 0.85); border: 1.5px solid var(--color-gold-antique);
+            border-radius: var(--radius-md); padding: 16px; box-shadow: var(--shadow-soft-sm);
+            position: relative; overflow: hidden;
+        }
+        .stat-val {
+            font-family: var(--font-mono); font-size: 34px; font-weight: 800;
+            color: var(--color-gold-bright); line-height: 1; margin-bottom: 6px;
+        }
+        .stat-label {
+            font-size: 11px; font-weight: 800; color: var(--color-text-muted);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .action-dock {
+            background: rgba(6, 11, 25, 0.9); padding: 10px; border-radius: var(--radius-md);
+            border: 1.5px solid var(--color-gold-antique); display: grid;
+            grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-soft-sm);
+        }
+        .dock-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 6px; padding: 12px 4px; border-radius: 10px; background: rgba(16, 28, 56, 0.8);
+            color: var(--color-text-main); font-size: 10.5px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.3px; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.08); transition: transform 0.15s; text-align: center;
+        }
+        .dock-btn:active { transform: scale(0.93); }
+        .dock-btn.success { color: #34d399; }
+        .dock-btn.warning { color: #fbbf24; }
+        .dock-btn.info { color: #60a5fa; }
+        .dock-btn.danger { color: #f87171; }
+        .dock-btn svg { width: 20px; height: 20px; }
 
-        .toast-container { position: fixed; top: max(24px, env(safe-area-inset-top)); right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
-        .toast { background: var(--bg-glass-heavy); color: var(--text-main); padding: 14px 20px; border-radius: 16px; font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-card), 0 0 0 1px var(--border-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transform: translateX(120%); opacity: 0; transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .toast.show { transform: translateX(0); opacity: 1; }
-        .toast-icon { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; }
-        .toast-success .toast-icon { background: var(--success-bg); color: var(--success); } .toast-error .toast-icon { background: var(--danger-bg); color: var(--danger); } .toast-warning .toast-icon { background: var(--warning-bg); color: var(--warning); }
-        .hidden { display: none !important; }
-        .skeleton { background: linear-gradient(90deg, var(--input-bg) 25%, var(--border-glass) 50%, var(--input-bg) 75%); background-size: 200% 100%; animation: skeletonLoad 1.5s infinite; border-radius: 8px; }
-        @keyframes skeletonLoad { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-        footer { text-align: center; padding: 30px 0 40px; font-size: 13px; color: var(--text-muted); font-weight: 500; z-index: 10; position: relative; line-height: 1.6; letter-spacing: 0.3px; }
-        footer strong { color: var(--primary); font-weight: 800; }
-        footer span.pro-text { color: var(--primary); font-weight: 700; }
-
-        @media (max-width: 600px) {
-            .card { padding: 28px 20px; border-radius: 28px; }
-            .card-title { font-size: 24px; }
-            .bento-grid { gap: 12px; }
-            .bento-card { padding: 16px; border-radius: 20px; }
-            .stat-val { font-size: 32px; }
-            .action-dock { gap: 8px; padding: 10px; }
-            .dock-btn { padding: 12px 4px; border-radius: 16px; font-size: 10px; }
-            .toast-container { left: 16px; right: 16px; align-items: center; }
-            .toast { width: 100%; transform: translateY(-100px); }
-            .toast.show { transform: translateY(0); }
+        .btn-exit {
+            background: rgba(239, 68, 68, 0.15); border: 1.5px solid var(--color-crimson-blood);
+            color: var(--color-crimson-blood); padding: 6px 14px; border-radius: 10px;
+            font-weight: 800; font-size: 11.5px; text-transform: uppercase; cursor: pointer;
+            font-family: var(--font-mono); box-shadow: var(--shadow-soft-sm);
         }
 
-        /* =========================================================
-           10. SUPPORT MODAL & BELL ANIMATION
-        ========================================================= */
-        .bell-ring svg { animation: ring 2.5s ease-in-out infinite; transform-origin: top center; }
-        @keyframes ring { 0% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-10deg); } 30% { transform: rotate(5deg); } 40% { transform: rotate(-5deg); } 50% { transform: rotate(0); } 100% { transform: rotate(0); } }
+        .table-container {
+            border-radius: var(--radius-md); border: 1.5px solid var(--color-gold-antique);
+            background: rgba(6, 11, 25, 0.9); overflow: hidden; box-shadow: var(--shadow-soft-md);
+        }
+        .table-wrapper { overflow-x: auto; max-height: 400px; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th {
+            background: #0a1329; color: var(--color-gold-bright); font-weight: 800;
+            text-transform: uppercase; font-size: 11px; letter-spacing: 0.8px;
+            padding: 14px 10px; border-bottom: 2px solid var(--color-gold-antique);
+            position: sticky; top: 0; z-index: 10;
+        }
+        th:first-child { text-align: left; left: 0; z-index: 20; background: #0c1834; }
+        td { padding: 12px 10px; border-bottom: 1px solid rgba(217, 119, 6, 0.2); }
+        td:first-child {
+            text-align: left; position: sticky; left: 0; background: #0c1834;
+            z-index: 5; font-weight: 700; color: var(--color-text-title);
+        }
+        .shift-badge {
+            display: inline-flex; padding: 4px 8px; border-radius: 6px; font-weight: 800;
+            font-size: 11px; font-family: var(--font-mono); border: 1px solid transparent;
+        }
+        .badge-c1 { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); }
+        .badge-c2 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4); }
+        .badge-c3 { background: rgba(192, 132, 252, 0.2); color: #c084fc; border-color: rgba(192, 132, 252, 0.4); }
+        .badge-f  { background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4); }
+        .badge-double { background: rgba(252, 211, 77, 0.2); color: #fcd34d; border-color: rgba(252, 211, 77, 0.5); }
+        .badge-none { background: transparent; color: var(--color-text-muted); }
 
-        .support-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 99999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        /* =========================================================
+           16. MODAL & TOAST ARCHITECTURE
+        ========================================================= */
+        .toast-container {
+            position: fixed; top: max(16px, env(safe-area-inset-top)); right: 16px;
+            z-index: var(--z-toast); display: flex; flex-direction: column; gap: 8px;
+            pointer-events: none;
+        }
+        .toast {
+            background: #0b142a; border: 1.5px solid var(--color-gold-antique);
+            color: var(--color-text-main); padding: 12px 18px; border-radius: 12px;
+            font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 10px;
+            box-shadow: var(--shadow-soft-md); transform: translateX(120%); opacity: 0;
+            transition: 0.35s cubic-bezier(0, 0, 0.2, 1);
+        }
+        .toast.show { transform: translateX(0); opacity: 1; }
+        .toast-icon {
+            display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;
+            border-radius: 50%; flex-shrink: 0;
+        }
+        .toast-success .toast-icon { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .toast-error .toast-icon { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .toast-warning .toast-icon { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+
+        .support-modal {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.75); z-index: var(--z-modal);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: 0.25s; padding: var(--space-lg);
+        }
         .support-modal:not(.hidden) { opacity: 1; visibility: visible; }
-        .support-modal-content { background: var(--bg-glass-heavy); border: 1px solid var(--border-glass); border-radius: 28px; padding: 32px 24px; width: 90%; max-width: 380px; text-align: center; position: relative; transform: translateY(30px); transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: var(--shadow-card), 0 0 0 1px inset rgba(255,255,255,0.1); }
-        .support-modal:not(.hidden) .support-modal-content { transform: translateY(0); }
-        .support-close { position: absolute; top: 16px; right: 16px; background: var(--bg-glass); border: 1px solid var(--border-glass); color: var(--text-muted); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
-        .support-close:active { transform: scale(0.9); }
-        .support-icon-wrapper { width: 56px; height: 56px; background: var(--info-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 0 20px var(--info-bg); }
-        .support-modal h3 { margin-bottom: 12px; color: var(--text-main); font-weight: 800; font-size: 18px; }
-        .support-modal p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500; }
-    </style>
+        .support-modal-content {
+            background: #0b142a; border: 2px solid var(--color-gold-antique);
+            border-radius: var(--radius-lg); padding: 28px 20px; width: 100%; max-width: 380px;
+            text-align: center; position: relative; box-shadow: var(--shadow-soft-lg);
+        }
+        .support-close {
+            position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15); color: var(--color-text-muted);
+            width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; cursor: pointer;
+        }
+        .bell-ring svg { animation: bellShake 2.5s infinite; transform-origin: top center; }
+        @keyframes bellShake { 0%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(12deg); } 20%, 40% { transform: rotate(-12deg); } 50% { transform: rotate(0); } }
+
+        /* =========================================================
+           17. TAVERN FOOTER & MOBILE RESPONSIVE MEDIA QUERIES
+        ========================================================= */
+        footer {
+            text-align: center; padding: 20px 0 32px; font-size: 11px;
+            color: var(--color-text-muted); line-height: 1.5; letter-spacing: 0.3px;
+            position: relative; z-index: var(--z-app-base);
+        }
+        footer strong { color: var(--color-gold-bright); }
+        footer span.pro-text { color: #f87171; font-weight: 800; }
+
+        @media (max-width: 480px) {
+            .app-wrapper { padding: 0 12px; }
+            .card { padding: 20px 14px; }
+            .card-title { font-size: 21px; }
+            .calendar-grid { gap: 8px; }
+            .day-card { padding: 10px 8px; }
+            .stat-val { font-size: 28px; }
+            .action-dock { gap: 6px; padding: 8px; }
+            .dock-btn { font-size: 9.5px; padding: 10px 2px; }
+        }
+    
+/* =========================================================
+   FINAL VISUAL REFINEMENT — PREMIUM FANTASY CAFÉ
+   Premium fantasy café visual layer.
+========================================================= */
+:root{
+  --shadow-soft-sm: 0 5px 14px rgba(0,0,0,.28), 0 1px 0 rgba(255,220,150,.08) inset;
+  --shadow-soft-md: 0 14px 34px rgba(0,0,0,.42), 0 1px 0 rgba(255,220,150,.10) inset;
+  --shadow-soft-lg: 0 24px 60px rgba(0,0,0,.52), 0 1px 0 rgba(255,220,150,.12) inset;
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+}
+html,body{min-height:100%;}
+body{overflow-x:hidden;background:radial-gradient(circle at 50% 0%,rgba(70,76,150,.18),transparent 38%),linear-gradient(180deg,#080d1c 0%,#0b1020 48%,#120d18 100%);}
+.app-wrapper{position:relative;z-index:2;}
+.header{background:linear-gradient(180deg,rgba(24,29,50,.96),rgba(15,18,34,.96));border:1px solid rgba(207,164,78,.48);border-radius:12px;box-shadow:var(--shadow-soft-md),inset 0 1px 0 rgba(255,239,190,.14);}
+.brand-logo{letter-spacing:.04em;text-shadow:0 2px 12px rgba(0,0,0,.55),0 0 18px rgba(229,190,91,.12);}
+.theme-toggle,.lang-toggle{background:rgba(18,23,43,.92);border:1px solid rgba(207,164,78,.35);border-radius:10px;box-shadow:var(--shadow-soft-sm);}
+.update-ticker{background:rgba(19,24,43,.9);border:1px solid rgba(207,164,78,.35);border-radius:999px;box-shadow:var(--shadow-soft-sm);}
+.card{background:linear-gradient(145deg,rgba(26,28,47,.98),rgba(16,19,34,.98));border:1px solid rgba(213,171,86,.58);border-radius:16px;padding:30px 28px;box-shadow:var(--shadow-soft-lg),inset 0 1px 0 rgba(255,236,184,.12);}
+.card::before{height:1px;top:0;left:24px;right:24px;background:linear-gradient(90deg,transparent,rgba(229,190,91,.7),transparent);opacity:1;}
+.card-title{font-size:26px;letter-spacing:.01em;}
+.ancafe-link{border-radius:999px;background:rgba(180,130,45,.12);border:1px solid rgba(213,171,86,.42);box-shadow:none;}
+.status-panel{border-radius:12px;background:linear-gradient(135deg,rgba(21,34,50,.96),rgba(18,25,42,.96));border:1px solid rgba(90,190,198,.34);box-shadow:var(--shadow-soft-sm);}
+.status-panel.sys-locked{border-color:rgba(181,70,75,.48);}
+.identity-panel{border-radius:12px;background:linear-gradient(145deg,rgba(33,29,39,.94),rgba(23,23,35,.94));border:1px solid rgba(213,171,86,.32);box-shadow:var(--shadow-soft-sm);}
+.calendar-grid{gap:14px;}
+.day-card{background:linear-gradient(145deg,rgba(31,31,48,.98),rgba(21,23,38,.98));border:1px solid rgba(190,153,77,.34);border-radius:12px;box-shadow:var(--shadow-soft-sm);padding:16px;}
+.day-card::before,.day-card::after{display:none;}
+.day-card.sunday{grid-column:1/-1;} .day-lantern-icon{vertical-align:middle;margin-right:4px;}
+.day-header{margin-bottom:10px;}
+.day-badge{border-radius:999px;}
+.dropdown-selected{min-height:46px;border-radius:10px;background:rgba(13,18,34,.96);border:1px solid rgba(205,169,92,.32);box-shadow:none;}
+.dropdown-selected:hover{border-color:rgba(225,190,106,.58);background:rgba(18,23,41,.98);}
+.dropdown-options{background:#15192b;border:1px solid rgba(213,171,86,.45);border-radius:10px;box-shadow:var(--shadow-soft-lg);}
+.dropdown-option{border-radius:7px;margin:3px 4px;}
+.dropdown-option:hover{background:rgba(202,160,70,.13);}
+.action-area{margin-top:22px;}
+.btn-primary{border-radius:11px;background:linear-gradient(135deg,#b98b35,#8e6826);border:1px solid #d8b45e;color:#fff6dc;box-shadow:0 10px 26px rgba(130,91,28,.28),inset 0 1px 0 rgba(255,245,205,.2);}
+.btn-primary:hover:not(:disabled){filter:brightness(1.07);box-shadow:0 13px 30px rgba(130,91,28,.34),inset 0 1px 0 rgba(255,245,205,.22);}
+.btn-outline{border-radius:11px;background:rgba(18,22,39,.9);border:1px solid rgba(213,171,86,.38);box-shadow:none;}
+.manager-box,.admin-panel{border-radius:16px;background:linear-gradient(145deg,rgba(22,25,42,.98),rgba(14,17,30,.98));border:1px solid rgba(213,171,86,.5);box-shadow:var(--shadow-soft-lg);}
+.bento-grid{gap:14px;}
+.bento-card{background:linear-gradient(145deg,rgba(31,31,48,.98),rgba(19,22,37,.98));border:1px solid rgba(213,171,86,.38);border-radius:12px;box-shadow:var(--shadow-soft-md);}
+.bento-card::after{display:none;}
+.action-dock{background:rgba(16,19,33,.96);border:1px solid rgba(213,171,86,.34);border-radius:12px;box-shadow:var(--shadow-soft-md);}
+.dock-btn{border-radius:9px;background:rgba(28,31,48,.94);border:1px solid rgba(213,171,86,.18);}
+.table-container{border-radius:12px;border:1px solid rgba(213,171,86,.4);background:rgba(17,20,34,.98);box-shadow:var(--shadow-soft-md);}
+.shift-badge{border-radius:999px;}
+.btn-exit{border-radius:9px;box-shadow:none;}
+.swipe-auth-zone{border-radius:12px;}
+.toast{background:#191d30;border:1px solid rgba(213,171,86,.32);border-radius:10px;box-shadow:var(--shadow-soft-md);}
+.toast-icon{border-radius:8px;}
+.support-modal{background:rgba(5,8,17,.72);}
+.support-modal .modal-content{background:linear-gradient(145deg,#25263b,#171a2c);border:1px solid rgba(213,171,86,.48);border-radius:16px;box-shadow:var(--shadow-soft-lg);}
+.skeleton{border-radius:8px;}
+footer{padding:26px 0 36px;}
+@media(max-width:600px){
+ .card{padding:24px 16px;border-radius:14px;}
+ .card-title{font-size:23px;}
+ .day-card{padding:14px;}
+ .bento-card{padding:15px;border-radius:11px;}
+ .action-dock{border-radius:11px;}
+ .dock-btn{border-radius:8px;}
+}
+@media(max-width:430px){
+ .header{border-radius:10px;}
+ .card{padding:22px 13px;}
+ .calendar-grid{gap:10px;}
+ .day-card{padding:12px;}
+ .dropdown-selected{min-height:44px;}
+ .btn-primary,.btn-outline{min-height:46px;}
+}
+@media(max-width:393px){
+ .card-title{font-size:21px;}
+ .day-card{padding:11px;}
+ .day-header{font-size:12px;}
+ .bento-grid{gap:9px;}
+ .bento-card{padding:13px;}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;}}
+</style>
 </head>
 
 <body>
 
+<!-- CÁC LỚP BẦU TRỜI & TRĂNG RẰM TRUNG THU FANTASY -->
+<div class="sky-backdrop"></div>
+<div class="moon-disc"></div>
+<div class="cloud-ribbon cloud-1"></div>
+<div class="cloud-ribbon cloud-2"></div>
 <canvas id="bg-canvas"></canvas>
-<div class="mesh-blob blob-1"></div>
-<div class="mesh-blob blob-2"></div>
+
+<!-- NHÁNH LÁ & LỒNG ĐÈN TRUNG THU TRANG TRÍ FOREGROUND -->
+<svg class="foliage-branch foliage-left" viewBox="0 0 120 120" fill="none">
+    <path d="M-10 -10 C30 20, 60 40, 90 20 C100 40, 70 60, 40 70" stroke="#040711" stroke-width="6" stroke-linecap="round"/>
+    <path d="M50 35 Q60 55 55 65" stroke="#78350f" stroke-width="2"/>
+    <circle cx="55" cy="72" r="12" fill="#d97706" opacity="0.9"/>
+    <circle cx="55" cy="72" r="6" fill="#fcd34d"/>
+</svg>
+<svg class="foliage-branch foliage-right" viewBox="0 0 140 140" fill="none">
+    <path d="M150 -10 C110 30, 80 50, 40 30 C30 50, 60 70, 90 80" stroke="#040711" stroke-width="7" stroke-linecap="round"/>
+    <path d="M80 45 Q70 70 75 82" stroke="#78350f" stroke-width="2"/>
+    <rect x="65" y="85" width="20" height="28" rx="6" fill="#dc2626" opacity="0.9"/>
+    <rect x="69" y="89" width="12" height="20" rx="3" fill="#fcd34d" opacity="0.75"/>
+</svg>
 
 <div class="app-wrapper" id="app">
     <header class="header">
         <div class="brand-group">
-            <div class="brand-logo" style="gap: 10px;">
+            <div class="brand-logo">
                 <div class="brand-logo-text">
                     <span class="brand-logo-title">AN CAFÉ</span>
                     <span class="brand-logo-sub">WorkShift Pro</span>
                 </div>
             </div>
             
-            <select id="langSelect" class="lang-toggle">
+            <select id="langSelect" class="lang-toggle" aria-label="Language Select">
                 <option value="vi">🇻🇳 VI</option>
                 <option value="en">🇬🇧 EN</option>
                 <option value="zh">🇨🇳 ZH</option>
@@ -381,22 +701,17 @@
         
         <div class="header-controls">
             <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                     <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                 </svg>
             </button>
 
-            <div class="update-ticker" id="timeTicker">
-                <div class="update-pulse"></div> 
-                <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
-            </div>
-
             <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
-                <svg id="moonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <svg id="sunIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="sunIcon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -411,31 +726,38 @@
         </div>
     </header>
 
+    <div class="update-ticker" id="timeTicker">
+        <div class="update-pulse"></div> 
+        <span data-i18n="realtime">Đồng bộ realtime:</span> <span class="mono" id="realTime">--:--:--</span>
+    </div>
+
+    <!-- HỘP THƯ HỖ TRỢ PHÉP THUẬT -->
     <div id="supportModal" class="support-modal hidden">
         <div class="support-modal-content">
             <button class="support-close" id="closeSupportBtn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <div class="support-icon-wrapper">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <div style="width: 48px; height: 48px; background: rgba(56, 189, 248, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; border: 1.5px solid var(--color-cyan-moon);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-cyan-moon)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
             </div>
-            <h3 data-i18n="supportTitle">Trung Tâm Thông Báo</h3>
-            <p data-i18n="supportDesc" style="margin-bottom: 0; padding-bottom: 10px; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; font-weight: 500;">
-                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: var(--primary); font-size: 15px;">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
+            <h3 data-i18n="supportTitle" style="font-family: var(--font-display); margin-bottom: 10px; color: var(--color-text-title); font-size: 17px; font-weight: 800;">Trung Tâm Thông Báo</h3>
+            <p data-i18n="supportDesc" style="font-size: 13px; color: var(--color-text-muted); line-height: 1.55; font-weight: 600;">
+                Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: var(--color-gold-bright);">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
             </p>
         </div>
     </div>
 
     <div id="toastContainer" class="toast-container"></div>
 
+    <!-- BẢNG YẾT BẢNG NHIỆM VỤ CHÍNH (#userCard) -->
     <main class="card" id="userCard">
         <div class="card-header">
             <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
             
             <a href="https://ancafe.vn" target="_blank" class="ancafe-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
                     <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -446,23 +768,22 @@
             <div class="slogan-container">
                 <span id="typewriter-text" class="slogan-text"></span><span class="type-cursor">|</span>
             </div>
-
         </div>
         
         <div id="lockStatus">
-            <div class="skeleton" style="width: 100%; height: 96px; border-radius: 24px; margin-bottom: 32px;"></div>
+            <div style="width: 100%; height: 76px; border-radius: 14px; margin-bottom: var(--space-xl); background: rgba(255,255,255,0.04); border: 1px dashed var(--color-gold-antique);"></div>
         </div>
 
-        <div style="margin-bottom: 24px;">
+        <div style="margin-bottom: var(--space-xl);">
             <label class="input-label">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-bright)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 <span data-i18n="employeeId">Định danh nhân sự</span>
             </label>
             <div class="input-wrapper" style="margin-bottom: 0;">
-                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
@@ -470,9 +791,9 @@
             </div>
         </div>
 
-        <div style="margin-bottom: 32px;">
-            <label class="input-label" style="margin-bottom: 12px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <div style="margin-bottom: var(--space-xl);">
+            <label class="input-label" style="margin-bottom: 10px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-bright)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
                     <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -481,41 +802,40 @@
                 <span data-i18n="schedule">Đăng ký lịch làm việc (Tuần này)</span>
             </label>
             <div id="form" class="calendar-grid" style="margin-bottom: 0;">
-                </div>
+                <!-- JavaScript inject 7 thẻ ngày động -->
+            </div>
         </div>
 
         <button id="submitBtn" class="btn btn-primary" data-i18n="confirmBtn">Xác Nhận Đăng Ký</button>
         <button id="managerBtn" class="btn btn-outline" data-i18n="managerBtn">Truy Cập Khu Vực Quản Lý</button>
     </main>
 
-    <main class="card hidden" id="managerBox" style="position: relative; min-height: 250px; display: flex; flex-direction: column; justify-content: center;">
-        <div id="loginSection" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <!-- MẬT THẤT QUẢN TRỊ VIÊN (#managerBox) -->
+    <main class="card hidden" id="managerBox" style="min-height: 250px; display: flex; flex-direction: column; justify-content: center;">
+        <div id="loginSection" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; min-height: 220px;">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none;">
-                <h2 class="card-title" style="color: var(--primary);" data-i18n="secureAccess">Secure Access</h2>
-                <div class="card-subtitle" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
+                <h2 class="card-title" style="color: var(--color-gold-bright);" data-i18n="secureAccess">Secure Access</h2>
+                <div style="font-size: 13px; font-weight: 600; color: var(--color-text-muted);" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
+                <div style="font-size: 11.5px; font-weight: 700; color: var(--color-gold-antique); margin-top: 14px; text-transform: uppercase; letter-spacing: 0.8px;">👉 Vuốt sang phải để mở khóa</div>
             </div>
-            <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: 32px;"></canvas>
+            <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: var(--radius-lg);"></canvas>
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
-        <div id="adminPanel" class="hidden dashboard-container">
-            <div class="dashboard-header-flex">
-                <div>
-                    <h2 class="card-title" style="font-size: 20px; margin:0; text-align: left; display: flex; align-items: center; gap: 8px;">
-                        <span data-i18n="dashboard">DASHBOARD</span>
-                    </h2>
-                </div>
+        <div id="adminPanel" class="hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); padding-bottom: 12px; border-bottom: 1px dashed rgba(217, 119, 6, 0.4);">
+                <h2 class="card-title" style="font-size: 19px; margin:0; text-align: left;">
+                    <span data-i18n="dashboard">DASHBOARD</span>
+                </h2>
                 <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">Khóa Hệ Thống</button>
             </div>
 
             <div class="bento-grid">
                 <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
                     <div class="stat-val" id="totalUsers">0</div>
                     <div class="stat-label" data-i18n="totalEmp">Tổng Nhân Sự</div>
                 </div>
                 <div class="bento-card">
-                    <svg class="bento-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
                     <div class="stat-val" id="totalShifts">0</div>
                     <div class="stat-label" data-i18n="totalShifts">Ca Đăng Ký</div>
                 </div>
@@ -531,7 +851,7 @@
                     <span data-i18n="lock">Khóa</span>
                 </div>
                 <div class="dock-btn info" id="copyBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg> 
                     <span data-i18n="export">Xuất File</span>
                 </div>
                 <div class="dock-btn danger" id="clearBtn">
@@ -540,7 +860,7 @@
                 </div>
             </div>
 
-            <!-- Khu vực hiển thị riêng biệt Lịch ưu tiên của Quản lý -->
+            <!-- CHIẾU CHỈ ƯU TIÊN ADMIN TÙNG -->
             <div id="priorityAdminContainer"></div>
 
             <div class="table-container">
@@ -575,7 +895,7 @@
             dayShort_T2: "T2", dayShort_T3: "T3", dayShort_T4: "T4", dayShort_T5: "T5", dayShort_T6: "T6", dayShort_T7: "T7", dayShort_CN: "CN",
             off: "OFF", sysLocked: "Hệ thống khóa", stopReg: "Ngưng nhận đăng ký", reopenAt: "Mở lại vào", monday: "Thứ 2", sysOpen: "Đang mở cửa", sysOnline: "Hệ thống trực tuyến", autoLock: "Khóa tự động", emptyData: "Không có dữ liệu trong tuần này.", staffIdentity: "Định danh nhân sự",
             supportTitle: "Trung Tâm Thông Báo", 
-            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--primary); font-size: 15px;'>host LanAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
+            supportDesc: "Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style='color: var(--color-gold-bright);'>host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.",
             dayTitle: "Ngày", listTitle: "Danh sách nhân sự đăng ký"
         },
         en: {
@@ -584,7 +904,7 @@
             dayShort_T2: "Mon", dayShort_T3: "Tue", dayShort_T4: "Wed", dayShort_T5: "Thu", dayShort_T6: "Fri", dayShort_T7: "Sat", dayShort_CN: "Sun",
             off: "OFF", sysLocked: "System Locked", stopReg: "Stop accepting registrations", reopenAt: "Reopens at", monday: "Monday", sysOpen: "System Open", sysOnline: "System Online", autoLock: "Auto lock", emptyData: "No data available this week.", staffIdentity: "Staff Identity",
             supportTitle: "Notification Center", 
-            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>. We will address and resolve them immediately.",
+            supportDesc: "To ensure the best experience, if you encounter any difficulties or identify any system issues, please contact <strong style='color: var(--color-gold-bright);'>host PhuongAnh</strong>. We will address and resolve them immediately.",
             dayTitle: "Date", listTitle: "Registered Staff"
         },
         zh: {
@@ -593,7 +913,7 @@
             dayShort_T2: "周一", dayShort_T3: "周二", dayShort_T4: "周三", dayShort_T5: "周四", dayShort_T6: "周五", dayShort_T7: "周六", dayShort_CN: "周日",
             off: "OFF", sysLocked: "系统已锁定", stopReg: "停止接受注册", reopenAt: "重新开放于", monday: "星期一", sysOpen: "系统开放", sysOnline: "系统在线", autoLock: "自动锁定", emptyData: "本周没有数据.", staffIdentity: "员工身份",
             supportTitle: "通知中心", 
-            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong>。我们将立即处理并解决。",
+            supportDesc: "为了确保最佳体验，如果您在操作中遇到任何困难或发现系统问题，请联系 <strong style='color: var(--color-gold-bright);'>host PhuongAnh</strong>。我们将立即处理并解决。",
             dayTitle: "日期", listTitle: "员工名单"
         },
         ko: {
@@ -602,7 +922,7 @@
             dayShort_T2: "월", dayShort_T3: "화", dayShort_T4: "수", dayShort_T5: "목", dayShort_T6: "금", dayShort_T7: "토", dayShort_CN: "일",
             off: "OFF", sysLocked: "시스템 잠김", stopReg: "등록 접수 중지", reopenAt: "다시 열림", monday: "월요일", sysOpen: "시스템 열림", sysOnline: "시스템 온라인", autoLock: "자동 잠금", emptyData: "이번 주 데이터가 없습니다.", staffIdentity: "직원 신원",
             supportTitle: "알림 센터", 
-            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
+            supportDesc: "최상의 경험을 보장하기 위해 시스템 작동 중 어려움을 겪거나 문제를 발견하면 <strong style='color: var(--color-gold-bright);'>host PhuongAnh</strong> 에게 문의하십시오. 즉시 처리하고 해결해 드리겠습니다.",
             dayTitle: "날짜", listTitle: "직원 명단"
         },
         ja: {
@@ -611,7 +931,7 @@
             dayShort_T2: "月", dayShort_T3: "火", dayShort_T4: "水", dayShort_T5: "木", dayShort_T6: "金", dayShort_T7: "土", dayShort_CN: "日",
             off: "OFF", sysLocked: "システムロック中", stopReg: "登録受付停止", reopenAt: "再開時間", monday: "月曜日", sysOpen: "システム稼働中", sysOnline: "システムオンライン", autoLock: "自動ロック", emptyData: "今週のデータはありません。", staffIdentity: "従業員ID",
             supportTitle: "通知センター", 
-            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--primary); font-size: 15px;'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
+            supportDesc: "最高の体験を保証するため、操作中に困難が生じたり、システムの問題を発見した場合は、<strong style='color: var(--color-gold-bright);'>host PhuongAnh</strong> にご連絡ください。直ちに対応し、解決いたします。",
             dayTitle: "日付", listTitle: "スタッフリスト"
         }
     };
@@ -674,12 +994,12 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- 4. MODULE CANVAS MẠNG NHỆN TƯƠNG TÁC ---
+    // --- 4. MODULE CANVAS HẠT SAO HUYỀN BÍ ---
     const canvas = document.getElementById('bg-canvas'); const ctx = canvas.getContext('2d'); let particlesArray;
     function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     window.addEventListener('resize', resizeCanvas); resizeCanvas();
 
-    let mouse = { x: null, y: null, radius: 100 };
+    let mouse = { x: null, y: null, radius: 90 };
     window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; });
     window.addEventListener('touchend', () => { mouse.x = undefined; mouse.y = undefined; });
     window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
@@ -692,31 +1012,26 @@
             if(this.x > canvas.width || this.x < 0) this.dx = -this.dx; if(this.y > canvas.height || this.y < 0) this.dy = -this.dy;
             let dist = Math.sqrt((mouse.x - this.x) ** 2 + (mouse.y - this.y) ** 2);
             if(dist < mouse.radius + this.size) {
-                if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 1.5; if(mouse.x > this.x && this.x > this.size * 10) this.x -= 1.5;
-                if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 1.5; if(mouse.y > this.y && this.y > this.size * 10) this.y -= 1.5;
+                if(mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 1.2; if(mouse.x > this.x && this.x > this.size * 10) this.x -= 1.2;
+                if(mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 1.2; if(mouse.y > this.y && this.y > this.size * 10) this.y -= 1.2;
             }
             this.x += this.dx; this.y += this.dy; this.draw();
         }
     }
 
     function initCanvas() {
-        particlesArray = []; let noOfParticles = (canvas.height * canvas.width) / 10000;
+        particlesArray = []; let noOfParticles = Math.min(45, (canvas.height * canvas.width) / 16000);
         for(let i = 0; i < noOfParticles; i++) {
-            let size = (Math.random() * 2) + 1; let color = getComputedStyle(document.documentElement).getPropertyValue('--canvas-dot').trim();
-            particlesArray.push(new Particle(Math.random() * (innerWidth - size * 2) + size * 2, Math.random() * (innerHeight - size * 2) + size * 2, (Math.random() * 0.4) - 0.2, (Math.random() * 0.4) - 0.2, size, color));
+            let size = (Math.random() * 2) + 0.8; 
+            let color = "rgba(252, 211, 77, " + (Math.random() * 0.6 + 0.2) + ")";
+            particlesArray.push(new Particle(Math.random() * innerWidth, Math.random() * innerHeight, (Math.random() * 0.3) - 0.15, (Math.random() * 0.3) - 0.15, size, color));
         }
     }
 
     function animateCanvas() {
         requestAnimationFrame(animateCanvas); ctx.clearRect(0, 0, innerWidth, innerHeight);
-        let lineColor = getComputedStyle(document.documentElement).getPropertyValue('--canvas-line').trim();
         for(let i = 0; i < particlesArray.length; i++) {
             particlesArray[i].update();
-            for(let j = i; j < particlesArray.length; j++) {
-                if(((particlesArray[i].x - particlesArray[j].x) ** 2 + (particlesArray[i].y - particlesArray[j].y) ** 2) < (canvas.width / 7) * (canvas.height / 7)) {
-                    ctx.beginPath(); ctx.strokeStyle = lineColor; ctx.lineWidth = 1; ctx.moveTo(particlesArray[i].x, particlesArray[i].y); ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
-                }
-            }
         }
     }
     initCanvas(); animateCanvas();
@@ -728,28 +1043,26 @@
     themeBtn.onclick = () => {
         const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme); initCanvas(); 
+        updateThemeIcon(newTheme);
     };
 
     function updateThemeIcon(theme) {
-        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark'); document.getElementById('sunIcon').classList.toggle('hidden', theme === 'light');
+        document.getElementById('moonIcon').classList.toggle('hidden', theme === 'dark'); 
+        document.getElementById('sunIcon').classList.toggle('hidden', theme === 'light');
     }
 
-    // --- TYPEWRITER EFFECT LOGIC CHO SLOGAN ---
+    // --- TYPEWRITER EFFECT CHO SLOGAN ---
     const sloganTexts = [
         "\"Nơi chốn thoải mái. Cảm giác thân thuộc.\"",
         "\"Hương vị đậm đà. Khởi nguồn sáng tạo.\"",
         "\"Góc nhỏ an yên giữa lòng thành phố.\"",
         "\"Thưởng thức cà phê. Kết nối đam mê.\""
     ];
-    let sloganIndex = 0;
-    let charIndex = 0;
-    let isDeletingSlogan = false;
+    let sloganIndex = 0; let charIndex = 0; let isDeletingSlogan = false;
     const typewriterElement = document.getElementById("typewriter-text");
 
     function typeWriterEffect() {
         const currentSlogan = sloganTexts[sloganIndex];
-        
         if (isDeletingSlogan) {
             typewriterElement.textContent = currentSlogan.substring(0, charIndex - 1);
             charIndex--;
@@ -759,28 +1072,23 @@
         }
 
         let typeSpeed = isDeletingSlogan ? 30 : 60;
-
         if (!isDeletingSlogan && charIndex === currentSlogan.length) {
-            typeSpeed = 2000;
-            isDeletingSlogan = true;
+            typeSpeed = 2000; isDeletingSlogan = true;
         } else if (isDeletingSlogan && charIndex === 0) {
-            isDeletingSlogan = false;
-            sloganIndex = (sloganIndex + 1) % sloganTexts.length;
+            isDeletingSlogan = false; sloganIndex = (sloganIndex + 1) % sloganTexts.length;
             typeSpeed = 500;
         }
-
         setTimeout(typeWriterEffect, typeSpeed);
     }
     setTimeout(typeWriterEffect, 1000);
-
 
     // --- 6. HỆ THỐNG TOAST THÔNG BÁO ---
     function showToast(msg, type = 'success') {
         const container = document.getElementById('toastContainer'); const toast = document.createElement('div'); toast.className = `toast toast-${type}`;
         const icons = { success: '<polyline points="20 6 9 17 4 12"></polyline>', error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>', warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>' };
-        toast.innerHTML = `<div class="toast-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
+        toast.innerHTML = `<div class="toast-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
         container.appendChild(toast); void toast.offsetWidth; toast.classList.add('show');
-        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); }, 3000);
+        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000);
     }
 
     // --- 6.5 LOGIC MODAL THÔNG BÁO HỖ TRỢ ---
@@ -789,25 +1097,27 @@
     closeSupportBtn.addEventListener('click', () => { supportModal.classList.add('hidden'); });
     supportModal.addEventListener('click', (e) => { if(e.target === supportModal) supportModal.classList.add('hidden'); });
 
-    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (CUSTOM DROPDOWN UI MỚI) ---
+    // --- 7. TẠO LƯỚI ĐĂNG KÝ CA LÀM (7 QUEST SLOTS FANTASY RPG) ---
     const form = document.getElementById("form");
     DAYS.forEach(dayName => {
         const fullDayName = t('dayFullName_' + dayName); const shortDayName = t('dayShort_' + dayName); const offText = t('off');
-        const gridSpanStyle = dayName === 'CN' ? 'grid-column: 1 / -1;' : '';
-        
+                
         let optionsHtml = `<div class="dropdown-option" onclick="selectShift('${dayName}', '', '${offText}')">${offText}</div>`;
         SHIFTS.forEach(s => { optionsHtml += `<div class="dropdown-option" onclick="selectShift('${dayName}', '${s.id}', '${s.id}')">${s.id}</div>`; });
         
+        // Họa tiết lồng đèn Trung Thu bên trong từng slot ngày
+        const lanternSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-amber-lantern)" stroke-width="2" class="day-lantern-icon"><rect x="6" y="4" width="12" height="15" rx="3" fill="rgba(245,158,11,0.2)"></rect><line x1="12" y1="1" x2="12" y2="4"></line><line x1="12" y1="19" x2="12" y2="23"></line></svg>`;
+
         form.innerHTML += `
-            <div class="day-card" style="${gridSpanStyle}">
+            <div class="day-card${dayName === 'CN' ? ' sunday' : ''}">
                 <div class="day-header">
-                    <span id="fullDayText_${dayName}">${fullDayName}</span>
+                    <span id="fullDayText_${dayName}">${lanternSvg}${fullDayName}</span>
                     <span class="day-badge" id="shortDayText_${dayName}">${shortDayName}</span>
                 </div>
                 <div class="custom-dropdown" id="dropdown_${dayName}">
                     <div class="dropdown-selected" onclick="toggleDropdown('${dayName}')">
                         <span class="selected-text" id="text_${dayName}">${offText}</span>
-                        <svg class="select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -824,7 +1134,7 @@
         });
         const dropdown = document.getElementById('dropdown_' + dayName); const card = dropdown.closest('.day-card');
         if (dropdown.classList.contains('open')) { dropdown.classList.remove('open'); card.style.zIndex = '1'; } 
-        else { dropdown.classList.add('open'); card.style.zIndex = '10'; }
+        else { dropdown.classList.add('open'); card.style.zIndex = '60'; }
     };
 
     window.selectShift = function(dayName, value, label) {
@@ -850,7 +1160,7 @@
         }
     });
 
-    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG (UI CAO CẤP MỚI) ---
+    // --- 8. LOGIC KHÓA/MỞ HỆ THỐNG (ARCANE SEAL UI) ---
     let manualLock = null;
     onValue(ref(db, "settings/lock"), snap => { manualLock = snap.exists() ? snap.val() : null; updateStatusUI(); });
 
@@ -866,7 +1176,6 @@
             lockStatus.className = "status-panel sys-locked";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
-                    <div class="st-pulse"></div>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </div>
                 <div class="st-info">
@@ -879,7 +1188,6 @@
             lockStatus.className = "status-panel sys-open";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
-                    <div class="st-pulse"></div>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
                 <div class="st-info">
@@ -927,17 +1235,21 @@
         }
     };
 
-    // --- 10. ĐIỀU HƯỚNG GIỮA KHU VỰC USER VÀ MANAGER ---
+    // --- 10. ĐIỀU HƯỚNG USER VÀ GUILD MASTER CHAMBER ---
     document.getElementById("managerBtn").onclick = () => {
-        document.getElementById("userCard").classList.add("hidden"); document.getElementById("managerBox").classList.remove("hidden"); initSwipeTrail();
+        document.getElementById("userCard").classList.add("hidden"); 
+        document.getElementById("managerBox").classList.remove("hidden"); 
+        initSwipeTrail();
     };
 
     document.getElementById("logoutBtn").onclick = () => {
-        document.getElementById("adminPanel").classList.add("hidden"); document.getElementById("managerBox").classList.add("hidden");
-        document.getElementById("userCard").classList.remove("hidden"); document.getElementById("loginSection").classList.remove("hidden");
+        document.getElementById("adminPanel").classList.add("hidden"); 
+        document.getElementById("managerBox").classList.add("hidden");
+        document.getElementById("userCard").classList.remove("hidden"); 
+        document.getElementById("loginSection").classList.remove("hidden");
     };
 
-    // --- 11. XỬ LÝ VUỐT NGANG ẨN & VỆT KÉO ---
+    // --- 11. XỬ LÝ VUỐT NGANG MỞ KHÓA MẬT THẤT ---
     let startX = 0; let isSwiping = false; let swipeTriggered = false; let trailPoints = [];
     const swipeZone = document.getElementById('swipeZone'); const trailCanvas = document.getElementById('swipeTrailCanvas'); const tCtx = trailCanvas.getContext('2d');
 
@@ -956,7 +1268,7 @@
         for(let i = 1; i < trailPoints.length; i++) {
             const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2; const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2; tCtx.quadraticCurveTo(trailPoints[i-1].x, trailPoints[i-1].y, xc, yc);
         }
-        tCtx.strokeStyle = 'rgba(16, 185, 129, 0.8)'; tCtx.lineWidth = 6; tCtx.lineCap = 'round'; tCtx.shadowBlur = 15; tCtx.shadowColor = 'rgba(16, 185, 129, 1)'; tCtx.stroke();
+        tCtx.strokeStyle = 'rgba(252, 211, 77, 0.9)'; tCtx.lineWidth = 5; tCtx.lineCap = 'round'; tCtx.shadowBlur = 12; tCtx.shadowColor = '#f59e0b'; tCtx.stroke();
     }
 
     setInterval(() => {
@@ -973,7 +1285,7 @@
         const rect = trailCanvas.getBoundingClientRect(); trailPoints.push({ x: e.clientX - rect.left, y: e.clientY - rect.top }); drawTrail();
         if (e.clientX - startX > 150) {
             swipeTriggered = true; isSwiping = false;
-            tCtx.fillStyle = "rgba(16, 185, 129, 0.2)"; tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height); if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+            tCtx.fillStyle = "rgba(252, 211, 77, 0.25)"; tCtx.fillRect(0, 0, trailCanvas.width, trailCanvas.height); if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
             setTimeout(() => { loginAdmin(); initSwipeTrail(); }, 300);
         }
     });
@@ -981,19 +1293,22 @@
     swipeZone.addEventListener('pointerup', (e) => { if (!isSwiping) return; isSwiping = false; swipeZone.releasePointerCapture(e.pointerId); });
 
     function loginAdmin() {
-        showToast("Welcome", "success"); document.getElementById("loginSection").classList.add("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); fetchAndRenderAdminData();
+        showToast("Welcome Guild Master", "success"); 
+        document.getElementById("loginSection").classList.add("hidden"); 
+        document.getElementById("adminPanel").classList.remove("hidden"); 
+        fetchAndRenderAdminData();
     }
 
-    // --- 12. LOGIC DASHBOARD QUẢN TRỊ VIÊN CẬP NHẬT (ƯU TIÊN TÙNG) ---
+    // --- 12. LOGIC DASHBOARD ADMIN (CỔ THƯ BANG HỘI & ƯU TIÊN TÙNG) ---
     let rawExcelDataExport = ""; 
     async function fetchAndRenderAdminData() {
         const tableContainer = document.getElementById("excelTable"); 
-        tableContainer.innerHTML = `<div style="padding: 40px; text-align: center;"><div class="skeleton" style="height: 150px; border-radius: 16px;"></div></div>`;
+        tableContainer.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--color-gold-bright); font-weight: 700;">Đang mở Cổ Thư...</div>`;
         
         try {
             const snapshot = await get(ref(db, "dangKy"));
             if(!snapshot.exists()) {
-                tableContainer.innerHTML = `<div style="padding: 40px; color: var(--text-muted); text-align: center; font-weight: 600;">${t('emptyData')}</div>`; 
+                tableContainer.innerHTML = `<div style="padding: 30px; color: var(--color-text-muted); text-align: center; font-weight: 600;">${t('emptyData')}</div>`; 
                 document.getElementById("totalUsers").innerText = "0"; 
                 document.getElementById("totalShifts").innerText = "0"; 
                 document.getElementById("priorityAdminContainer").innerHTML = "";
@@ -1002,7 +1317,7 @@
             
             const data = snapshot.val() || {}; 
             
-            // LOGIC PHÂN LOẠI ADMIN
+            // Logic phân loại Admin
             const isSpecialAdmin = (name) => {
                 const n = name.toLowerCase();
                 return n.includes('tùng') || n.includes('tung');
@@ -1010,35 +1325,33 @@
             
             const allNames = Object.keys(data).sort((a, b) => a.localeCompare(b));
             const adminNames = allNames.filter(isSpecialAdmin);
-            const regularNames = allNames.filter(n => !isSpecialAdmin(n));
             
             let countUsers = allNames.length; 
             let countShifts = 0;
             
-            // 1. XỬ LÝ KHU VỰC ƯU TIÊN CHO ADMIN
+            // 1. Xử lý khu vực ưu tiên Admin Tùng
             const priorityContainer = document.getElementById("priorityAdminContainer");
             if (adminNames.length > 0) {
-                let adminHtml = `<div style="background: linear-gradient(145deg, var(--bg-glass-heavy) 0%, rgba(220, 38, 38, 0.05) 100%); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 24px; padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px var(--primary-glow); position: relative; overflow: hidden; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
-                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: var(--primary); opacity: 0.1; filter: blur(30px); border-radius: 50%;"></div>
-                    <h3 style="color: var(--primary); margin-bottom: 16px; font-size: 16px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-weight: 800; position: relative; z-index: 2;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                let adminHtml = `<div style="background: rgba(217, 119, 6, 0.12); border: 1.5px solid var(--color-gold-bright); border-radius: 14px; padding: 16px; margin-bottom: var(--space-lg); box-shadow: var(--shadow-soft-sm);">
+                    <h3 style="font-family: var(--font-display); color: var(--color-gold-bright); margin-bottom: 12px; font-size: 14.5px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-weight: 800;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         Ưu tiên em Tùng nhé chị!!!
                     </h3>
-                    <div style="display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2;">`;
+                    <div style="display: flex; flex-direction: column; gap: 12px;">`;
 
                 adminNames.forEach(adminName => {
                     const adminData = data[adminName];
                     const lichData = adminData?.lich || {};
                     let hasShifts = false;
-                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
 
                     DAYS.forEach(day => {
                         if (lichData[day]) {
                             hasShifts = true;
                             const shiftInfoObj = SHIFTS.find(s => s.id === lichData[day]);
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
-                            shiftsHtml += `<div style="background: var(--bg-glass-heavy); padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border-glass); display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-soft);">
-                                <span style="font-weight: 800; font-size: 12px; color: var(--text-main); text-transform: uppercase;">${t('dayShort_' + day)}</span>
+                            shiftsHtml += `<div style="background: rgba(6, 11, 25, 0.9); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(217, 119, 6, 0.4); display: flex; align-items: center; gap: 6px;">
+                                <span style="font-weight: 800; font-size: 11px; color: var(--color-gold-bright); text-transform: uppercase;">${t('dayShort_' + day)}</span>
                                 <span class="shift-badge ${cssBadgeClass}" style="box-shadow: none; border: none; padding: 0;">${lichData[day]}</span>
                             </div>`;
                         }
@@ -1048,7 +1361,7 @@
                     if (hasShifts) {
                         adminHtml += `
                             <div>
-                                <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px; color: var(--primary);">${adminName} <span style="font-size: 9px; background: var(--primary); color: white; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 6px; letter-spacing: 0.5px;">ADMIN</span></div>
+                                <div style="font-weight: 800; font-size: 14px; margin-bottom: 6px; color: var(--color-text-title);">${adminName} <span style="font-size: 9px; background: var(--color-gold-antique); color: white; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 4px; letter-spacing: 0.5px;">GUILD MASTER</span></div>
                                 ${shiftsHtml}
                             </div>
                         `;
@@ -1060,7 +1373,7 @@
                 priorityContainer.innerHTML = '';
             }
 
-            // 2. XỬ LÝ BẢNG CHÍNH DÀNH CHO NHÂN SỰ THƯỜNG
+            // 2. Xử lý Cổ Thư Bang Hội chính
             let htmlTable = `<table><thead><tr><th style="width: 100px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
             rawExcelDataExport = `${t('dayTitle') || 'Ngày'}\t${t('listTitle') || 'Danh sách nhân sự đăng ký'}\n`;
             
@@ -1078,22 +1391,21 @@
                         countShifts++;
                         dayShiftsExport.push(`${employeeName} (${shiftRegistered})`);
                         
-                        // Chỉ render nhân sự thường vào bảng
                         if (!isSpecialAdmin(employeeName)) {
                             const shiftInfoObj = SHIFTS.find(s => s.id === shiftRegistered);
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
                             
                             dayShiftsHTML.push(`
-                                <div style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 8px; margin: 4px 8px 4px 0; border: 1px solid var(--border-glass);">
-                                    <span style="font-weight: 700; margin-right: 8px;">${employeeName}</span>
-                                    <span class="shift-badge ${cssBadgeClass}" style="transform: scale(0.9); padding: 4px 8px;">${shiftRegistered}</span>
+                                <div style="display: inline-flex; align-items: center; background: rgba(16, 28, 56, 0.8); padding: 3px 8px; border-radius: 6px; margin: 3px 6px 3px 0; border: 1px solid rgba(255,255,255,0.08);">
+                                    <span style="font-weight: 700; margin-right: 6px; font-size: 12.5px;">${employeeName}</span>
+                                    <span class="shift-badge ${cssBadgeClass}" style="transform: scale(0.9);">${shiftRegistered}</span>
                                 </div>
                             `);
                         }
                     }
                 });
                 
-                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: var(--text-muted); font-style: italic;">-</span>`;
+                const displayList = dayShiftsHTML.length > 0 ? dayShiftsHTML.join('') : `<span style="color: var(--color-text-muted); font-style: italic;">-</span>`;
                 const rawExportList = dayShiftsExport.length > 0 ? dayShiftsExport.join(', ') : '-';
                 
                 htmlTable += `<tr><td><strong>${dayName}</strong></td><td style="text-align: left; white-space: normal;">${displayList}</td></tr>`;
@@ -1102,8 +1414,8 @@
             htmlTable += `</tbody></table>`;
             
             tableContainer.innerHTML = htmlTable;
-            animateNumberCounter("totalUsers", 0, countUsers, 800); 
-            animateNumberCounter("totalShifts", 0, countShifts, 800);
+            animateNumberCounter("totalUsers", 0, countUsers, 600); 
+            animateNumberCounter("totalShifts", 0, countShifts, 600);
             
         } catch(error) { 
             console.error("Firebase fetch error:", error); 
@@ -1113,56 +1425,39 @@
 
     // --- 13. CÁC HÀNH ĐỘNG CỦA QUẢN TRỊ VIÊN ---
     document.getElementById("copyBtn").onclick = () => {
-        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning"); navigator.clipboard.writeText(rawExcelDataExport).then(() => showToast("Copied Data", "success")).catch(() => showToast("Error Copying", "error"));
+        if(!rawExcelDataExport) return showToast(t('emptyData'), "warning"); 
+        navigator.clipboard.writeText(rawExcelDataExport).then(() => showToast("Copied Data", "success")).catch(() => showToast("Error Copying", "error"));
     };
-    document.getElementById("unlockBtn").onclick = async () => { if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), false); showToast("Success", "success"); } };
-    document.getElementById("lockBtn").onclick = async () => { if(confirm("Confirm action?")) { await set(ref(db,"settings/lock"), true); showToast("Locked", "warning"); } };
+    document.getElementById("unlockBtn").onclick = async () => { 
+        if(confirm("Xác nhận mở đăng ký ca?")) { await set(ref(db,"settings/lock"), false); showToast("Đã mở lịch", "success"); } 
+    };
+    document.getElementById("lockBtn").onclick = async () => { 
+        if(confirm("Xác nhận khóa đăng ký ca?")) { await set(ref(db,"settings/lock"), true); showToast("Đã khóa lịch", "warning"); } 
+    };
     document.getElementById("clearBtn").onclick = async () => {
-        if(confirm("DANGER: Are you sure?")) { const validationPin = prompt("Enter PIN:"); if(validationPin === "2005") { await remove(ref(db,"dangKy")); showToast("Cleared", "success"); fetchAndRenderAdminData(); } else { showToast("Invalid PIN", "error"); } }
+        if(confirm("CẢNH BÁO NGUY HIỂM: Bạn có chắc muốn dọn dẹp dữ liệu?")) { 
+            const validationPin = prompt("Nhập mã PIN xác nhận:"); 
+            if(validationPin === "2005") { 
+                await remove(ref(db,"dangKy")); 
+                showToast("Cleared", "success"); 
+                fetchAndRenderAdminData(); 
+            } else { 
+                showToast("Mã PIN không đúng", "error"); 
+            } 
+        }
     };
 
-    // --- 14. HÀM TIỆN ÍCH (UTILITIES) ---
+    // --- 14. HÀM ĐẾM SỐ THỐNG KÊ ---
     function animateNumberCounter(elementId, startValue, endValue, durationMs) {
         let element = document.getElementById(elementId); let startTimestamp = null;
         const step = (timestamp) => {
             if(!startTimestamp) startTimestamp = timestamp; const progress = Math.min((timestamp - startTimestamp) / durationMs, 1);
-            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue); if(progress < 1) { window.requestAnimationFrame(step); }
+            element.innerHTML = Math.floor(progress * (endValue - startValue) + startValue); 
+            if(progress < 1) { window.requestAnimationFrame(step); }
         }; window.requestAnimationFrame(step);
     }
 
-    // =========================================================
-    // 15. EASTER EGG: PHYSICS GRAVITY FALL (KHÔNG TRỌNG LỰC)
-    // =========================================================
-    let isGravityActive = false; let logoClickCount = 0;
-    const brandLogo = document.querySelector('.brand-logo');
-    brandLogo.addEventListener('click', () => { if(isGravityActive) return; logoClickCount++; if(logoClickCount >= 5) { activateGravityEasterEgg(); } setTimeout(() => { logoClickCount = 0; }, 2000); });
-    
-    let lastX, lastY, lastZ;
-    window.addEventListener('devicemotion', (event) => {
-        if (isGravityActive) return; let accel = event.accelerationIncludingGravity; if(!accel || accel.x === null) return;
-        let deltaX = Math.abs(lastX ? accel.x - lastX : 0); let deltaY = Math.abs(lastY ? accel.y - lastY : 0); let deltaZ = Math.abs(lastZ ? accel.z - lastZ : 0);
-        if (deltaX + deltaY + deltaZ > 40) { activateGravityEasterEgg(); } lastX = accel.x; lastY = accel.y; lastZ = accel.z;
-    });
-
-    function activateGravityEasterEgg() {
-        isGravityActive = true; showToast("⚠️ GRAVITY FAILURE", "warning"); if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
-        const resetBtn = document.createElement('button'); resetBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Khóa & Khôi Phục`; resetBtn.style.cssText = "position:fixed; top: max(24px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 999999; padding: 14px 24px; border-radius: 20px; background: var(--danger); color: white; font-weight: 800; border: 2px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.6); cursor: pointer; display: flex; align-items: center; font-family: inherit;"; document.body.appendChild(resetBtn); resetBtn.onclick = () => window.location.reload();
-        const elements = document.querySelectorAll('.card, .header'); const physicsElements = [];
-        elements.forEach(el => {
-            const rect = el.getBoundingClientRect(); el.style.width = rect.width + 'px'; el.style.height = rect.height + 'px'; el.style.position = 'fixed'; el.style.top = rect.top + 'px'; el.style.left = rect.left + 'px'; el.style.margin = '0'; el.style.transition = 'none'; el.style.zIndex = '9999';
-            physicsElements.push({ el: el, x: rect.left, y: rect.top, vx: (Math.random() - 0.5) * 15, vy: -5 - Math.random() * 10, rotation: 0, vr: (Math.random() - 0.5) * 10 });
-        });
-        const gravity = 0.8; const bounce = 0.5;
-        function updatePhysics() {
-            if(!isGravityActive) return;
-            physicsElements.forEach(p => {
-                p.vy += gravity; p.x += p.vx; p.y += p.vy; p.rotation += p.vr;
-                if (p.y + p.el.offsetHeight > window.innerHeight) { p.y = window.innerHeight - p.el.offsetHeight; p.vy *= -bounce; p.vx *= 0.95; p.vr *= 0.95; }
-                if (p.x < 0) { p.x = 0; p.vx *= -bounce; p.vr *= -0.8; } else if (p.x + p.el.offsetWidth > window.innerWidth) { p.x = window.innerWidth - p.el.offsetWidth; p.vx *= -bounce; p.vr *= -0.8; }
-                p.el.style.top = p.y + 'px'; p.el.style.left = p.x + 'px'; p.el.style.transform = `rotate(${p.rotation}deg)`;
-            }); requestAnimationFrame(updatePhysics);
-        } requestAnimationFrame(updatePhysics);
-    }
+    // Khởi tạo ngôn ngữ mặc định khi tải trang
     updateLanguageUI();
 </script>
 
