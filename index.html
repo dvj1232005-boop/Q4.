@@ -6,10 +6,10 @@
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="WorkShift Pro">
-    <meta name="theme-color" content="#07182B">
+    <meta name="apple-mobile-web-app-title" content="An Café">
+    <meta name="theme-color" content="#071322">
     
-    <title>WorkShift Pro | Đăng Ký Ca Làm An Café</title>
+    <title>An Café | Đăng Ký Lịch Làm Việc</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +17,13 @@
 
     <style>
         /* =========================================================
-           01. CSS RESET & VIEWPORT SETUP
+           01. CSS RESET & VIEWPORT
         ========================================================= */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { 
             touch-action: manipulation; 
             -webkit-text-size-adjust: 100%; 
-            background-color: #040d1a;
+            background-color: #040c17;
             overflow-x: hidden;
             width: 100%;
         }
@@ -42,23 +42,22 @@
         .hidden { display: none !important; }
 
         /* =========================================================
-           02. DESIGN SYSTEM TOKENS — PREMIUM FANTASY CAFÉ
+           02. DESIGN SYSTEM — REFINED FANTASY CAFÉ
         ========================================================= */
         :root {
             --font-display: 'Cinzel', 'Plus Jakarta Sans', serif;
             --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
 
-            /* Luxury Mid-Autumn Palette */
-            --bg-midnight-top: #030a14;
-            --bg-midnight-mid: #081a2e;
-            --bg-midnight-bottom: #051322;
+            /* Warm Lacquer & Night Café Tones */
+            --bg-deep: #040c17;
+            --bg-night-mid: #081728;
             
-            --surface-card: #081d33;
-            --surface-card-border: rgba(244, 199, 106, 0.28);
-            --surface-slot: #061729;
-            --surface-slot-border: rgba(143, 168, 192, 0.22);
-            --surface-slot-hover: #0c2642;
+            --surface-card: #091c30;
+            --surface-card-border: rgba(244, 199, 106, 0.22);
+            --surface-slot: #061526;
+            --surface-slot-border: rgba(143, 168, 192, 0.18);
+            --surface-slot-hover: #0c233c;
 
             --moon-cream: #FFF4D2;
             --moon-gold: #FDE08B;
@@ -67,27 +66,24 @@
             
             --lantern-red: #D94A3D;
             --lantern-orange: #FF8A3D;
-            --lantern-amber: #FFB347;
 
-            --text-title: #FFF2D1;
+            --text-title: #FFF5D6;
             --text-main: #F1F5F9;
             --text-muted: #8FA8C0;
             --text-cloud: #6C8298;
 
-            --shadow-card: 0 16px 44px rgba(1, 6, 14, 0.9), 0 0 0 1px rgba(244, 199, 106, 0.15);
-            --shadow-slot: 0 4px 14px rgba(2, 8, 16, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-            --shadow-btn: 0 8px 26px rgba(217, 74, 61, 0.45);
+            --shadow-card: 0 16px 40px rgba(1, 5, 12, 0.85);
+            --shadow-slot: 0 2px 8px rgba(1, 6, 14, 0.45);
+            --shadow-btn: 0 8px 24px rgba(217, 74, 61, 0.38);
             
             --radius-sm: 8px;
             --radius-md: 12px;
-            --radius-lg: 20px;
+            --radius-lg: 18px;
             --radius-pill: 9999px;
 
-            /* Strict z-index hierarchy */
             --z-bg: 0;
             --z-moon: 1;
             --z-clouds: 2;
-            --z-scenery: 2;
             --z-decor: 3;
             --z-header: 20;
             --z-content: 30;
@@ -97,7 +93,7 @@
         }
 
         :root[data-theme="light"] {
-            --surface-card: #0d2847;
+            --surface-card: #0d2642;
             --text-main: #FFFFFF;
             --text-muted: #A5C0D8;
         }
@@ -107,11 +103,11 @@
         }
 
         /* =========================================================
-           03. MULTI-LAYERED BACKGROUND (STRICT POINTER-EVENTS: NONE)
+           03. MULTI-LAYERED BACKGROUND
         ========================================================= */
         .sky-container {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(180deg, var(--bg-midnight-top) 0%, var(--bg-midnight-mid) 46%, var(--bg-midnight-bottom) 100%);
+            background: linear-gradient(180deg, #030810 0%, #071626 48%, #040d18 100%);
             z-index: var(--z-bg); pointer-events: none;
         }
         #bg-canvas {
@@ -119,75 +115,75 @@
             z-index: 1; pointer-events: none;
         }
 
-        /* Atmospheric Giant Moon (Behind Header) */
+        /* Giant Moon */
         .moon-wrapper {
             position: fixed; 
-            top: max(10px, env(safe-area-inset-top)); 
+            top: max(12px, env(safe-area-inset-top)); 
             right: 14%; 
-            width: 96px; 
-            height: 96px;
+            width: 90px; 
+            height: 90px;
             z-index: var(--z-moon); 
             pointer-events: none;
             opacity: 0.95;
         }
         .moon-svg {
             width: 100%; height: 100%;
-            filter: drop-shadow(0 0 28px rgba(253, 224, 139, 0.45));
+            filter: drop-shadow(0 0 24px rgba(253, 224, 139, 0.4));
         }
 
-        /* Chinese Clouds */
+        /* Floating Chinese Clouds */
         .cloud-svg {
             position: fixed; z-index: var(--z-clouds); pointer-events: none;
-            filter: drop-shadow(0 4px 14px rgba(3, 10, 20, 0.4));
+            filter: drop-shadow(0 4px 12px rgba(2, 6, 12, 0.35));
         }
-        .cloud-top { top: 70px; right: 2%; width: 190px; height: 65px; animation: cloudFloat 38s infinite alternate ease-in-out; }
-        .cloud-mid { top: 220px; left: -20px; width: 220px; height: 70px; animation: cloudFloat 48s infinite alternate-reverse ease-in-out; }
+        .cloud-top { top: 68px; right: 2%; width: 180px; height: 60px; animation: cloudFloat 38s infinite alternate ease-in-out; }
+        .cloud-mid { top: 210px; left: -20px; width: 210px; height: 65px; animation: cloudFloat 48s infinite alternate-reverse ease-in-out; }
         @keyframes cloudFloat {
             0% { transform: translateX(0); }
-            100% { transform: translateX(24px); }
+            100% { transform: translateX(20px); }
         }
 
-        /* Distant Bridge & Pagoda Silhouette */
+        /* Scenery Silhouette (Bridge & Shore) */
         .scenery-silhouette {
-            position: fixed; top: 120px; left: 0; width: 100vw; height: 140px;
-            z-index: var(--z-scenery); pointer-events: none; opacity: 0.55;
+            position: fixed; top: 120px; left: 0; width: 100vw; height: 130px;
+            z-index: var(--z-clouds); pointer-events: none; opacity: 0.45;
         }
 
-        /* Floating Chinese Palace Lanterns (Confined to edge margins) */
+        /* Soft Floating Lanterns */
         .floating-lantern {
             position: fixed; z-index: var(--z-decor); pointer-events: none;
-            filter: drop-shadow(0 0 14px rgba(255, 138, 61, 0.65));
+            filter: drop-shadow(0 0 12px rgba(255, 138, 61, 0.55));
             animation: lanternSway 4.8s infinite ease-in-out alternate;
         }
-        .lantern-1 { top: 32px; left: 8px; width: 26px; height: 52px; }
-        .lantern-2 { top: 18px; left: 75px; width: 22px; height: 44px; animation-delay: -2s; }
-        .lantern-3 { top: 135px; right: 8px; width: 30px; height: 60px; animation-delay: -2.8s; }
+        .lantern-1 { top: 30px; left: 8px; width: 24px; height: 48px; }
+        .lantern-2 { top: 18px; left: 74px; width: 20px; height: 40px; animation-delay: -2s; }
+        .lantern-3 { top: 135px; right: 8px; width: 28px; height: 56px; animation-delay: -2.8s; }
         @keyframes lanternSway {
-            0% { transform: translateY(0) rotate(-2.5deg); }
-            100% { transform: translateY(7px) rotate(2.5deg); }
+            0% { transform: translateY(0) rotate(-2deg); }
+            100% { transform: translateY(6px) rotate(2deg); }
         }
 
-        /* Foreground Tree Foliage */
+        /* Foliage on Screen Margins */
         .fg-foliage {
             position: fixed; pointer-events: none; z-index: var(--z-decor);
-            filter: drop-shadow(0 4px 12px rgba(1, 5, 12, 0.7));
+            filter: drop-shadow(0 4px 10px rgba(1, 4, 10, 0.65));
         }
-        .fg-left { top: 0; left: 0; width: 85px; height: 110px; }
-        .fg-right { top: 0; right: 0; width: 90px; height: 115px; }
+        .fg-left { top: 0; left: 0; width: 80px; height: 105px; }
+        .fg-right { top: 0; right: 0; width: 85px; height: 110px; }
 
         /* Lake Water Reflection */
         .water-reflection {
-            position: fixed; bottom: 0; left: 0; width: 100vw; height: 105px;
-            background: linear-gradient(180deg, transparent 0%, rgba(4, 14, 26, 0.85) 45%, #02070e 100%);
+            position: fixed; bottom: 0; left: 0; width: 100vw; height: 95px;
+            background: linear-gradient(180deg, transparent 0%, rgba(3, 10, 18, 0.85) 45%, #01050a 100%);
             z-index: 2; pointer-events: none;
         }
         .water-ripples-svg {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 50px;
-            opacity: 0.75;
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 45px;
+            opacity: 0.7;
         }
 
         /* =========================================================
-           04. MOBILE PRIMARY LAYOUT & SAFE AREA
+           04. CONTAINER & SAFE AREA
         ========================================================= */
         .app-wrapper {
             position: relative; 
@@ -199,12 +195,12 @@
             max-width: 480px; 
             margin: 0 auto;
             padding: 0 16px;
-            padding-top: max(12px, env(safe-area-inset-top));
+            padding-top: max(10px, env(safe-area-inset-top));
             padding-bottom: max(16px, env(safe-area-inset-bottom));
         }
 
         /* =========================================================
-           05. HEADER & CONTROLS
+           05. EDITORIAL HEADER & TICKER
         ========================================================= */
         .header {
             position: relative;
@@ -212,7 +208,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            padding: 8px 0 6px; 
+            padding: 6px 0 4px; 
             gap: 8px;
         }
         .brand-group {
@@ -226,39 +222,38 @@
             display: flex; flex-direction: column; align-items: flex-start;
         }
         .brand-logo-title {
-            font-family: var(--font-display); font-weight: 800; font-size: 18px;
-            color: var(--text-title); letter-spacing: 0.6px; line-height: 1.1;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 0 14px rgba(244, 199, 106, 0.3);
+            font-family: var(--font-display); font-weight: 700; font-size: 18px;
+            color: var(--text-title); letter-spacing: 0.5px; line-height: 1.1;
         }
         .brand-logo-sub {
-            font-family: var(--font-mono); font-size: 9px; font-weight: 800;
-            color: var(--warm-gold); letter-spacing: 1.4px; text-transform: uppercase;
+            font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+            color: var(--warm-gold); letter-spacing: 1.2px; text-transform: uppercase;
         }
         .header-controls {
             display: flex; align-items: center; gap: 6px;
         }
         .lang-toggle {
-            background: #09213a;
-            border: 1px solid rgba(244, 199, 106, 0.4);
+            background: #071728;
+            border: 1px solid rgba(244, 199, 106, 0.35);
             color: var(--warm-gold);
-            height: 34px; padding: 0 24px 0 10px; border-radius: var(--radius-pill);
-            font-weight: 700; font-family: var(--font-main);
+            height: 32px; padding: 0 22px 0 10px; border-radius: var(--radius-pill);
+            font-weight: 600; font-family: var(--font-main);
             outline: none; appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23F4C76A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: right 8px center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4); cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23F4C76A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 7px center;
+            cursor: pointer;
             transition: all 0.2s ease;
         }
         .lang-toggle:focus { border-color: var(--warm-gold); }
 
         .theme-toggle {
-            background: #09213a;
-            border: 1px solid rgba(244, 199, 106, 0.4);
+            background: #071728;
+            border: 1px solid rgba(244, 199, 106, 0.35);
             color: var(--warm-gold);
-            width: 34px; height: 34px; border-radius: 50%;
+            width: 32px; height: 32px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-            flex-shrink: 0; transition: transform 0.2s ease, border-color 0.2s ease;
+            cursor: pointer; flex-shrink: 0; 
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
         .theme-toggle:active { transform: scale(0.92); }
         .theme-toggle:hover { border-color: var(--warm-gold); }
@@ -266,263 +261,252 @@
         .update-ticker {
             position: relative;
             z-index: var(--z-header);
-            font-size: 11px; font-weight: 700; color: var(--text-muted);
+            font-size: 11px; font-weight: 600; color: var(--text-muted);
             display: flex; align-items: center; justify-content: center; gap: 6px;
-            background: #06182c; padding: 6px 14px;
-            border-radius: var(--radius-pill); border: 1px solid rgba(108, 130, 152, 0.35);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.35);
-            margin: 2px 0 12px; width: 100%;
+            background: #061526; padding: 5px 12px;
+            border-radius: var(--radius-pill); border: 1px solid rgba(108, 130, 152, 0.25);
+            margin: 2px 0 10px; width: 100%;
         }
         .update-pulse {
-            width: 6.5px; height: 6.5px; background: #34D399; border-radius: 50%;
-            box-shadow: 0 0 8px #34D399; animation: manaPulse 2s infinite ease-in-out;
+            width: 6px; height: 6px; background: #34D399; border-radius: 50%;
+            animation: manaPulse 2s infinite ease-in-out;
         }
-        @keyframes manaPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+        @keyframes manaPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.85); } }
 
         /* =========================================================
-           06. MAIN CARD (#userCard) — VISUAL EDITORIAL CENTER
+           06. REFINED MAIN CAFÉ CARD (#userCard)
         ========================================================= */
         .card {
             background: var(--surface-card);
             border: 1px solid var(--surface-card-border);
             border-radius: var(--radius-lg);
-            padding: 22px 16px 18px;
+            padding: 20px 16px 18px;
             box-shadow: var(--shadow-card);
             position: relative;
             z-index: var(--z-content);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             overflow: visible;
         }
 
-        /* Chibi Moon Rabbit on Top-Left */
+        /* Top Corner Details (Safe positioning) */
         .rabbit-decor-top {
             position: absolute; 
-            top: -26px; 
-            left: -4px; 
-            width: 60px; 
-            height: 60px;
+            top: -24px; 
+            left: -2px; 
+            width: 56px; 
+            height: 56px;
             pointer-events: none !important; 
             z-index: 1;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
         }
 
-        /* Hanging Palace Lantern on Top-Right */
         .lantern-tag-top {
             position: absolute; 
-            top: -14px; 
+            top: -12px; 
             right: 8px; 
-            width: 35px; 
-            height: 62px;
+            width: 32px; 
+            height: 58px;
             pointer-events: none !important; 
             z-index: 1;
-            filter: drop-shadow(0 0 12px rgba(255, 138, 61, 0.4));
+            filter: drop-shadow(0 0 10px rgba(255, 138, 61, 0.35));
         }
 
         .card-header { 
             text-align: center; 
-            margin-bottom: 16px; 
+            margin-bottom: 14px; 
             position: relative; 
             z-index: 10; 
-            padding: 0 32px; /* Protected clearance from corner SVGs */
+            padding: 0 28px;
         }
         
         .card-title {
             font-family: var(--font-display); 
-            font-size: 24px; 
-            font-weight: 800;
+            font-size: 23px; 
+            font-weight: 700;
             color: var(--text-title); 
-            letter-spacing: 0.4px; 
+            letter-spacing: 0.3px; 
             line-height: 1.25;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 14px rgba(244, 199, 106, 0.25);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             white-space: normal;
             word-break: break-word;
         }
         .ancafe-link {
-            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-            color: var(--warm-gold); font-weight: 700; text-decoration: none; font-size: 12.5px;
-            padding: 5px 16px; border-radius: var(--radius-pill);
-            background: #09213a; border: 1px solid rgba(244, 199, 106, 0.6);
-            box-shadow: 0 2px 10px rgba(244, 199, 106, 0.16);
+            display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+            color: var(--warm-gold); font-weight: 600; text-decoration: none; font-size: 12px;
+            padding: 4px 14px; border-radius: var(--radius-pill);
+            background: #071728; border: 1px solid rgba(244, 199, 106, 0.45);
             transition: all 0.2s ease; margin-bottom: 4px;
         }
-        .ancafe-link:hover { transform: translateY(-1px); border-color: var(--warm-gold); box-shadow: 0 4px 14px rgba(244, 199, 106, 0.3); }
-        .ancafe-link:active { transform: translateY(0) scale(0.97); }
+        .ancafe-link:hover { border-color: var(--warm-gold); }
+        .ancafe-link:active { transform: scale(0.97); }
 
         .slogan-container {
             display: flex; justify-content: center; align-items: center;
-            min-height: 18px; width: 100%; margin-top: 2px;
+            min-height: 16px; width: 100%; margin-top: 2px;
         }
         .slogan-text {
-            font-size: 12px; font-weight: 600; color: var(--text-muted); font-style: italic;
+            font-size: 11.5px; font-weight: 500; color: var(--text-muted); font-style: italic;
         }
         .type-cursor {
-            font-size: 12px; color: var(--warm-gold); font-weight: 800;
+            font-size: 11.5px; color: var(--warm-gold); font-weight: 700;
             animation: blinkCur 0.8s infinite; margin-left: 2px;
         }
         @keyframes blinkCur { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* =========================================================
-           07. SYSTEM STATUS PANEL (#lockStatus)
+           07. NOTICE PANEL (#lockStatus)
         ========================================================= */
         .status-panel {
             display: flex; align-items: center; justify-content: flex-start; gap: 12px;
-            padding: 12px 16px; border-radius: 14px; margin-bottom: 18px;
-            background: #061729; border: 1px solid var(--surface-slot-border);
+            padding: 10px 14px; border-radius: 12px; margin-bottom: 16px;
+            background: #061526; border: 1px solid var(--surface-slot-border);
             box-shadow: var(--shadow-slot); transition: all 0.3s ease;
             position: relative; z-index: 10;
         }
         .status-panel.sys-locked {
-            border-color: rgba(217, 74, 61, 0.65);
-            background: linear-gradient(135deg, rgba(217, 74, 61, 0.22) 0%, #0a1c30 100%);
-            box-shadow: 0 4px 16px rgba(217, 74, 61, 0.22);
+            border-color: rgba(217, 74, 61, 0.45);
+            background: #0a1726;
         }
         .status-panel.sys-open {
-            border-color: rgba(52, 211, 153, 0.55);
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, #0a1c30 100%);
-            box-shadow: 0 4px 16px rgba(52, 211, 153, 0.16);
+            border-color: rgba(52, 211, 153, 0.35);
+            background: #071929;
         }
         .st-icon-box {
-            width: 40px; height: 40px; border-radius: 10px;
+            width: 36px; height: 36px; border-radius: 9px;
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-            border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 3px 8px rgba(0,0,0,0.3);
         }
-        .sys-locked .st-icon-box { background: rgba(217, 74, 61, 0.32); color: #FFA39E; }
-        .sys-open .st-icon-box { background: rgba(52, 211, 153, 0.22); color: #34D399; }
-        .st-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+        .sys-locked .st-icon-box { background: rgba(217, 74, 61, 0.2); color: #FFA39E; }
+        .sys-open .st-icon-box { background: rgba(52, 211, 153, 0.15); color: #34D399; }
+        .st-info { display: flex; flex-direction: column; gap: 1px; text-align: left; }
         .st-title {
-            font-family: var(--font-display); font-size: 16px; font-weight: 800; letter-spacing: 0.4px;
+            font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
         }
-        .sys-locked .st-title { color: #FFA39E; text-shadow: 0 0 10px rgba(217, 74, 61, 0.45); }
-        .sys-open .st-title { color: #34D399; text-shadow: 0 0 10px rgba(52, 211, 153, 0.35); }
-        .st-desc { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+        .sys-locked .st-title { color: #FFA39E; }
+        .sys-open .st-title { color: #34D399; }
+        .st-desc { font-size: 11.5px; font-weight: 500; color: var(--text-muted); }
 
         /* =========================================================
-           08. EMPLOYEE IDENTITY (#name)
+           08. EMPLOYEE NAME (#name)
         ========================================================= */
         .input-label {
-            display: flex; align-items: center; gap: 6px; font-size: 12.5px;
-            font-weight: 800; color: var(--text-title); text-transform: uppercase;
-            letter-spacing: 0.8px; margin-bottom: 8px;
+            display: flex; align-items: center; gap: 6px; font-size: 12px;
+            font-weight: 700; color: var(--text-title); text-transform: uppercase;
+            letter-spacing: 0.6px; margin-bottom: 6px;
         }
-        .input-wrapper { position: relative; margin-bottom: 18px; }
+        .input-wrapper { position: relative; margin-bottom: 16px; }
         .input-icon {
             position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-            color: var(--warm-gold); pointer-events: none; opacity: 0.85;
+            color: var(--warm-gold); pointer-events: none; opacity: 0.8;
         }
         .form-control {
-            width: 100%; padding: 12px 14px 12px 42px; border-radius: var(--radius-md);
+            width: 100%; padding: 11px 14px 11px 40px; border-radius: var(--radius-md);
             border: 1px solid var(--surface-slot-border); background: var(--surface-slot);
             color: var(--text-title); font-family: var(--font-main); font-weight: 600;
-            transition: all 0.25s ease; box-shadow: var(--shadow-slot);
+            transition: all 0.2s ease; box-shadow: var(--shadow-slot);
             appearance: none; -webkit-appearance: none;
         }
         .form-control:focus {
             border-color: var(--warm-gold); outline: none;
-            background: #09223c;
-            box-shadow: 0 0 12px rgba(244, 199, 106, 0.25);
+            background: #081d33;
         }
 
         /* =========================================================
-           09. 7-DAY SHIFT CARDS & DROPDOWNS
+           09. SCHEDULE GRID & DROPDOWNS
         ========================================================= */
         .calendar-grid {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
         .day-card {
             background: var(--surface-slot); border: 1px solid var(--surface-slot-border);
-            border-radius: var(--radius-md); padding: 9px 8px 9px 10px;
+            border-radius: var(--radius-md); padding: 8px 8px 8px 10px;
             box-shadow: var(--shadow-slot); position: relative; z-index: 1;
             transition: all 0.2s ease;
         }
-        .day-card:hover { border-color: rgba(244, 199, 106, 0.5); background: var(--surface-slot-hover); }
+        .day-card:hover { border-color: rgba(244, 199, 106, 0.4); background: var(--surface-slot-hover); }
         .day-header {
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 6px; font-weight: 700; font-size: 14px; color: var(--text-main);
+            margin-bottom: 5px; font-weight: 600; font-size: 13.5px; color: var(--text-main);
         }
         .day-badge {
-            font-family: var(--font-mono); font-size: 10.5px; padding: 2px 5px;
-            border-radius: 5px; background: rgba(108, 130, 152, 0.2);
-            color: var(--text-muted); border: 1px solid rgba(143, 168, 192, 0.2);
+            font-family: var(--font-mono); font-size: 10px; padding: 2px 5px;
+            border-radius: 4px; background: rgba(108, 130, 152, 0.15);
+            color: var(--text-muted); border: 1px solid rgba(143, 168, 192, 0.18);
         }
 
         .custom-dropdown { position: relative; width: 100%; }
         .dropdown-selected {
-            width: 100%; padding: 8px 8px 8px 10px; border-radius: 8px;
-            border: 1px solid rgba(143, 168, 192, 0.2); background: #051424;
-            color: var(--text-main); font-weight: 700; font-size: 14px;
+            width: 100%; padding: 7px 8px 7px 10px; border-radius: 7px;
+            border: 1px solid rgba(143, 168, 192, 0.18); background: #051220;
+            color: var(--text-main); font-weight: 600; font-size: 13.5px;
             display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; user-select: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-            transition: all 0.2s ease; min-height: 38px;
+            cursor: pointer; user-select: none;
+            transition: all 0.2s ease; min-height: 36px;
         }
         .dropdown-selected:active { transform: scale(0.98); }
         .dropdown-selected .select-arrow {
-            transition: transform 0.25s ease; color: var(--text-muted); flex-shrink: 0;
+            transition: transform 0.2s ease; color: var(--text-muted); flex-shrink: 0;
         }
         .custom-dropdown.open .dropdown-selected {
-            border-color: var(--warm-gold); background: #0a2440;
-            box-shadow: 0 0 10px rgba(244, 199, 106, 0.25);
+            border-color: var(--warm-gold); background: #092036;
         }
         .custom-dropdown.open .select-arrow { transform: rotate(180deg); color: var(--warm-gold); }
 
         .dropdown-options {
             position: absolute; top: calc(100% + 4px); left: 0; right: 0;
-            background: #081C30; border: 1px solid var(--warm-gold);
-            border-radius: 10px; padding: 4px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.95);
-            z-index: var(--z-dropdown); max-height: 180px; overflow-y: auto;
-            opacity: 0; visibility: hidden; transform: translateY(-4px);
-            transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+            background: #071728; border: 1px solid var(--warm-gold);
+            border-radius: 8px; padding: 4px; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.9);
+            z-index: var(--z-dropdown); max-height: 170px; overflow-y: auto;
+            opacity: 0; visibility: hidden; transform: translateY(-3px);
+            transition: all 0.2s ease;
         }
         .custom-dropdown.open .dropdown-options { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-option {
-            padding: 8px 10px; font-weight: 700; font-size: 13px; color: var(--text-main);
-            border-radius: 6px; cursor: pointer; transition: all 0.15s ease; margin-bottom: 2px;
+            padding: 7px 9px; font-weight: 600; font-size: 12.5px; color: var(--text-main);
+            border-radius: 5px; cursor: pointer; transition: all 0.15s ease; margin-bottom: 2px;
         }
         .dropdown-option:hover, .dropdown-option:active {
-            background: rgba(244, 199, 106, 0.2); color: var(--warm-gold);
+            background: rgba(244, 199, 106, 0.18); color: var(--warm-gold);
         }
 
-        .dropdown-selected.sel-c1 { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.45); }
-        .dropdown-selected.sel-c2 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.45); }
-        .dropdown-selected.sel-c3 { background: rgba(192, 132, 252, 0.15); color: #c084fc; border-color: rgba(192, 132, 252, 0.45); }
-        .dropdown-selected.sel-f  { background: rgba(217, 74, 61, 0.2); color: #FFA39E; border-color: rgba(217, 74, 61, 0.5); }
-        .dropdown-selected.sel-double { background: rgba(244, 199, 106, 0.18); color: var(--warm-gold); border-color: rgba(244, 199, 106, 0.6); }
+        .dropdown-selected.sel-c1 { background: rgba(56, 189, 248, 0.12); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); }
+        .dropdown-selected.sel-c2 { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4); }
+        .dropdown-selected.sel-c3 { background: rgba(192, 132, 252, 0.12); color: #c084fc; border-color: rgba(192, 132, 252, 0.4); }
+        .dropdown-selected.sel-f  { background: rgba(217, 74, 61, 0.18); color: #FFA39E; border-color: rgba(217, 74, 61, 0.45); }
+        .dropdown-selected.sel-double { background: rgba(244, 199, 106, 0.15); color: var(--warm-gold); border-color: rgba(244, 199, 106, 0.5); }
 
         /* =========================================================
-           10. PRIMARY & SECONDARY ACTIONS
+           10. PRIMARY BUTTON & MANAGER LINK
         ========================================================= */
         .btn {
-            width: 100%; padding: 14px; border-radius: var(--radius-pill);
-            font-family: var(--font-main); font-size: 14px; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 0.8px; cursor: pointer;
+            width: 100%; padding: 13px; border-radius: var(--radius-pill);
+            font-family: var(--font-main); font-size: 13.5px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.6px; cursor: pointer;
             display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: all 0.2s ease; border: none; min-height: 52px;
+            transition: all 0.2s ease; border: none; min-height: 48px;
             position: relative; z-index: 10;
         }
         .btn-primary {
             background: linear-gradient(180deg, #E04E40 0%, #BA362B 100%);
-            border: 1px solid #FF8175; color: #FFF0C7;
+            border: 1px solid #FF8175; color: #FFF4D2;
             box-shadow: var(--shadow-btn);
         }
         .btn-primary:hover:not(:disabled) {
             background: linear-gradient(180deg, #EB5B4E 0%, #C73E32 100%);
-            box-shadow: 0 10px 26px rgba(217, 74, 61, 0.55);
         }
         .btn-primary:active:not(:disabled) {
-            transform: translateY(2px); box-shadow: 0 4px 12px rgba(217, 74, 61, 0.4);
+            transform: translateY(1px);
         }
         .btn-primary:disabled {
-            opacity: 0.55; filter: grayscale(0.5); cursor: not-allowed;
-            background: linear-gradient(180deg, #A83C32 0%, #78241D 100%);
+            opacity: 0.5; filter: grayscale(0.6); cursor: not-allowed;
+            background: #5c201a;
         }
         .btn-outline {
-            background: #061729; border: 1px solid rgba(244, 199, 106, 0.55);
-            color: var(--warm-gold); margin-top: 10px; border-radius: var(--radius-pill);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            background: #061526; border: 1px solid rgba(244, 199, 106, 0.45);
+            color: var(--warm-gold); margin-top: 8px; border-radius: var(--radius-pill);
         }
         .btn-outline:hover {
-            border-color: var(--warm-gold); background: #0c2642;
+            border-color: var(--warm-gold); background: #092036;
         }
         .btn-outline:active { transform: translateY(1px); }
 
@@ -535,142 +519,142 @@
         }
         .swipe-auth-zone:active { cursor: grabbing; }
         .bento-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px;
         }
         .bento-card {
-            background: #061729; border: 1px solid var(--surface-slot-border);
-            border-radius: var(--radius-md); padding: 14px; box-shadow: var(--shadow-slot);
+            background: #061526; border: 1px solid var(--surface-slot-border);
+            border-radius: var(--radius-md); padding: 12px; box-shadow: var(--shadow-slot);
         }
         .stat-val {
-            font-family: var(--font-mono); font-size: 30px; font-weight: 800;
+            font-family: var(--font-mono); font-size: 28px; font-weight: 700;
             color: var(--warm-gold); line-height: 1; margin-bottom: 4px;
         }
         .stat-label {
-            font-size: 11px; font-weight: 800; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 0.8px;
+            font-size: 10.5px; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.6px;
         }
         .action-dock {
-            background: #061729; padding: 8px; border-radius: var(--radius-md);
+            background: #061526; padding: 6px; border-radius: var(--radius-md);
             border: 1px solid var(--surface-slot-border); display: grid;
-            grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 18px;
+            grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px;
         }
         .dock-btn {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 5px; padding: 10px 2px; border-radius: 8px; background: #0a2440;
-            color: var(--text-main); font-size: 10px; font-weight: 800;
-            text-transform: uppercase; cursor: pointer; border: 1px solid rgba(255,255,255,0.08);
+            gap: 4px; padding: 8px 2px; border-radius: 7px; background: #081d33;
+            color: var(--text-main); font-size: 9.5px; font-weight: 700;
+            text-transform: uppercase; cursor: pointer; border: 1px solid rgba(255,255,255,0.06);
             transition: all 0.15s ease; text-align: center;
         }
-        .dock-btn:active { transform: scale(0.94); }
+        .dock-btn:active { transform: scale(0.95); }
         .dock-btn.success { color: #34d399; }
         .dock-btn.warning { color: #fbbf24; }
         .dock-btn.info { color: #60a5fa; }
         .dock-btn.danger { color: #f87171; }
-        .dock-btn svg { width: 17px; height: 17px; }
+        .dock-btn svg { width: 16px; height: 16px; }
 
         .btn-exit {
             background: rgba(217, 74, 61, 0.15); border: 1px solid #D94A3D;
-            color: #FFA39E; padding: 6px 12px; border-radius: var(--radius-pill);
-            font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer;
+            color: #FFA39E; padding: 5px 10px; border-radius: var(--radius-pill);
+            font-weight: 700; font-size: 10.5px; text-transform: uppercase; cursor: pointer;
             font-family: var(--font-mono);
         }
 
         .table-container {
             border-radius: var(--radius-md); border: 1px solid var(--surface-slot-border);
-            background: #061729; overflow: hidden; box-shadow: var(--shadow-slot);
+            background: #061526; overflow: hidden; box-shadow: var(--shadow-slot);
         }
-        .table-wrapper { overflow-x: auto; max-height: 380px; -webkit-overflow-scrolling: touch; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .table-wrapper { overflow-x: auto; max-height: 360px; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
         th {
-            background: #081B2E; color: var(--warm-gold); font-weight: 800;
-            text-transform: uppercase; font-size: 11px; letter-spacing: 0.8px;
-            padding: 12px 10px; border-bottom: 1px solid rgba(244, 199, 106, 0.3);
+            background: #071728; color: var(--warm-gold); font-weight: 700;
+            text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.6px;
+            padding: 10px 8px; border-bottom: 1px solid rgba(244, 199, 106, 0.25);
             position: sticky; top: 0; z-index: 10;
         }
-        th:first-child { text-align: left; left: 0; z-index: 20; background: #081B2E; }
-        td { padding: 10px 8px; border-bottom: 1px solid rgba(143, 168, 192, 0.15); }
+        th:first-child { text-align: left; left: 0; z-index: 20; background: #071728; }
+        td { padding: 9px 8px; border-bottom: 1px solid rgba(143, 168, 192, 0.12); }
         td:first-child {
-            text-align: left; position: sticky; left: 0; background: #0A2035;
-            z-index: 5; font-weight: 700; color: var(--text-title);
+            text-align: left; position: sticky; left: 0; background: #081d33;
+            z-index: 5; font-weight: 600; color: var(--text-title);
         }
         .shift-badge {
-            display: inline-flex; padding: 3px 6px; border-radius: 5px; font-weight: 800;
-            font-size: 10.5px; font-family: var(--font-mono); border: 1px solid transparent;
+            display: inline-flex; padding: 3px 5px; border-radius: 4px; font-weight: 700;
+            font-size: 10px; font-family: var(--font-mono); border: 1px solid transparent;
         }
-        .badge-c1 { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); }
-        .badge-c2 { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4); }
-        .badge-c3 { background: rgba(192, 132, 252, 0.2); color: #c084fc; border-color: rgba(192, 132, 252, 0.4); }
-        .badge-f  { background: rgba(217, 74, 61, 0.25); color: #FFA39E; border-color: rgba(217, 74, 61, 0.45); }
-        .badge-double { background: rgba(244, 199, 106, 0.22); color: var(--warm-gold); border-color: rgba(244, 199, 106, 0.5); }
+        .badge-c1 { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.35); }
+        .badge-c2 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.35); }
+        .badge-c3 { background: rgba(192, 132, 252, 0.15); color: #c084fc; border-color: rgba(192, 132, 252, 0.35); }
+        .badge-f  { background: rgba(217, 74, 61, 0.2); color: #FFA39E; border-color: rgba(217, 74, 61, 0.4); }
+        .badge-double { background: rgba(244, 199, 106, 0.18); color: var(--warm-gold); border-color: rgba(244, 199, 106, 0.45); }
         .badge-none { background: transparent; color: var(--text-muted); }
 
         /* =========================================================
-           12. MODAL & TOAST ARCHITECTURE
+           12. TOAST & MODAL
         ========================================================= */
         .toast-container {
-            position: fixed; top: max(16px, env(safe-area-inset-top)); right: 16px;
-            z-index: var(--z-toast); display: flex; flex-direction: column; gap: 8px;
+            position: fixed; top: max(14px, env(safe-area-inset-top)); right: 14px;
+            z-index: var(--z-toast); display: flex; flex-direction: column; gap: 6px;
             pointer-events: none;
         }
         .toast {
-            background: #0B2238; border: 1px solid var(--warm-gold);
-            color: var(--text-main); padding: 12px 16px; border-radius: 12px;
-            font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85); transform: translateX(120%); opacity: 0;
-            transition: 0.35s cubic-bezier(0, 0, 0.2, 1);
+            background: #091f36; border: 1px solid var(--warm-gold);
+            color: var(--text-main); padding: 10px 14px; border-radius: 10px;
+            font-weight: 500; font-size: 12.5px; display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8); transform: translateX(120%); opacity: 0;
+            transition: 0.3s ease;
         }
         .toast.show { transform: translateX(0); opacity: 1; }
         .toast-icon {
-            display: flex; align-items: center; justify-content: center; width: 22px; height: 22px;
+            display: flex; align-items: center; justify-content: center; width: 20px; height: 20px;
             border-radius: 50%; flex-shrink: 0;
         }
         .toast-success .toast-icon { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-        .toast-error .toast-icon { background: rgba(217, 74, 61, 0.25); color: #FFA39E; }
+        .toast-error .toast-icon { background: rgba(217, 74, 61, 0.2); color: #FFA39E; }
         .toast-warning .toast-icon { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
 
         .support-modal {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(2, 8, 18, 0.82); z-index: var(--z-overlay);
+            background: rgba(2, 6, 12, 0.78); z-index: var(--z-overlay);
             display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: 0.25s ease; padding: 16px;
+            opacity: 0; visibility: hidden; transition: 0.2s ease; padding: 16px;
         }
         .support-modal:not(.hidden) { opacity: 1; visibility: visible; }
         .support-modal-content {
-            background: #0B2238; border: 1px solid var(--warm-gold);
-            border-radius: var(--radius-lg); padding: 24px 18px; width: 100%; max-width: 360px;
+            background: #081d33; border: 1px solid var(--warm-gold);
+            border-radius: var(--radius-lg); padding: 22px 16px; width: 100%; max-width: 350px;
             text-align: center; position: relative; box-shadow: var(--shadow-card);
         }
         .support-close {
-            position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15); color: var(--text-muted);
-            width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+            position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12); color: var(--text-muted);
+            width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center;
             justify-content: center; cursor: pointer;
         }
         .bell-ring svg { animation: bellShake 2.5s infinite; transform-origin: top center; }
         @keyframes bellShake { 0%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(12deg); } 20%, 40% { transform: rotate(-12deg); } 50% { transform: rotate(0); } }
 
         /* =========================================================
-           13. BOTTOM CHIBI MOON RABBIT & FOOTER
+           13. BOTTOM FOLIAGE & FOOTER
         ========================================================= */
         .bottom-chibi-decor {
             display: flex; justify-content: space-between; align-items: flex-end;
-            margin-top: 10px; margin-bottom: 6px; pointer-events: none !important;
+            margin-top: 8px; margin-bottom: 4px; pointer-events: none !important;
             position: relative; z-index: var(--z-decor);
         }
         .mooncake-plate {
-            width: 110px; height: 68px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.6));
+            width: 100px; height: 60px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
         }
         .rabbit-lantern-chibi {
-            width: 95px; height: 95px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.65));
+            width: 88px; height: 88px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.55));
         }
 
         footer {
-            text-align: center; padding: 10px 0 24px; font-size: 11px;
-            color: var(--text-cloud); line-height: 1.5; letter-spacing: 0.3px;
+            text-align: center; padding: 8px 0 20px; font-size: 10.5px;
+            color: var(--text-cloud); line-height: 1.4; letter-spacing: 0.3px;
             position: relative; z-index: var(--z-content);
         }
-        footer strong { color: var(--warm-gold); }
-        footer span.pro-text { color: var(--lantern-red); font-weight: 800; }
+        footer strong { color: var(--warm-gold); font-weight: 700; }
+        footer span.pro-text { color: var(--lantern-red); font-weight: 700; }
 
         /* =========================================================
            14. MOBILE BREAKPOINTS (375px, 393px, 430px)
@@ -678,47 +662,47 @@
         @media (max-width: 430px) {
             .app-wrapper { padding: 0 14px; }
             .card { padding: 18px 14px 16px; }
-            .card-title { font-size: 23px; }
-            .fg-left { width: 75px; height: 95px; }
-            .fg-right { width: 80px; height: 100px; }
-            .moon-wrapper { width: 76px; height: 76px; right: 12%; }
-            .rabbit-decor-top { width: 54px; height: 54px; top: -23px; left: -2px; }
-            .lantern-tag-top { width: 30px; height: 56px; top: -12px; right: 6px; }
+            .card-title { font-size: 22px; }
+            .fg-left { width: 70px; height: 90px; }
+            .fg-right { width: 75px; height: 95px; }
+            .moon-wrapper { width: 74px; height: 74px; right: 12%; }
+            .rabbit-decor-top { width: 50px; height: 50px; top: -22px; left: -2px; }
+            .lantern-tag-top { width: 28px; height: 52px; top: -10px; right: 6px; }
         }
 
         @media (max-width: 393px) {
             .app-wrapper { padding: 0 12px; }
-            .card { padding: 16px 12px 14px; border-radius: 16px; }
-            .card-header { padding: 0 26px; margin-bottom: 14px; }
+            .card { padding: 16px 12px 14px; border-radius: 15px; }
+            .card-header { padding: 0 22px; margin-bottom: 12px; }
             .card-title { font-size: 21px; }
             .calendar-grid { gap: 6px; }
-            .day-card { padding: 8px 6px 8px 8px; }
-            .day-header { font-size: 13.5px; }
-            .dropdown-selected { font-size: 13.5px; min-height: 36px; padding: 6px 6px 6px 8px; }
-            .st-title { font-size: 15px; }
-            .st-desc { font-size: 11.5px; }
-            .fg-left { width: 60px; height: 80px; }
-            .fg-right { width: 65px; height: 85px; }
+            .day-card { padding: 7px 6px 7px 8px; }
+            .day-header { font-size: 13px; }
+            .dropdown-selected { font-size: 13px; min-height: 35px; padding: 5px 6px 5px 8px; }
+            .st-title { font-size: 14.5px; }
+            .st-desc { font-size: 11px; }
+            .fg-left { width: 55px; height: 75px; }
+            .fg-right { width: 60px; height: 80px; }
             .floating-lantern.lantern-1 { display: none; }
-            .floating-lantern.lantern-2 { left: 55px; }
-            .rabbit-decor-top { width: 48px; height: 48px; top: -20px; left: -2px; }
-            .lantern-tag-top { width: 26px; height: 48px; top: -10px; right: 4px; }
-            .bottom-chibi-decor .mooncake-plate { width: 95px; height: 58px; }
-            .bottom-chibi-decor .rabbit-lantern-chibi { width: 85px; height: 85px; }
+            .floating-lantern.lantern-2 { left: 50px; }
+            .rabbit-decor-top { width: 44px; height: 44px; top: -18px; left: -2px; }
+            .lantern-tag-top { width: 24px; height: 44px; top: -8px; right: 4px; }
+            .bottom-chibi-decor .mooncake-plate { width: 88px; height: 52px; }
+            .bottom-chibi-decor .rabbit-lantern-chibi { width: 78px; height: 78px; }
         }
 
         @media (max-width: 375px) {
             .app-wrapper { padding: 0 10px; }
             .card { padding: 14px 10px 12px; }
-            .card-header { padding: 0 16px; }
-            .card-title { font-size: 20px; }
+            .card-header { padding: 0 14px; }
+            .card-title { font-size: 19.5px; }
             .brand-logo-title { font-size: 16px; }
-            .lang-toggle { height: 32px; font-size: 12px; padding: 0 20px 0 8px; }
-            .theme-toggle { width: 32px; height: 32px; }
-            .st-icon-box { width: 36px; height: 36px; }
-            .day-header { font-size: 13px; }
-            .dropdown-selected { font-size: 13px; }
-            .rabbit-decor-top { display: none; } /* Sacrificed to ensure 100% zero overlap */
+            .lang-toggle { height: 30px; font-size: 11.5px; padding: 0 18px 0 6px; }
+            .theme-toggle { width: 30px; height: 30px; }
+            .st-icon-box { width: 32px; height: 32px; }
+            .day-header { font-size: 12.5px; }
+            .dropdown-selected { font-size: 12.5px; }
+            .rabbit-decor-top { display: none; }
             .lantern-tag-top { display: none; }
         }
     </style>
@@ -726,17 +710,17 @@
 
 <body>
 
-<!-- MULTI-LAYERED BACKGROUND SKY & REFLECTIONS -->
+<!-- BACKGROUND ATMOSPHERE -->
 <div class="sky-container"></div>
 <canvas id="bg-canvas"></canvas>
 
-<!-- 1. DETAILED ATMOSPHERIC MOON -->
+<!-- MOON -->
 <div class="moon-wrapper">
     <svg class="moon-svg" viewBox="0 0 160 160" fill="none">
         <defs>
             <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="65%" stop-color="#FDE08B" stop-opacity="0.45"/>
-                <stop offset="85%" stop-color="#F59E0B" stop-opacity="0.12"/>
+                <stop offset="65%" stop-color="#FDE08B" stop-opacity="0.38"/>
+                <stop offset="85%" stop-color="#F59E0B" stop-opacity="0.1"/>
                 <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
             </radialGradient>
             <radialGradient id="moonBody" cx="38%" cy="36%" r="58%">
@@ -747,8 +731,8 @@
                 <stop offset="100%" stop-color="#D97706"/>
             </radialGradient>
             <radialGradient id="mareGrad1" cx="45%" cy="45%" r="50%">
-                <stop offset="0%" stop-color="#D97706" stop-opacity="0.25"/>
-                <stop offset="100%" stop-color="#B45309" stop-opacity="0.04"/>
+                <stop offset="0%" stop-color="#D97706" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#B45309" stop-opacity="0.02"/>
             </radialGradient>
         </defs>
         <circle cx="80" cy="80" r="78" fill="url(#moonGlow)"/>
@@ -758,189 +742,104 @@
         <path d="M48 85 Q65 78, 72 95 Q58 112, 42 102 Z" fill="url(#mareGrad1)"/>
         <circle cx="102" cy="50" r="7" fill="url(#mareGrad1)"/>
         <circle cx="70" cy="112" r="5.5" fill="url(#mareGrad1)"/>
-        <circle cx="80" cy="80" r="61" stroke="#FFFDF0" stroke-width="1.2" opacity="0.4"/>
     </svg>
 </div>
 
-<!-- 2. CHINESE FANTASY CLOUDS -->
+<!-- CHINESE CLOUDS -->
 <svg class="cloud-svg cloud-top" viewBox="0 0 240 85" fill="none">
     <defs>
         <linearGradient id="cloudGradTop" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.02"/>
-            <stop offset="25%" stop-color="#CBD5E1" stop-opacity="0.28"/>
-            <stop offset="70%" stop-color="#94A3B8" stop-opacity="0.35"/>
-            <stop offset="100%" stop-color="#64748B" stop-opacity="0.04"/>
+            <stop offset="25%" stop-color="#CBD5E1" stop-opacity="0.22"/>
+            <stop offset="70%" stop-color="#94A3B8" stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="#64748B" stop-opacity="0.03"/>
         </linearGradient>
     </defs>
-    <path d="M15 55 C25 38, 55 35, 70 48 C85 30, 125 28, 145 42 C165 20, 205 24, 218 50 C235 60, 225 78, 195 76 C165 82, 90 80, 45 72 C25 74, 8 70, 15 55 Z" fill="#061A2C" opacity="0.3"/>
     <path d="M12 50 C22 34, 52 30, 68 44 C82 25, 122 24, 142 38 C162 16, 202 20, 215 46 C230 56, 220 74, 192 72 C162 76, 92 74, 46 68 C24 70, 6 65, 12 50 Z" fill="url(#cloudGradTop)"/>
-    <path d="M68 44 C78 52, 92 50, 96 42 C100 35, 92 28, 82 32" stroke="#E2E8F0" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.4"/>
-    <path d="M142 38 C152 48, 168 46, 172 36 C176 26, 165 20, 155 24" stroke="#E2E8F0" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.4"/>
+    <path d="M68 44 C78 52, 92 50, 96 42 C100 35, 92 28, 82 32" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.35"/>
+    <path d="M142 38 C152 48, 168 46, 172 36 C176 26, 165 20, 155 24" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.35"/>
 </svg>
 
 <svg class="cloud-svg cloud-mid" viewBox="0 0 260 95" fill="none">
     <defs>
         <linearGradient id="cloudGradMid" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#64748B" stop-opacity="0.04"/>
-            <stop offset="35%" stop-color="#94A3B8" stop-opacity="0.24"/>
-            <stop offset="75%" stop-color="#CBD5E1" stop-opacity="0.2"/>
+            <stop offset="0%" stop-color="#64748B" stop-opacity="0.03"/>
+            <stop offset="35%" stop-color="#94A3B8" stop-opacity="0.2"/>
+            <stop offset="75%" stop-color="#CBD5E1" stop-opacity="0.18"/>
             <stop offset="100%" stop-color="#475569" stop-opacity="0.02"/>
         </linearGradient>
     </defs>
-    <path d="M12 58 C26 38, 64 34, 84 50 C102 28, 152 26, 176 42 C202 18, 248 22, 252 56 C255 74, 215 84, 175 80 C125 84, 60 82, 24 74 C6 72, 2 64, 12 58 Z" fill="#041220" opacity="0.25"/>
     <path d="M8 54 C22 34, 60 30, 80 46 C98 24, 148 22, 172 38 C198 14, 244 18, 248 52 C252 70, 210 80, 170 76 C120 80, 55 78, 20 70 C2 68, -2 60, 8 54 Z" fill="url(#cloudGradMid)"/>
-    <path d="M80 46 C92 56, 110 52, 114 42 C118 32, 106 24, 94 28" stroke="#F1F5F9" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.32"/>
-    <path d="M172 38 C185 50, 204 46, 208 34" stroke="#F1F5F9" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.32"/>
+    <path d="M80 46 C92 56, 110 52, 114 42 C118 32, 106 24, 94 28" stroke="#F1F5F9" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.3"/>
 </svg>
 
-<!-- 3. DISTANT PAGODA & ARCHED WOODEN BRIDGE -->
+<!-- SHORE SCENERY -->
 <svg class="scenery-silhouette" viewBox="0 0 600 160" preserveAspectRatio="none" fill="none">
     <defs>
         <linearGradient id="sceneryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#0A2136" stop-opacity="0.75"/>
-            <stop offset="100%" stop-color="#030C16" stop-opacity="0.9"/>
+            <stop offset="0%" stop-color="#081A2D" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#020810" stop-opacity="0.9"/>
         </linearGradient>
     </defs>
     <path d="M0 160 L0 110 Q70 85, 150 115 Q260 70, 360 120 Q480 80, 600 125 L600 160 Z" fill="url(#sceneryGrad)"/>
-    
-    <g transform="translate(180, 35)">
-        <path d="M22 0 L24 0 L23 -12 Z" fill="#081827"/>
-        <path d="M10 12 C18 10, 28 10, 36 12 L33 6 C28 4, 18 4, 13 6 Z" fill="#05101A"/>
-        <rect x="19" y="12" width="8" height="8" fill="#040B13"/>
-        <path d="M4 26 C16 23, 30 23, 42 26 L38 18 C30 16, 16 16, 8 18 Z" fill="#05101A"/>
-        <rect x="16" y="26" width="14" height="10" fill="#040B13"/>
-        <path d="M-2 42 C14 38, 32 38, 48 42 L44 34 C34 32, 12 32, 2 34 Z" fill="#05101A"/>
-        <rect x="12" y="42" width="22" height="28" fill="#03080F"/>
-        <circle cx="23" cy="30" r="1.5" fill="#FDE08B" opacity="0.85"/>
-        <circle cx="23" cy="50" r="2" fill="#FF8A3D" opacity="0.9"/>
-    </g>
-
     <g transform="translate(360, 65)">
-        <path d="M0 65 Q70 12, 140 65 L140 76 Q70 24, 0 76 Z" fill="#05121D"/>
-        <path d="M2 58 Q70 4, 138 58" stroke="#040C14" stroke-width="2.5" fill="none"/>
-        <line x1="20" y1="46" x2="20" y2="58" stroke="#040C14" stroke-width="2"/>
-        <line x1="45" y1="28" x2="45" y2="44" stroke="#040C14" stroke-width="2"/>
-        <line x1="70" y1="16" x2="70" y2="35" stroke="#040C14" stroke-width="2"/>
-        <line x1="95" y1="28" x2="95" y2="44" stroke="#040C14" stroke-width="2"/>
-        <line x1="120" y1="46" x2="120" y2="58" stroke="#040C14" stroke-width="2"/>
-        <circle cx="70" cy="14" r="3.5" fill="#FF8A3D" filter="drop-shadow(0 0 6px #FF8A3D)"/>
-        <path d="M142 65 C138 50, 148 35, 140 22 C155 26, 168 36, 162 50 C175 48, 185 58, 172 70 Z" fill="#040C14"/>
+        <path d="M0 65 Q70 12, 140 65 L140 76 Q70 24, 0 76 Z" fill="#040F1A"/>
+        <circle cx="70" cy="14" r="3" fill="#FF8A3D" opacity="0.8"/>
     </g>
 </svg>
 
-<!-- 4. FLOATING PALACE LANTERNS -->
+<!-- FLOATING LANTERNS -->
 <svg class="floating-lantern lantern-1" viewBox="0 0 45 90" fill="none">
-    <defs>
-        <radialGradient id="palaceCore1" cx="50%" cy="45%" r="50%">
-            <stop offset="0%" stop-color="#FFFBEB"/>
-            <stop offset="35%" stop-color="#FDE08B"/>
-            <stop offset="75%" stop-color="#FF8A3D"/>
-            <stop offset="100%" stop-color="#D94A3D"/>
-        </radialGradient>
-    </defs>
-    <line x1="22.5" y1="0" x2="22.5" y2="18" stroke="#F4C76A" stroke-width="2"/>
-    <path d="M8 20 C14 16, 31 16, 37 20 L33 24 L12 24 Z" fill="#78350F" stroke="#D97706" stroke-width="0.8"/>
-    <path d="M10 24 L35 24 L39 52 L6 52 Z" fill="url(#palaceCore1)"/>
-    <line x1="22.5" y1="24" x2="22.5" y2="52" stroke="#D94A3D" stroke-width="1.2" opacity="0.6"/>
-    <line x1="16" y1="24" x2="14" y2="52" stroke="#D94A3D" stroke-width="0.8" opacity="0.5"/>
-    <line x1="29" y1="24" x2="31" y2="52" stroke="#D94A3D" stroke-width="0.8" opacity="0.5"/>
-    <circle cx="22.5" cy="38" r="4.5" stroke="#991B1B" stroke-width="1" fill="none" opacity="0.6"/>
-    <path d="M10 52 L35 52 L32 56 L13 56 Z" fill="#78350F" stroke="#D97706" stroke-width="0.8"/>
-    <line x1="22.5" y1="56" x2="22.5" y2="65" stroke="#D97706" stroke-width="2.5"/>
-    <circle cx="22.5" cy="65" r="2.5" fill="#F4C76A"/>
-    <path d="M22.5 67 C20 74, 18 82, 19 88 M22.5 67 L22.5 90 M22.5 67 C25 74, 27 82, 26 88" stroke="#DC2626" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="22.5" y1="0" x2="22.5" y2="18" stroke="#F4C76A" stroke-width="1.5"/>
+    <rect x="10" y="24" width="25" height="30" rx="6" fill="#D94A3D"/>
+    <rect x="14" y="27" width="17" height="24" rx="3" fill="#FEF08A" opacity="0.85"/>
+    <line x1="22.5" y1="54" x2="22.5" y2="72" stroke="#DC2626" stroke-width="1.5"/>
 </svg>
 
 <svg class="floating-lantern lantern-2" viewBox="0 0 40 80" fill="none">
-    <defs>
-        <radialGradient id="roundCore2" cx="45%" cy="40%" r="55%">
-            <stop offset="0%" stop-color="#FFFDF5"/>
-            <stop offset="40%" stop-color="#FFB347"/>
-            <stop offset="85%" stop-color="#FF8A3D"/>
-            <stop offset="100%" stop-color="#B91C1C"/>
-        </radialGradient>
-    </defs>
-    <line x1="20" y1="0" x2="20" y2="16" stroke="#F4C76A" stroke-width="1.8"/>
-    <rect x="13" y="16" width="14" height="4" rx="1.5" fill="#B45309" stroke="#FCD34D" stroke-width="0.8"/>
-    <ellipse cx="20" cy="36" rx="16" ry="17" fill="url(#roundCore2)"/>
-    <path d="M11 23 C6 30, 6 42, 11 49" stroke="#991B1B" stroke-width="0.8" fill="none" opacity="0.5"/>
-    <path d="M29 23 C34 30, 34 42, 29 49" stroke="#991B1B" stroke-width="0.8" fill="none" opacity="0.5"/>
-    <line x1="20" y1="19" x2="20" y2="53" stroke="#991B1B" stroke-width="1" opacity="0.6"/>
-    <rect x="14" y="53" width="12" height="3.5" rx="1" fill="#B45309" stroke="#FCD34D" stroke-width="0.8"/>
-    <circle cx="20" cy="58" r="2" fill="#FCD34D"/>
-    <path d="M19 60 L18 78 M20 60 L20 80 M21 60 L22 78" stroke="#DC2626" stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="20" y1="0" x2="20" y2="16" stroke="#F4C76A" stroke-width="1.5"/>
+    <ellipse cx="20" cy="36" rx="15" ry="16" fill="#EA580C"/>
+    <ellipse cx="20" cy="36" rx="10" ry="12" fill="#FEF08A" opacity="0.85"/>
+    <line x1="20" y1="52" x2="20" y2="68" stroke="#DC2626" stroke-width="1.5"/>
 </svg>
 
 <svg class="floating-lantern lantern-3" viewBox="0 0 50 100" fill="none">
-    <defs>
-        <radialGradient id="hexCore3" cx="50%" cy="45%" r="52%">
-            <stop offset="0%" stop-color="#FFFBEB"/>
-            <stop offset="45%" stop-color="#FF9E2C"/>
-            <stop offset="85%" stop-color="#E04E40"/>
-            <stop offset="100%" stop-color="#991B1B"/>
-        </radialGradient>
-    </defs>
-    <line x1="25" y1="0" x2="25" y2="18" stroke="#F4C76A" stroke-width="2"/>
-    <path d="M6 18 C14 14, 36 14, 44 18 L39 23 L11 23 Z" fill="#451A03" stroke="#D97706" stroke-width="1"/>
-    <path d="M11 23 L39 23 L44 58 L6 58 Z" fill="url(#hexCore3)"/>
-    <path d="M25 32 Q28 42, 33 46 M25 32 Q22 42, 17 46 M25 28 L25 48" stroke="#7F1D1D" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/>
-    <path d="M9 58 L41 58 L37 63 L13 63 Z" fill="#451A03" stroke="#D97706" stroke-width="1"/>
-    <circle cx="25" cy="67" r="3" fill="#F59E0B"/>
-    <path d="M25 70 L25 98 M23 70 C20 80, 19 90, 20 96 M27 70 C30 80, 31 90, 30 96" stroke="#B91C1C" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="25" y1="0" x2="25" y2="18" stroke="#F4C76A" stroke-width="1.5"/>
+    <rect x="12" y="23" width="26" height="36" rx="7" fill="#DC2626"/>
+    <rect x="17" y="27" width="16" height="28" rx="4" fill="#FDE08B" opacity="0.85"/>
+    <line x1="25" y1="59" x2="25" y2="78" stroke="#B91C1C" stroke-width="1.5"/>
 </svg>
 
-<!-- 5. FOREGROUND FOLIAGE & BLOSSOMS -->
+<!-- FOLIAGE -->
 <svg class="fg-foliage fg-left" viewBox="0 0 170 190" fill="none">
-    <path d="M-15 -10 C35 15, 60 40, 105 28 C120 45, 95 72, 55 86 C85 88, 125 105, 140 135" stroke="#050F1A" stroke-width="8" stroke-linecap="round"/>
-    <path d="M50 32 Q75 58, 68 76" stroke="#081A2D" stroke-width="4" stroke-linecap="round"/>
-    <g fill="#0C2A44" stroke="#164E63" stroke-width="0.8">
+    <path d="M-15 -10 C35 15, 60 40, 105 28" stroke="#040C14" stroke-width="6" stroke-linecap="round"/>
+    <g fill="#0A233A">
         <path d="M45 18 C30 8, 18 16, 12 30 C28 34, 40 28, 45 18 Z"/>
         <path d="M78 22 C70 5, 88 -2, 102 2 C104 18, 92 24, 78 22 Z"/>
         <path d="M105 28 C125 15, 138 24, 142 40 C125 44, 112 38, 105 28 Z"/>
-        <path d="M40 70 C25 62, 18 75, 22 90 C36 90, 42 82, 40 70 Z"/>
-        <path d="M95 70 C92 52, 110 45, 125 50 C126 66, 112 72, 95 70 Z"/>
     </g>
-    <g fill="#FDE08B">
-        <circle cx="58" cy="22" r="2.5"/><circle cx="63" cy="24" r="2"/><circle cx="59" cy="28" r="2"/>
-        <circle cx="112" cy="38" r="2.5"/><circle cx="118" cy="36" r="2"/><circle cx="114" cy="42" r="2"/>
-        <circle cx="85" cy="80" r="2.5"/><circle cx="91" cy="78" r="2"/><circle cx="87" cy="84" r="2"/>
-    </g>
-    <line x1="68" y1="76" x2="68" y2="92" stroke="#D97706" stroke-width="1.5"/>
-    <rect x="58" y="92" width="20" height="26" rx="6" fill="#EA580C" filter="drop-shadow(0 0 10px #EA580C)"/>
-    <rect x="62" y="95" width="12" height="20" rx="3" fill="#FEF08A" opacity="0.9"/>
-    <line x1="68" y1="118" x2="68" y2="130" stroke="#DC2626" stroke-width="1.8"/>
+    <line x1="68" y1="40" x2="68" y2="58" stroke="#D97706" stroke-width="1.2"/>
+    <rect x="60" y="58" width="16" height="20" rx="5" fill="#EA580C"/>
+    <rect x="63" y="60" width="10" height="16" rx="3" fill="#FEF08A" opacity="0.85"/>
 </svg>
 
 <svg class="fg-foliage fg-right" viewBox="0 0 180 200" fill="none">
-    <path d="M195 -10 C145 25, 110 45, 60 25 C45 48, 85 70, 120 85 C85 105, 55 125, 30 155" stroke="#050F1A" stroke-width="9" stroke-linecap="round"/>
-    <path d="M105 38 Q85 68, 92 85" stroke="#081A2D" stroke-width="4.5" stroke-linecap="round"/>
-    <g fill="#0C2A44" stroke="#164E63" stroke-width="0.8">
+    <path d="M195 -10 C145 25, 110 45, 60 25" stroke="#040C14" stroke-width="7" stroke-linecap="round"/>
+    <g fill="#0A233A">
         <path d="M130 18 C145 6, 160 12, 166 26 C150 32, 138 28, 130 18 Z"/>
         <path d="M85 24 C95 8, 78 -2, 62 2 C62 18, 74 24, 85 24 Z"/>
-        <path d="M58 25 C38 15, 24 25, 22 42 C40 44, 52 36, 58 25 Z"/>
-        <path d="M135 78 C155 70, 165 82, 160 98 C145 98, 136 90, 135 78 Z"/>
-        <path d="M72 75 C75 58, 55 52, 42 58 C42 74, 56 80, 72 75 Z"/>
     </g>
-    <g fill="#FDE08B">
-        <circle cx="120" cy="26" r="2.5"/><circle cx="126" cy="24" r="2"/><circle cx="122" cy="30" r="2"/>
-        <circle cx="48" cy="36" r="2.5"/><circle cx="53" cy="34" r="2"/>
-        <circle cx="102" cy="85" r="2.5"/><circle cx="108" cy="83" r="2"/>
-    </g>
-    <line x1="92" y1="85" x2="92" y2="102" stroke="#D97706" stroke-width="1.8"/>
-    <rect x="80" y="102" width="24" height="32" rx="7" fill="#DC2626" filter="drop-shadow(0 0 12px #DC2626)"/>
-    <rect x="85" y="106" width="14" height="24" rx="4" fill="#FDE08B" opacity="0.88"/>
-    <line x1="92" y1="134" x2="92" y2="148" stroke="#B91C1C" stroke-width="2"/>
+    <line x1="92" y1="45" x2="92" y2="64" stroke="#D97706" stroke-width="1.5"/>
+    <rect x="82" y="64" width="20" height="26" rx="6" fill="#DC2626"/>
+    <rect x="86" y="67" width="12" height="20" rx="3" fill="#FDE08B" opacity="0.85"/>
 </svg>
 
-<!-- 6. WATER RIPPLE REFLECTIONS -->
+<!-- LAKE WATER RIPPLES -->
 <div class="water-reflection">
     <svg class="water-ripples-svg" viewBox="0 0 600 60" preserveAspectRatio="none" fill="none">
-        <ellipse cx="380" cy="25" rx="140" ry="2.5" fill="#FDE08B" opacity="0.4" filter="blur(1px)"/>
-        <ellipse cx="360" cy="36" rx="90" ry="2" fill="#F59E0B" opacity="0.35"/>
-        <ellipse cx="410" cy="46" rx="160" ry="3" fill="#D97706" opacity="0.3"/>
-        <ellipse cx="95" cy="30" rx="40" ry="2" fill="#FF8A3D" opacity="0.45"/>
-        <ellipse cx="140" cy="42" rx="55" ry="2.5" fill="#DC2626" opacity="0.35"/>
-        <ellipse cx="480" cy="35" rx="50" ry="2" fill="#FF8A3D" opacity="0.4"/>
+        <ellipse cx="380" cy="25" rx="140" ry="2" fill="#FDE08B" opacity="0.3"/>
+        <ellipse cx="360" cy="36" rx="90" ry="1.8" fill="#F59E0B" opacity="0.25"/>
+        <ellipse cx="95" cy="30" rx="40" ry="1.5" fill="#FF8A3D" opacity="0.35"/>
     </svg>
 </div>
 
@@ -966,17 +865,17 @@
         
         <div class="header-controls">
             <button class="theme-toggle bell-ring" id="supportBtn" aria-label="Support">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                     <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                 </svg>
             </button>
 
             <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">
-                <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <svg id="sunIcon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="sunIcon" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -1000,15 +899,15 @@
     <div id="supportModal" class="support-modal hidden">
         <div class="support-modal-content">
             <button class="support-close" id="closeSupportBtn">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <div style="width: 46px; height: 46px; background: rgba(244, 199, 106, 0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; border: 1.5px solid var(--warm-gold);">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--warm-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <div style="width: 40px; height: 40px; background: rgba(244, 199, 106, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; border: 1px solid var(--warm-gold);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--warm-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
             </div>
-            <h3 data-i18n="supportTitle" style="font-family: var(--font-display); margin-bottom: 8px; color: var(--text-title); font-size: 17px; font-weight: 800;">Trung Tâm Thông Báo</h3>
-            <p data-i18n="supportDesc" style="font-size: 13px; color: var(--text-muted); line-height: 1.55; font-weight: 500;">
+            <h3 data-i18n="supportTitle" style="font-family: var(--font-display); margin-bottom: 6px; color: var(--text-title); font-size: 16px; font-weight: 700;">Trung Tâm Thông Báo</h3>
+            <p data-i18n="supportDesc" style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">
                 Nhằm đảm bảo trải nghiệm tốt nhất, nếu bạn gặp bất kỳ khó khăn nào trong thao tác hoặc phát hiện điểm bất cập của hệ thống, vui lòng liên hệ <strong style="color: var(--warm-gold);">host PhuongAnh</strong>. Chúng tôi sẽ tiếp nhận và xử lý ngay lập tức.
             </p>
         </div>
@@ -1018,73 +917,44 @@
 
     <!-- MAIN REGISTRATION CARD (#userCard) -->
     <main class="card" id="userCard">
-        <!-- Chibi Moon Rabbit on Top-Left (Safe Position) -->
+        <!-- Chibi Rabbit on Roof (Safe Top-Left) -->
         <svg class="rabbit-decor-top" viewBox="0 0 100 100" fill="none">
-            <defs>
-                <radialGradient id="rabbitShade" cx="45%" cy="40%" r="55%">
-                    <stop offset="0%" stop-color="#FFFFFF"/>
-                    <stop offset="75%" stop-color="#F1F5F9"/>
-                    <stop offset="100%" stop-color="#E2E8F0"/>
-                </radialGradient>
-                <radialGradient id="cakeCrust" cx="40%" cy="35%" r="55%">
-                    <stop offset="0%" stop-color="#FBBF24"/>
-                    <stop offset="55%" stop-color="#D97706"/>
-                    <stop offset="100%" stop-color="#92400E"/>
-                </radialGradient>
-            </defs>
             <path d="M0 72 Q35 55, 95 68 L95 100 L0 100 Z" fill="#040F1B"/>
-            <path d="M-4 72 Q35 52, 95 66" stroke="#0E2B48" stroke-width="3.5" fill="none"/>
             <circle cx="28" cy="62" r="7.5" fill="#F8FAFC"/>
-            <ellipse cx="50" cy="58" rx="22" ry="19" fill="url(#rabbitShade)"/>
-            <circle cx="56" cy="36" r="18" fill="url(#rabbitShade)"/>
+            <ellipse cx="50" cy="58" rx="22" ry="19" fill="#F1F5F9"/>
+            <circle cx="56" cy="36" r="18" fill="#FFFFFF"/>
             <g transform="rotate(-16, 46, 16)">
-                <ellipse cx="46" cy="16" rx="6" ry="16" fill="url(#rabbitShade)"/>
-                <ellipse cx="46" cy="16" rx="3.2" ry="12" fill="#FDA4AF" opacity="0.85"/>
+                <ellipse cx="46" cy="16" rx="5.5" ry="15" fill="#FFFFFF"/>
+                <ellipse cx="46" cy="16" rx="3" ry="11" fill="#FDA4AF" opacity="0.85"/>
             </g>
             <g transform="rotate(14, 66, 16)">
-                <ellipse cx="66" cy="16" rx="6" ry="16" fill="url(#rabbitShade)"/>
-                <ellipse cx="66" cy="16" rx="3.2" ry="12" fill="#FDA4AF" opacity="0.85"/>
+                <ellipse cx="66" cy="16" rx="5.5" ry="15" fill="#FFFFFF"/>
+                <ellipse cx="66" cy="16" rx="3" ry="11" fill="#FDA4AF" opacity="0.85"/>
             </g>
-            <ellipse cx="49" cy="38" rx="2.8" ry="3.8" fill="#0F172A"/>
-            <circle cx="50" cy="36.5" r="1.2" fill="#FFFFFF"/>
-            <ellipse cx="65" cy="38" rx="2.8" ry="3.8" fill="#0F172A"/>
-            <circle cx="66" cy="36.5" r="1.2" fill="#FFFFFF"/>
-            <path d="M56 42 Q57 43.5, 58 42" stroke="#F43F5E" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-            <ellipse cx="43" cy="42" rx="4" ry="2.6" fill="#FB7185" opacity="0.6"/>
-            <ellipse cx="71" cy="42" rx="4" ry="2.6" fill="#FB7185" opacity="0.6"/>
-            <circle cx="68" cy="56" r="11.5" fill="url(#cakeCrust)" stroke="#78350F" stroke-width="1"/>
-            <circle cx="68" cy="56" r="8.5" stroke="#FDE68A" stroke-width="1.2" stroke-dasharray="3,1.5" fill="none"/>
-            <circle cx="59" cy="57" r="4.5" fill="#FFFFFF"/>
-            <circle cx="77" cy="57" r="4" fill="#FFFFFF"/>
+            <circle cx="49" cy="38" r="2.5" fill="#0F172A"/>
+            <circle cx="65" cy="38" r="2.5" fill="#0F172A"/>
+            <circle cx="68" cy="56" r="11" fill="#D97706"/>
+            <circle cx="68" cy="56" r="8" stroke="#FDE68A" stroke-width="1.2" stroke-dasharray="3,1.5" fill="none"/>
+            <circle cx="59" cy="57" r="4" fill="#FFFFFF"/>
+            <circle cx="77" cy="57" r="3.5" fill="#FFFFFF"/>
         </svg>
 
         <!-- Hanging Palace Lantern on Top-Right -->
         <svg class="lantern-tag-top" viewBox="0 0 60 100" fill="none">
-            <defs>
-                <radialGradient id="topLanternCore" cx="50%" cy="45%" r="50%">
-                    <stop offset="0%" stop-color="#FFFBEB"/>
-                    <stop offset="35%" stop-color="#FDE08B"/>
-                    <stop offset="75%" stop-color="#FF8A3D"/>
-                    <stop offset="100%" stop-color="#D94A3D"/>
-                </radialGradient>
-            </defs>
-            <circle cx="30" cy="8" r="4" stroke="#F4C76A" stroke-width="1.8" fill="none"/>
-            <line x1="30" y1="12" x2="30" y2="22" stroke="#F4C76A" stroke-width="2"/>
-            <path d="M12 24 C20 20, 40 20, 48 24 L44 28 L16 28 Z" fill="#78350F" stroke="#F4C76A" stroke-width="1"/>
-            <rect x="14" y="28" width="32" height="42" rx="10" fill="url(#topLanternCore)" stroke="#B45309" stroke-width="1.2"/>
-            <text x="30" y="44" font-family="'Cinzel', 'Plus Jakarta Sans', serif" font-size="9" font-weight="900" fill="#78350F" text-anchor="middle" letter-spacing="0.5">TRUNG</text>
-            <text x="30" y="55" font-family="'Cinzel', 'Plus Jakarta Sans', serif" font-size="9" font-weight="900" fill="#78350F" text-anchor="middle" letter-spacing="0.5">THU</text>
-            <path d="M30 63 C29 61, 26 61, 26 63.5 C26 66, 30 68, 30 68 C30 68, 34 66, 34 63.5 C34 61, 31 61, 30 63 Z" fill="#DC2626"/>
-            <path d="M15 70 L45 70 L41 74 L19 74 Z" fill="#78350F" stroke="#F4C76A" stroke-width="0.8"/>
-            <circle cx="30" cy="77" r="2.5" fill="#F4C76A"/>
-            <path d="M28 79 L27 96 M30 79 L30 100 M32 79 L33 96" stroke="#DC2626" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="30" cy="8" r="3.5" stroke="#F4C76A" stroke-width="1.5" fill="none"/>
+            <line x1="30" y1="12" x2="30" y2="22" stroke="#F4C76A" stroke-width="1.8"/>
+            <rect x="14" y="26" width="32" height="42" rx="9" fill="#DC2626"/>
+            <rect x="18" y="30" width="24" height="34" rx="6" fill="#FDE08B" opacity="0.9"/>
+            <text x="30" y="44" font-family="'Cinzel', serif" font-size="8.5" font-weight="700" fill="#78350F" text-anchor="middle">TRUNG</text>
+            <text x="30" y="55" font-family="'Cinzel', serif" font-size="8.5" font-weight="700" fill="#78350F" text-anchor="middle">THU</text>
+            <line x1="30" y1="68" x2="30" y2="88" stroke="#DC2626" stroke-width="1.8"/>
         </svg>
 
         <div class="card-header">
             <h2 class="card-title" data-i18n="title">Đăng Ký Ca Làm</h2>
             
             <a href="https://ancafe.vn" target="_blank" class="ancafe-link">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
                     <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1098,19 +968,19 @@
         </div>
         
         <div id="lockStatus">
-            <div style="width: 100%; height: 68px; border-radius: 14px; margin-bottom: 18px; background: #061729; border: 1px dashed rgba(143, 168, 192, 0.3);"></div>
+            <div style="width: 100%; height: 58px; border-radius: 12px; margin-bottom: 16px; background: #061526; border: 1px dashed rgba(143, 168, 192, 0.25);"></div>
         </div>
 
-        <div style="margin-bottom: 18px;">
+        <div style="margin-bottom: 16px;">
             <label class="input-label">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--warm-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warm-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
                 <span data-i18n="employeeId">Định danh nhân sự</span>
             </label>
             <div class="input-wrapper" style="margin-bottom: 0;">
-                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
@@ -1118,9 +988,9 @@
             </div>
         </div>
 
-        <div style="margin-bottom: 18px;">
-            <label class="input-label" style="margin-bottom: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--warm-gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <div style="margin-bottom: 16px;">
+            <label class="input-label" style="margin-bottom: 6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warm-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
                     <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -1129,7 +999,7 @@
                 <span data-i18n="schedule">Đăng ký lịch làm việc (Tuần này)</span>
             </label>
             <div id="form" class="calendar-grid" style="margin-bottom: 0;">
-                <!-- Dynamically injected by JavaScript -->
+                <!-- Dynamically rendered -->
             </div>
         </div>
 
@@ -1139,19 +1009,19 @@
 
     <!-- GUILD MASTER / MANAGER CHAMBER (#managerBox) -->
     <main class="card hidden" id="managerBox" style="min-height: 250px; display: flex; flex-direction: column; justify-content: center;">
-        <div id="loginSection" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; min-height: 220px;">
+        <div id="loginSection" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; min-height: 200px;">
             <div class="card-header" id="managerHeader" style="margin-bottom: 0; position: relative; z-index: 11; pointer-events: none; padding: 0 10px;">
-                <h2 class="card-title" style="color: var(--warm-gold);" data-i18n="secureAccess">Secure Access</h2>
-                <div style="font-size: 13px; font-weight: 600; color: var(--text-muted);" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
-                <div style="font-size: 11.5px; font-weight: 700; color: var(--warm-gold); margin-top: 14px; text-transform: uppercase; letter-spacing: 0.8px;">👉 Vuốt sang phải để mở khóa</div>
+                <h2 class="card-title" style="color: var(--warm-gold); font-size: 20px;" data-i18n="secureAccess">Secure Access</h2>
+                <div style="font-size: 12.5px; font-weight: 500; color: var(--text-muted);" data-i18n="highPrivilege">Hệ thống phân quyền cấp cao</div>
+                <div style="font-size: 11px; font-weight: 600; color: var(--warm-gold); margin-top: 12px; text-transform: uppercase; letter-spacing: 0.6px;">👉 Vuốt sang phải để mở khóa</div>
             </div>
             <canvas id="swipeTrailCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; border-radius: var(--radius-lg);"></canvas>
             <div class="swipe-auth-zone" id="swipeZone"></div>
         </div>
 
         <div id="adminPanel" class="hidden">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px dashed rgba(244, 199, 106, 0.4);">
-                <h2 class="card-title" style="font-size: 19px; margin:0; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px dashed rgba(244, 199, 106, 0.35);">
+                <h2 class="card-title" style="font-size: 17px; margin:0; text-align: left;">
                     <span data-i18n="dashboard">DASHBOARD</span>
                 </h2>
                 <button id="logoutBtn" class="btn-exit" data-i18n="lockSys">Khóa Hệ Thống</button>
@@ -1196,97 +1066,39 @@
         </div>
     </main>
 
-    <!-- BOTTOM CHIBI MOON RABBIT & MOONCAKES -->
+    <!-- BOTTOM ILLUSTRATION & FOOTER -->
     <div class="bottom-chibi-decor">
         <svg class="mooncake-plate" viewBox="0 0 140 85" fill="none">
-            <defs>
-                <radialGradient id="plateShadow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#020810" stop-opacity="0.85"/>
-                    <stop offset="100%" stop-color="#020810" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#1E293B"/>
-                    <stop offset="50%" stop-color="#334155"/>
-                    <stop offset="100%" stop-color="#0F172A"/>
-                </linearGradient>
-                <radialGradient id="cake1Grad" cx="40%" cy="30%" r="60%">
-                    <stop offset="0%" stop-color="#FDE68A"/>
-                    <stop offset="45%" stop-color="#F59E0B"/>
-                    <stop offset="85%" stop-color="#B45309"/>
-                    <stop offset="100%" stop-color="#78350F"/>
-                </radialGradient>
-                <radialGradient id="cake2Grad" cx="40%" cy="30%" r="60%">
-                    <stop offset="0%" stop-color="#FEF08A"/>
-                    <stop offset="45%" stop-color="#D97706"/>
-                    <stop offset="85%" stop-color="#92400E"/>
-                    <stop offset="100%" stop-color="#451A03"/>
-                </radialGradient>
-            </defs>
-            <ellipse cx="70" cy="62" rx="64" ry="18" fill="url(#plateShadow)"/>
-            <ellipse cx="70" cy="56" rx="58" ry="15" fill="#0A1929" stroke="url(#rimGrad)" stroke-width="2.5"/>
-            <ellipse cx="70" cy="54" rx="52" ry="12" fill="#05101C"/>
-            
+            <ellipse cx="70" cy="56" rx="58" ry="15" fill="#061626" stroke="#123250" stroke-width="2"/>
             <g transform="translate(26, 22)">
-                <path d="M4 18 C4 28, 38 28, 38 18 L38 24 C38 34, 4 34, 4 24 Z" fill="#78350F"/>
-                <ellipse cx="21" cy="17" rx="17" ry="10" fill="url(#cake1Grad)" stroke="#78350F" stroke-width="0.8"/>
-                <ellipse cx="21" cy="17" rx="12" ry="6.5" stroke="#92400E" stroke-width="1.2" stroke-dasharray="3,1.5" fill="none"/>
-                <circle cx="21" cy="17" r="3.5" fill="#B45309" opacity="0.6"/>
+                <ellipse cx="21" cy="17" rx="16" ry="9" fill="#D97706" stroke="#78350F" stroke-width="0.8"/>
+                <ellipse cx="21" cy="17" rx="11" ry="6" stroke="#FEF08A" stroke-width="1" stroke-dasharray="2,1" fill="none"/>
             </g>
-
             <g transform="translate(68, 25)">
-                <path d="M4 18 C4 28, 38 28, 38 18 L38 24 C38 34, 4 34, 4 24 Z" fill="#451A03"/>
-                <ellipse cx="21" cy="17" rx="17" ry="10" fill="url(#cake2Grad)" stroke="#78350F" stroke-width="0.8"/>
-                <ellipse cx="21" cy="17" rx="12" ry="6.5" stroke="#78350F" stroke-width="1.2" stroke-dasharray="3,1.5" fill="none"/>
-                <circle cx="21" cy="17" r="3.5" fill="#78350F" opacity="0.7"/>
+                <ellipse cx="21" cy="17" rx="16" ry="9" fill="#B45309" stroke="#78350F" stroke-width="0.8"/>
+                <ellipse cx="21" cy="17" rx="11" ry="6" stroke="#FEF08A" stroke-width="1" stroke-dasharray="2,1" fill="none"/>
             </g>
         </svg>
 
         <svg class="rabbit-lantern-chibi" viewBox="0 0 115 115" fill="none">
-            <defs>
-                <radialGradient id="rabbitShade2" cx="45%" cy="35%" r="60%">
-                    <stop offset="0%" stop-color="#FFFFFF"/>
-                    <stop offset="75%" stop-color="#F1F5F9"/>
-                    <stop offset="100%" stop-color="#CBD5E1"/>
-                </radialGradient>
-            </defs>
-            <ellipse cx="64" cy="96" rx="30" ry="8" fill="#020810" opacity="0.55"/>
-            <circle cx="94" cy="74" r="8" fill="#F8FAFC"/>
-            <ellipse cx="64" cy="72" rx="27" ry="23" fill="url(#rabbitShade2)"/>
-            <circle cx="56" cy="44" r="22" fill="url(#rabbitShade2)"/>
-            
+            <circle cx="88" cy="74" r="7" fill="#F8FAFC"/>
+            <ellipse cx="60" cy="72" rx="25" ry="21" fill="#F1F5F9"/>
+            <circle cx="54" cy="44" r="20" fill="#FFFFFF"/>
             <g transform="rotate(-18, 44, 20)">
-                <ellipse cx="44" cy="20" rx="7" ry="18" fill="url(#rabbitShade2)"/>
-                <ellipse cx="44" cy="20" rx="3.8" ry="13" fill="#FDA4AF" opacity="0.85"/>
+                <ellipse cx="44" cy="20" rx="6" ry="16" fill="#FFFFFF"/>
+                <ellipse cx="44" cy="20" rx="3" ry="11" fill="#FDA4AF" opacity="0.85"/>
             </g>
             <g transform="rotate(15, 68, 20)">
-                <ellipse cx="68" cy="20" rx="7" ry="18" fill="url(#rabbitShade2)"/>
-                <ellipse cx="68" cy="20" rx="3.8" ry="13" fill="#FDA4AF" opacity="0.85"/>
+                <ellipse cx="68" cy="20" rx="6" ry="16" fill="#FFFFFF"/>
+                <ellipse cx="68" cy="20" rx="3" ry="11" fill="#FDA4AF" opacity="0.85"/>
             </g>
-
-            <ellipse cx="46" cy="45" rx="3.2" ry="4.5" fill="#0F172A"/>
-            <circle cx="47.5" cy="43" r="1.5" fill="#FFFFFF"/>
-            <circle cx="45" cy="47" r="0.8" fill="#FFFFFF"/>
-            
-            <ellipse cx="66" cy="45" rx="3.2" ry="4.5" fill="#0F172A"/>
-            <circle cx="67.5" cy="43" r="1.5" fill="#FFFFFF"/>
-            <circle cx="65" cy="47" r="0.8" fill="#FFFFFF"/>
-            
-            <path d="M55 49 Q56 50.5, 57 49" stroke="#F43F5E" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-            <path d="M53.5 52 Q56 54.5, 58.5 52" stroke="#475569" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-            
-            <ellipse cx="38" cy="51" rx="4.5" ry="3" fill="#FB7185" opacity="0.6"/>
-            <ellipse cx="74" cy="51" rx="4.5" ry="3" fill="#FB7185" opacity="0.6"/>
-            
-            <ellipse cx="32" cy="65" rx="6" ry="5" fill="#FFFFFF"/>
-            
+            <circle cx="45" cy="45" r="2.8" fill="#0F172A"/>
+            <circle cx="65" cy="45" r="2.8" fill="#0F172A"/>
             <g transform="translate(14, 62)">
-                <line x1="18" y1="3" x2="18" y2="14" stroke="#D97706" stroke-width="1.6"/>
-                <rect x="7" y="14" width="22" height="3" rx="1" fill="#78350F" stroke="#F4C76A" stroke-width="0.8"/>
-                <rect x="5" y="17" width="26" height="30" rx="8" fill="#DC2626" filter="drop-shadow(0 0 10px #FF8A3D)"/>
-                <rect x="10" y="20" width="16" height="24" rx="4" fill="#FEF08A" opacity="0.9"/>
-                <rect x="8" y="47" width="20" height="3" rx="1" fill="#78350F"/>
-                <circle cx="18" cy="52" r="2" fill="#F4C76A"/>
-                <path d="M16 54 L15 68 M18 54 L18 70 M20 54 L21 68" stroke="#DC2626" stroke-width="1.6" stroke-linecap="round"/>
+                <line x1="18" y1="3" x2="18" y2="14" stroke="#D97706" stroke-width="1.5"/>
+                <rect x="6" y="14" width="24" height="28" rx="7" fill="#DC2626"/>
+                <rect x="10" y="17" width="16" height="22" rx="4" fill="#FEF08A" opacity="0.9"/>
+                <line x1="18" y1="42" x2="18" y2="56" stroke="#DC2626" stroke-width="1.5"/>
             </g>
         </svg>
     </div>
@@ -1438,7 +1250,7 @@
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(253, 224, 139, ${this.opacity})`;
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 6;
             ctx.shadowColor = "#FFB347";
             ctx.fill();
         }
@@ -1457,7 +1269,7 @@
 
     function initCanvas() {
         particlesArray = [];
-        const count = Math.min(36, Math.floor(innerWidth / 12));
+        const count = Math.min(32, Math.floor(innerWidth / 13));
         for (let i = 0; i < count; i++) {
             particlesArray.push(new Firefly());
         }
@@ -1519,9 +1331,9 @@
     function showToast(msg, type = 'success') {
         const container = document.getElementById('toastContainer'); const toast = document.createElement('div'); toast.className = `toast toast-${type}`;
         const icons = { success: '<polyline points="20 6 9 17 4 12"></polyline>', error: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>', warning: '<line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>' };
-        toast.innerHTML = `<div class="toast-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
+        toast.innerHTML = `<div class="toast-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${icons[type]}</svg></div> <span>${msg}</span>`;
         container.appendChild(toast); void toast.offsetWidth; toast.classList.add('show');
-        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000);
+        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 350); }, 3000);
     }
 
     // --- 10. SUPPORT MODAL LOGIC ---
@@ -1539,7 +1351,7 @@
         let optionsHtml = `<div class="dropdown-option" onclick="selectShift('${dayName}', '', '${offText}')">${offText}</div>`;
         SHIFTS.forEach(s => { optionsHtml += `<div class="dropdown-option" onclick="selectShift('${dayName}', '${s.id}', '${s.id}')">${s.id}</div>`; });
         
-        const lanternSvg = `<svg width="14" height="15" viewBox="0 0 20 24" fill="none" style="vertical-align: middle; margin-right: 6px;"><line x1="10" y1="0" x2="10" y2="4" stroke="#F4C76A" stroke-width="1.2"/><rect x="4" y="4" width="12" height="13" rx="3.5" fill="#DC2626" filter="drop-shadow(0 0 4px #FF8A3D)"/><rect x="6.5" y="6" width="7" height="9" rx="1.5" fill="#FEF08A" opacity="0.85"/><line x1="10" y1="17" x2="10" y2="22" stroke="#DC2626" stroke-width="1.4"/></svg>`;
+        const lanternSvg = `<svg width="13" height="14" viewBox="0 0 20 24" fill="none" style="vertical-align: middle; margin-right: 5px;"><line x1="10" y1="0" x2="10" y2="4" stroke="#F4C76A" stroke-width="1.2"/><rect x="4" y="4" width="12" height="13" rx="3.5" fill="#D94A3D"/><rect x="6.5" y="6" width="7" height="9" rx="1.5" fill="#FEF08A" opacity="0.85"/><line x1="10" y1="17" x2="10" y2="22" stroke="#D94A3D" stroke-width="1.2"/></svg>`;
 
         form.innerHTML += `
             <div class="day-card" style="${gridSpanStyle}">
@@ -1550,7 +1362,7 @@
                 <div class="custom-dropdown" id="dropdown_${dayName}">
                     <div class="dropdown-selected" onclick="toggleDropdown('${dayName}')">
                         <span class="selected-text" id="text_${dayName}">${offText}</span>
-                        <svg class="select-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -1609,7 +1421,7 @@
             lockStatus.className = "status-panel sys-locked";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </div>
                 <div class="st-info">
                     <span class="st-title">${t('sysLocked')}</span>
@@ -1621,7 +1433,7 @@
             lockStatus.className = "status-panel sys-open";
             lockStatus.innerHTML = `
                 <div class="st-icon-box">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                 </div>
                 <div class="st-info">
                     <span class="st-title">${t('sysOpen')}</span>
@@ -1701,7 +1513,7 @@
         for(let i = 1; i < trailPoints.length; i++) {
             const xc = (trailPoints[i].x + trailPoints[i-1].x) / 2; const yc = (trailPoints[i].y + trailPoints[i-1].y) / 2; tCtx.quadraticCurveTo(trailPoints[i-1].x, trailPoints[i-1].y, xc, yc);
         }
-        tCtx.strokeStyle = 'rgba(244, 199, 106, 0.95)'; tCtx.lineWidth = 5; tCtx.lineCap = 'round'; tCtx.shadowBlur = 12; tCtx.shadowColor = '#FF8A3D'; tCtx.stroke();
+        tCtx.strokeStyle = 'rgba(244, 199, 106, 0.95)'; tCtx.lineWidth = 4.5; tCtx.lineCap = 'round'; tCtx.shadowBlur = 10; tCtx.shadowColor = '#FF8A3D'; tCtx.stroke();
     }
 
     setInterval(() => {
@@ -1736,12 +1548,12 @@
     let rawExcelDataExport = ""; 
     async function fetchAndRenderAdminData() {
         const tableContainer = document.getElementById("excelTable"); 
-        tableContainer.innerHTML = `<div style="padding: 26px; text-align: center; color: var(--warm-gold); font-weight: 700;">Đang mở sổ quản lý...</div>`;
+        tableContainer.innerHTML = `<div style="padding: 24px; text-align: center; color: var(--warm-gold); font-weight: 600;">Đang mở sổ quản lý...</div>`;
         
         try {
             const snapshot = await get(ref(db, "dangKy"));
             if(!snapshot.exists()) {
-                tableContainer.innerHTML = `<div style="padding: 26px; color: var(--text-muted); text-align: center; font-weight: 600;">${t('emptyData')}</div>`; 
+                tableContainer.innerHTML = `<div style="padding: 24px; color: var(--text-muted); text-align: center; font-weight: 500;">${t('emptyData')}</div>`; 
                 document.getElementById("totalUsers").innerText = "0"; 
                 document.getElementById("totalShifts").innerText = "0"; 
                 document.getElementById("priorityAdminContainer").innerHTML = "";
@@ -1764,26 +1576,26 @@
             // 1. Tùng priority section
             const priorityContainer = document.getElementById("priorityAdminContainer");
             if (adminNames.length > 0) {
-                let adminHtml = `<div style="background: rgba(244, 199, 106, 0.12); border: 1.5px solid var(--warm-gold); border-radius: 14px; padding: 16px; margin-bottom: 18px; box-shadow: var(--shadow-slot);">
-                    <h3 style="font-family: var(--font-display); color: var(--warm-gold); margin-bottom: 12px; font-size: 14.5px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; font-weight: 800;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                let adminHtml = `<div style="background: rgba(244, 199, 106, 0.1); border: 1px solid var(--warm-gold); border-radius: 12px; padding: 14px; margin-bottom: 16px; box-shadow: var(--shadow-slot);">
+                    <h3 style="font-family: var(--font-display); color: var(--warm-gold); margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-weight: 700;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         Ưu tiên em Tùng nhé chị!!!
                     </h3>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">`;
+                    <div style="display: flex; flex-direction: column; gap: 8px;">`;
 
                 adminNames.forEach(adminName => {
                     const adminData = data[adminName];
                     const lichData = adminData?.lich || {};
                     let hasShifts = false;
-                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 7px;">`;
+                    let shiftsHtml = `<div style="display: flex; flex-wrap: wrap; gap: 6px;">`;
 
                     DAYS.forEach(day => {
                         if (lichData[day]) {
                             hasShifts = true;
                             const shiftInfoObj = SHIFTS.find(s => s.id === lichData[day]);
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
-                            shiftsHtml += `<div style="background: rgba(7, 24, 43, 0.95); padding: 5px 10px; border-radius: 8px; border: 1px solid rgba(244, 199, 106, 0.4); display: flex; align-items: center; gap: 6px;">
-                                <span style="font-weight: 800; font-size: 11px; color: var(--warm-gold); text-transform: uppercase;">${t('dayShort_' + day)}</span>
+                            shiftsHtml += `<div style="background: #061526; padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(244, 199, 106, 0.35); display: flex; align-items: center; gap: 5px;">
+                                <span style="font-weight: 700; font-size: 10.5px; color: var(--warm-gold); text-transform: uppercase;">${t('dayShort_' + day)}</span>
                                 <span class="shift-badge ${cssBadgeClass}" style="box-shadow: none; border: none; padding: 0;">${lichData[day]}</span>
                             </div>`;
                         }
@@ -1793,7 +1605,7 @@
                     if (hasShifts) {
                         adminHtml += `
                             <div>
-                                <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 6px; color: var(--text-title);">${adminName} <span style="font-size: 9px; background: var(--warm-gold); color: #07182B; font-weight: 800; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 4px;">GUILD MASTER</span></div>
+                                <div style="font-weight: 700; font-size: 13px; margin-bottom: 4px; color: var(--text-title);">${adminName} <span style="font-size: 8.5px; background: var(--warm-gold); color: #07182B; font-weight: 700; padding: 2px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px;">GUILD MASTER</span></div>
                                 ${shiftsHtml}
                             </div>
                         `;
@@ -1806,7 +1618,7 @@
             }
 
             // 2. Main schedule table
-            let htmlTable = `<table><thead><tr><th style="width: 100px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
+            let htmlTable = `<table><thead><tr><th style="width: 90px;">${t('dayTitle') || 'Ngày'}</th><th style="text-align: left;">Danh sách nhân sự (Thường)</th></tr></thead><tbody>`;
             rawExcelDataExport = `${t('dayTitle') || 'Ngày'}\t${t('listTitle') || 'Danh sách nhân sự đăng ký'}\n`;
             
             DAYS.forEach(day => {
@@ -1828,8 +1640,8 @@
                             const cssBadgeClass = shiftInfoObj ? shiftInfoObj.class : 'badge-double';
                             
                             dayShiftsHTML.push(`
-                                <div style="display: inline-flex; align-items: center; background: rgba(11, 34, 56, 0.85); padding: 3px 8px; border-radius: 6px; margin: 3px 6px 3px 0; border: 1px solid rgba(143,168,192,0.2);">
-                                    <span style="font-weight: 700; margin-right: 6px; font-size: 12.5px;">${employeeName}</span>
+                                <div style="display: inline-flex; align-items: center; background: #081d33; padding: 3px 7px; border-radius: 5px; margin: 2px 5px 2px 0; border: 1px solid rgba(143,168,192,0.18);">
+                                    <span style="font-weight: 600; margin-right: 5px; font-size: 12px;">${employeeName}</span>
                                     <span class="shift-badge ${cssBadgeClass}" style="transform: scale(0.9);">${shiftRegistered}</span>
                                 </div>
                             `);
@@ -1846,8 +1658,8 @@
             htmlTable += `</tbody></table>`;
             
             tableContainer.innerHTML = htmlTable;
-            animateNumberCounter("totalUsers", 0, countUsers, 600); 
-            animateNumberCounter("totalShifts", 0, countShifts, 600);
+            animateNumberCounter("totalUsers", 0, countUsers, 500); 
+            animateNumberCounter("totalShifts", 0, countShifts, 500);
             
         } catch(error) { 
             console.error("Firebase fetch error:", error); 
@@ -1917,7 +1729,7 @@
         if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
         const resetBtn = document.createElement('button'); 
         resetBtn.innerHTML = `Khôi Phục`; 
-        resetBtn.style.cssText = "position:fixed; top: max(20px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 999999; padding: 12px 22px; border-radius: 20px; background: #dc2626; color: white; font-weight: 800; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 10px 25px rgba(220, 38, 38, 0.6); cursor: pointer; font-family: inherit;"; 
+        resetBtn.style.cssText = "position:fixed; top: max(20px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 999999; padding: 10px 20px; border-radius: 20px; background: #dc2626; color: white; font-weight: 700; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; font-family: inherit;"; 
         document.body.appendChild(resetBtn); 
         resetBtn.onclick = () => window.location.reload();
         
